@@ -1,0 +1,15 @@
+.foodStorageMainBox{
+    display:flex;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+.foodStorageRight{
+    background-color: blueviolet;
+    flex:3;
+    height:400px;
+}
+.foodStorageLeft{
+    background-color: greenyellow;
+    flex:1;
+    height:400px;
+}
