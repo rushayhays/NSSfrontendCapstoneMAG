@@ -1,5 +1,6 @@
 //This will control routing, every route needs a link
 import React from "react"
+import "./applicationViews.css"
 import { Route, Routes } from "react-router-dom"
 import { LandingPage } from "../landingPage/landingPage"
 import { SetUpHQ } from "./setUpHQ/SetUpHQ"

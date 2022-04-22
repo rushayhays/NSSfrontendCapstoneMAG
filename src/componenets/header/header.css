@@ -1,7 +1,8 @@
+
 .headerArea{
     display:flex;
     justify-content: space-between;
-    background-color: grey;
+    background-color: gray;
     color: white;
     margin-bottom:20px;
 }

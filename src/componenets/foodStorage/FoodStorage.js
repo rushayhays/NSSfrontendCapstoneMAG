@@ -3,6 +3,7 @@
 
 import "./foodStorage.css"
 import { UserBanner } from "../userBanner/UserBanner"
+import { FoodStorageStats } from "./foodStorageStats/FoodStorageStats"
 
 
 export const FoodStorage = () => {
@@ -11,10 +12,15 @@ export const FoodStorage = () => {
            <UserBanner/>
            <section className="foodStorageMainBox">
                <div className="foodStorageLeft">
-                    <p>Left</p>
+                    <FoodStorageStats/>
                </div>
                <div className="foodStorageRight">
-                    <p>right</p>
+                    <div id="foodStorageNavBar">
+                        <p>Nav bar goes here, My Food Storage,My Meal Cards,About</p>
+                    </div>
+                    <div id="foodStorageOutlet">
+                        This is the spot for the outlet
+                    </div>
                </div>
             </section> 
         </>
