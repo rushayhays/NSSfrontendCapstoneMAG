@@ -4,6 +4,8 @@
 import "./foodStorage.css"
 import { UserBanner } from "../userBanner/UserBanner"
 import { FoodStorageStats } from "./foodStorageStats/FoodStorageStats"
+import { FoodNavBar } from "./foodNav/FoodNavBar"
+import { Outlet } from "react-router-dom"
 
 
 export const FoodStorage = () => {
@@ -16,10 +18,10 @@ export const FoodStorage = () => {
                </div>
                <div className="foodStorageRight">
                     <div id="foodStorageNavBar">
-                        <p>Nav bar goes here, My Food Storage,My Meal Cards,About</p>
+                        <FoodNavBar/>
                     </div>
                     <div id="foodStorageOutlet">
-                        This is the spot for the outlet
+                        <Outlet/>
                     </div>
                </div>
             </section> 

@@ -6,6 +6,7 @@ import { LandingPage } from "../landingPage/landingPage"
 import { SetUpHQ } from "./setUpHQ/SetUpHQ"
 import { HQHome } from "./hqHome/HQHome"
 import { FoodStorage } from "./foodStorage/FoodStorage"
+import { MyFoodStorage } from "./foodStorage/myFoodStorage/MyFoodStorage"
 
 export const ApplicationViews = () => {
     return(
@@ -14,7 +15,9 @@ export const ApplicationViews = () => {
                 <Route exact path="/" element={<LandingPage/>}/>
                 <Route path="/setuphq" element={<SetUpHQ/>}/>
                 <Route path="/hqhome" element={<HQHome/>}/>
-                <Route path="/foodstorage" element={<FoodStorage/>}/>
+                <Route path="/foodstorage" element={<FoodStorage/>}>
+                    <Route path="/foodstorage/myfoodstorage" element={<MyFoodStorage/>}/>
+                </Route>
             </Routes>  
         </>
     )
