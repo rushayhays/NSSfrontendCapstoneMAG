@@ -5,13 +5,15 @@ import "./foodStorage.css"
 import { UserBanner } from "../userBanner/UserBanner"
 import { FoodStorageStats } from "./foodStorageStats/FoodStorageStats"
 import { FoodNavBar } from "./foodNav/FoodNavBar"
-import { Outlet } from "react-router-dom"
+import { Outlet, Link } from "react-router-dom"
 
 
 export const FoodStorage = () => {
     return(
         <>
+            <Link to={"/hqhome"}>
            <UserBanner/>
+            </Link>
            <section className="foodStorageMainBox">
                <div className="foodStorageLeft">
                     <FoodStorageStats/>

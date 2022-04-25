@@ -10,8 +10,12 @@ export const FoodNavBar = () =>{
                 <Link to={"/foodstorage/myfoodstorage"}>
                 <button className="foodNavButton">My Food Storage</button>
                 </Link>
+                <Link to={"/foodstorage/mymealcards"}>
                 <button className="foodNavButton">My Meal Cards</button>
+                </Link>
+                <Link to={"/foodstorage/about"}>
                 <button className="foodNavButton">About</button>
+                </Link>
             </div>
         </>
     )

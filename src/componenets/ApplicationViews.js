@@ -7,6 +7,8 @@ import { SetUpHQ } from "./setUpHQ/SetUpHQ"
 import { HQHome } from "./hqHome/HQHome"
 import { FoodStorage } from "./foodStorage/FoodStorage"
 import { MyFoodStorage } from "./foodStorage/myFoodStorage/MyFoodStorage"
+import { MyMealCards } from "./foodStorage/myMealCards/MyMealCards"
+import { About } from "./foodStorage/about/About"
 
 export const ApplicationViews = () => {
     return(
@@ -17,6 +19,8 @@ export const ApplicationViews = () => {
                 <Route path="/hqhome" element={<HQHome/>}/>
                 <Route path="/foodstorage" element={<FoodStorage/>}>
                     <Route path="/foodstorage/myfoodstorage" element={<MyFoodStorage/>}/>
+                    <Route path="/foodstorage/mymealcards" element={<MyMealCards/>}/>
+                    <Route path="/foodstorage/about" element={<About/>}/>
                 </Route>
             </Routes>  
         </>
