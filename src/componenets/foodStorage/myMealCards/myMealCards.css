@@ -9,8 +9,9 @@
 }
 
 .mealCardCarousel{
-    background-color: gray;
     height:300px;
+    display:flex;
+    gap:10px;
 }
 
 .mealCreateTitleArea{

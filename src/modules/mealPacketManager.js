@@ -2,10 +2,9 @@
 
 const remoteURL= "http://localhost:8088"
 
-export const getUsersMealPackets = () => {
+export const getUsersMealPackets = (num) => {
     return fetch(
-      `${remoteURL}/mealPackets?&_expand=mealType`
+      `${remoteURL}/mealPackets?userId=${num}&_expand=mealType`
     ).then((res) => res.json());
   };
 
-//?currentUserId=${currentUserId}
