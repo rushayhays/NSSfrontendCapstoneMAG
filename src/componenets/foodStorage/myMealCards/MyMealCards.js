@@ -37,14 +37,25 @@ export const MyMealCards = () => {
                     <SingleMealCard key={meal.id} object={meal}/>
                 )}
             </section>
+
+            {/* This area will handle gathering information for a new card and posting it */}
             <section className="mealCardCreation">
                 <div className="mealCreateTitleArea">
                     <h4>Create a New Meal Card</h4>
                 </div>
                 <div className="mealCreateEntryArea">
-                    <div className="mealCreateEntryBox" id="box1"></div>
-                    <div className="mealCreateEntryBox" id="box2"></div>
-                    <div className="mealCreateEntryBox" id="box3"></div>
+                    {/* Box1 will grab info to post to mealPacket */}
+                    <div className="mealCreateEntryBox" id="box1">
+
+                    </div>
+                    {/* Box2 will also post to MealPacket  */}
+                    <div className="mealCreateEntryBox" id="box2">
+
+                    </div>
+                    {/* This will need to post to mealNutrition once per every checked box */}
+                    <div className="mealCreateEntryBox" id="box3">
+
+                    </div>
                 </div>
                 <div id="createButtonArea">
                     <h4>Create My Meal Card</h4>

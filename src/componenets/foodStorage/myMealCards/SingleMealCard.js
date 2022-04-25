@@ -5,6 +5,9 @@ import React from "react"
 import "./singleMealCard.css"
 
 export const SingleMealCard =({object}) =>{
+
+    // need to get the nutrition types for this Meal packet
+
     return(
         <>
             <div className="mealPacket" id={object.id}>
