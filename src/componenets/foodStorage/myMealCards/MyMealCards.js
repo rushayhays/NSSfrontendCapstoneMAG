@@ -46,15 +46,34 @@ export const MyMealCards = () => {
                 <div className="mealCreateEntryArea">
                     {/* Box1 will grab info to post to mealPacket */}
                     <div className="mealCreateEntryBox" id="box1">
+                        <p>Calories</p>
+                        <p>Servings</p>
+                        <p>shelfLife</p>
+                        <p>Name</p>
 
                     </div>
                     {/* Box2 will also post to MealPacket  */}
                     <div className="mealCreateEntryBox" id="box2">
+                        <p>Meal Type</p>
+                        <ul>
+                            <li>Dinner</li>
+                            <li>Lunch</li>
+                            <li>Breakfast</li>
+                            <li>Snack or Other</li>
+                        </ul>
 
                     </div>
                     {/* This will need to post to mealNutrition once per every checked box */}
                     <div className="mealCreateEntryBox" id="box3">
-
+                    <p>Nutrition Groups</p>
+                        <ul>
+                            <li>Grain</li>
+                            <li>Vegetables</li>
+                            <li>Fruits</li>
+                            <li>Proteins</li>
+                            <li>Dairy</li>
+                            <li>Other</li>
+                        </ul>
                     </div>
                 </div>
                 <div id="createButtonArea">
