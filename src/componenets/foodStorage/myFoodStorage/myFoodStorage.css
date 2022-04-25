@@ -1,0 +1,16 @@
+.myFoodStorageBar{
+    background-color: lightgrey;
+}
+
+.expirationBar{
+    background-color: lightgray;
+}
+.myFoodStorageCarousel{
+    background-color: gray;
+    height:75px;
+    margin-bottom: 10px;
+}
+.expireCardArea{
+    background-color: gray;
+    height:75px;
+}
