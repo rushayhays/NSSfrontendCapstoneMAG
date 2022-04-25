@@ -1,0 +1,10 @@
+html, body {
+    height: 100%;
+}
+
+.userbanner{
+    background-color: lightgrey;
+    padding:10px;
+    display:flex;
+    justify-content: space-around;
+}

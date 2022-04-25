@@ -1,0 +1,19 @@
+#foodStorageStatsBox{
+
+}
+
+.statTags{
+    background-color: black;
+    color:white;
+    padding:3px;
+}
+
+.statsHeaderBox{
+    background-color: lightgrey;
+    margin-bottom:25px;
+}
+
+.statsPieBox{
+    background-color: lightgrey;
+    height:261px;
+}

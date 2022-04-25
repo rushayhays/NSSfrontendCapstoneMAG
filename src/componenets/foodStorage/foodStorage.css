@@ -1,0 +1,33 @@
+
+
+.foodStorageMainBox{
+    display:flex;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    gap:20px;
+    /* background-color: brown; */
+    height:20%;
+}
+.foodStorageRight{
+    /* background-color: blueviolet; */
+    flex:4;
+    align-items: stretch;
+}
+.foodStorageLeft{
+    /* background-color: greenyellow; */
+    flex:1;
+    align-items: stretch;
+}
+
+#foodStorageNavBar{
+    height:25px;
+    background-color: lightgray;
+    margin-bottom: 10px;
+    margin-right: 10%;
+}
+
+#foodStorageOutlet{
+    height:500px;
+    background-color: lightgrey;
+    margin-right: 10%;;
+}

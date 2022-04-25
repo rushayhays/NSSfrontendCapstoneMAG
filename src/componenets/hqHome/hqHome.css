@@ -1,0 +1,12 @@
+.hqHomeBody{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:500px;
+}
+
+.hqHomeFoodPie{
+    height: 300px;
+    width:300px;
+    background-color: gray;
+}

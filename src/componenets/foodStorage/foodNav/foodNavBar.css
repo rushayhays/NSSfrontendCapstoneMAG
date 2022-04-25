@@ -1,0 +1,8 @@
+#navButtonArea{
+    display:flex;
+}
+
+.foodNavButton{
+    background-color: black;
+    color:white;
+}

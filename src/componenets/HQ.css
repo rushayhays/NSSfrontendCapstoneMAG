@@ -1,0 +1,17 @@
+
+#overView{
+    display:flex;
+    flex-direction: column;
+    /* background-color: blueviolet; */
+}
+
+#overViewHeader{
+    /* background-color: aquamarine; */
+    flex:1;
+}
+
+#overViewBody{
+    /* background-color: red; */
+    flex:4;
+
+}

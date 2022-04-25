@@ -1,0 +1,36 @@
+.landingPageBanner{
+    background-color: lightgray;
+    display:flex;
+}
+
+#bottomCatch{
+    margin-left:200px;
+}
+
+.lilBlackBox{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(90, 90, 90);
+    width:400px;
+    height:300px;
+    margin-top:20px;
+    margin-left:20px;
+    margin-bottom:40px;
+    padding:10px;
+    color: white;
+}
+
+#bottomPara{
+    margin-bottom: 40px;
+}
+
+#landingButton{
+    align-self: flex-start;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left:10px;
+    padding-right: 30px;
+    background-color: black;
+    color: white;
+    
+}

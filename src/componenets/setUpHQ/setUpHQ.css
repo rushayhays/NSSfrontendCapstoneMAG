@@ -1,0 +1,75 @@
+.hqEntryForm{
+    display:flex;
+}
+
+/* This is the big box for the left side of the page */
+.hqEntryForm{
+    
+}
+
+.hqEntryBanner{
+    background-color: lightgrey;
+}
+
+.nameArea{
+    display:flex;
+}
+
+.nameAreaLeft{
+    height:200px;
+    width:400px;
+}
+
+.nameAreaRight{
+    background-color: lightgray;
+    height:200px;
+    width:400px;
+}
+
+.regionArea{
+    display:flex;
+}
+
+.regionAreaLeft{
+    height:200px;
+    width:400px;
+}
+
+.regionAreaRight{
+    background-color: lightgray;
+    height:200px;
+    width:400px;
+}
+
+/* This is the big box for the right side of the page */
+.hqPreview{
+   padding:50px; 
+}
+
+.hqPreviewBox{
+    background-color: lightgray;
+    width:500px;
+    height: 500px;
+    margin-left: 80px;
+    padding-top:10px;
+    
+}
+
+.nameBanner{
+ background-color: gray;
+ text-align: center;
+}
+.regionBanner{
+    background-color: gray;
+}
+.foodStorageBanner{
+    background-color: gray;
+}
+
+#createHQButton{
+    background-color: black;
+    color:white;
+    padding:10px 30px;
+    margin-left:35%;
+    
+}
