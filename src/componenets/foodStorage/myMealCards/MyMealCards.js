@@ -15,6 +15,15 @@ export const MyMealCards = () => {
         shelfLifeInDays:0,
         name:""
     }])
+    const [singleMeal, setSingleMeal] = useState({
+        id:0,
+        userId:0,
+        calories:0,
+        mealTypeId:0,
+        servings:0,
+        shelfLifeInDays:0,
+        name:""
+    })
 
     //Update this later to get the User's ID dynamically
     const userNum=1;
@@ -25,6 +34,21 @@ export const MyMealCards = () => {
         });
     }, []);
 
+    const handleControlledInputChange = (event) => {
+		//A sepearte useState is needed here, because meals, creates an
+        //array of meal objects, but this needs something that only deals with
+        //and updates one object total
+		const newSingleMeal = { ...singleMeal }
+		let selectedVal = event.target.value
+		// forms always provide values as strings. But we want to save the ids as numbers.
+		if (event.target.id.includes("Id")) {
+			selectedVal = parseInt(selectedVal)
+		}
+	
+		newSingleMeal[event.target.id] = selectedVal
+		// update state
+		setSingleMeal(newSingleMeal)
+	}
 
     return(
         <>
@@ -46,10 +70,16 @@ export const MyMealCards = () => {
                 <div className="mealCreateEntryArea">
                     {/* Box1 will grab info to post to mealPacket */}
                     <div className="mealCreateEntryBox" id="box1">
+                        <fieldset>
+                            <div className="form-group">
+                                <label htmlFor="name">Name:</label>
+                                <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="name" value={singleMeal.name} />
+                            </div>
+                        </fieldset>
                         <p>Calories</p>
                         <p>Servings</p>
                         <p>shelfLife</p>
-                        <p>Name</p>
+                        
 
                     </div>
                     {/* Box2 will also post to MealPacket  */}
