@@ -3,11 +3,13 @@
 
 import React from "react"
 import "./singleMealCard.css"
-import { getNutritionForSingleMeal } from "../../../modules/mealPacketManager"
+import { getNutritionForSingleMeal, deleteMealNutrientType } from "../../../modules/mealPacketManager"
 import { useState, useEffect } from "react"
 import { NutritionButton } from "./nutritionButton/NutritionButton"
 
-export const SingleMealCard =({object}) =>{
+export const SingleMealCard =({object, handleClickDelete}) =>{
+
+    const userNum =1;
     // need to get the nutrition types for this Meal packet
     const [nutritionGroups, setNutritionGroups] = useState([{
         "id": 0,
@@ -21,11 +23,20 @@ export const SingleMealCard =({object}) =>{
         });
     }, []);
 
+    const handleClickDeleteInsideSingleMealCard = () => {
+        nutritionGroups.forEach(nutriObject => {
+            deleteMealNutrientType(nutriObject.id)
+        })
+    
+    }
+
 
     return(
         <>
             <div className="mealPacket" id={object.id}>
-                <h5>{object.name}</h5>
+                <div className="mealCardNameArea">
+                    <h5>{object.name}</h5>
+                </div>
                 <p>{object.mealtype?.name}</p>
                 <p>{object.calories}</p>
                 <p>{object.servings}</p>
@@ -36,6 +47,12 @@ export const SingleMealCard =({object}) =>{
                         
                         <NutritionButton key={nutritionGroup.id} nutriName={nutritionGroup}/>
                     })}
+                </div>
+                <div className="mealCardButtonArea">
+                    <button>Edit</button>
+                    {/* Take a look at having two things happen when something is clicked */}
+                    <button onClick={handleClickDelete}>Delete</button>
+
                 </div>
             </div>
         </>
