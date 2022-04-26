@@ -25,6 +25,7 @@
     "mealPackets":[
         {
             "id":1,
+            "userId":1,
             "calories":1200,
             "mealTypeId":1,
             "servings":4,
