@@ -1,0 +1,44 @@
+.topBar{
+    background-color: lightgray;
+}
+
+
+#createButtonArea{
+    background-color: black;
+    color: white;
+}
+
+.mealCardCarousel{
+    height:300px;
+    display:flex;
+    gap:10px;
+}
+
+.mealCreateTitleArea{
+    background-color: lightgray;
+}
+
+.mealCreateEntryArea{
+    height:150px;
+    display:flex;
+    justify-content: space-between;
+    gap:10px;
+    margin-bottom: 25px;;
+}
+
+
+#box1{
+    background-color: gray;
+    height:150px;
+    width:300px;
+}
+#box2{
+    background-color: gray;
+    height:150px;
+    width:300px;
+}
+#box3{
+    background-color: gray;
+    height:150px;
+    width:300px;
+}

@@ -6,6 +6,7 @@ import "./singleMealCard.css"
 import { getNutritionForSingleMeal, deleteMealNutrientType, deleteMealPacket } from "../../../modules/mealPacketManager"
 import { useState, useEffect } from "react"
 import { NutritionButton } from "./nutritionButton/NutritionButton"
+import { Link } from "react-router-dom"
 
 export const SingleMealCard =({object, render}) =>{
 
@@ -24,17 +25,24 @@ export const SingleMealCard =({object, render}) =>{
         });
     }, []);
 
+    const nutrientPromiseArrayMaker = () => {
+        const nutrientPromiseArray=[];
+        nutritionGroups.forEach(nutriObject => {
+            const nutriPromise = deleteMealNutrientType(nutriObject.id)
+            nutrientPromiseArray.push(nutriPromise)
+        })
+        return nutrientPromiseArray
+    }
+
+
     //Try putting a promise.all in here to control nutrient deletions
     const handleClickDelete = () => {
-        nutritionGroups.forEach(nutriObject => {
-            deleteMealNutrientType(nutriObject.id)
-            .then(returnedObjectIdoNothingWith=>{
-                deleteMealPacket(object.id)
-            }).then(anotherUntochedReturn => {
-                render()
+        const arrayOfNutrientPromises = nutrientPromiseArrayMaker()
+        Promise.all(arrayOfNutrientPromises).then(returnedObjectIdoNothingWith => {
+            deleteMealPacket(object.id).then(donttouch => {
+                render();
             })
         })
-    
     }
 
 
@@ -57,7 +65,9 @@ export const SingleMealCard =({object, render}) =>{
                     )}
                 </div>
                 <div className="mealCardButtonArea">
+                    <Link to={`/foodstorage/editmymealcard/${object.id}`}>
                     <button>Edit</button>
+                    </Link>
                     {/* Take a look at having two things happen when something is clicked */}
                     <button onClick={handleClickDelete} >Delete</button>
 
@@ -66,8 +76,3 @@ export const SingleMealCard =({object, render}) =>{
         </>
     )
 }
-{/* <section className="mealCardCarousel">
-{meals.map(meal =>
-    <SingleMealCard key={meal.id} object={meal} render={renderMealCards}/>
-)}
-</section> */}

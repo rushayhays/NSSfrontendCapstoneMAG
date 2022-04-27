@@ -1,11 +1,14 @@
-//This will load the data from the mealPackets Database
 
-import "./myMealCards.css"
+import "./editMyMealCard.css"
+import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { getUsersMealPackets, addNutrient, addMealPacket} from "../../../modules/mealPacketManager"
-import { SingleMealCard } from "./SingleMealCard"
+import { getUsersMealPackets, addNutrient, addMealPacket, getSingleUserMealPacket, getNutritionForSingleMeal } from "../../../../modules/mealPacketManager" 
+import { SingleMealCard } from "../SingleMealCard"
 
-export const MyMealCards = () => {
+export const EditMyMealCard = () => {
+
+    const{mealId} = useParams()
+
     const [meals, setMeals] = useState([{
         id:0,
         userId:0,
@@ -15,7 +18,7 @@ export const MyMealCards = () => {
         shelfLifeInDays:0,
         name:""
     }])
-    const [singleMeal, setSingleMeal] = useState({
+    const [editedMeal, setEditedMeal] = useState({
         userId:1,
         calories:0,
         mealTypeId:0,
@@ -23,6 +26,16 @@ export const MyMealCards = () => {
         shelfLifeInDays:0,
         name:""
     })
+
+    const [nutritionGroups, setNutritionGroups] = useState([{
+        "id": 0,
+        "nutritionTypeId": 0,
+        "mealPacketId": 0,
+    }])
+
+    //This is being watched by a use effect. The useEffect will trigger when 
+    //nutritiongroups populates
+    let lengthLooker = nutritionGroups.length
 
     
 
@@ -34,20 +47,54 @@ export const MyMealCards = () => {
     const [checkedfive, setCheckedFive] = useState(false)
     const [checkedsix, setCheckedSix] = useState(false)
 
-
+    //This will set the default state of the chckboxes to match
+    //what nutrients are listed
+    const setUpNutritionGroupsForEditing = () => {
+        nutritionGroups.forEach(object => {
+            if(object.nutritionTypeId === 1){
+                setCheckedOne(true)
+            }
+            if(object.nutritionTypeId === 2){
+                setCheckedTwo(true)
+            }
+            if(object.nutritionTypeId === 3){
+                setCheckedThree(true)
+            }
+            if(object.nutritionTypeId === 4){
+                setCheckedFour(true)
+            }
+            if(object.nutritionTypeId === 5){
+                setCheckedFive(true)
+            }
+            if(object.nutritionTypeId === 6){
+                setCheckedSix(true)
+            }
+        })
+    }
 
     const userNum = 1;
     useEffect(()=> {
         getUsersMealPackets(userNum).then(arrOfMeals => {
             setMeals(arrOfMeals)
         });
+        getSingleUserMealPacket(mealId).then(object => {
+            setEditedMeal(object)
+        })
+        getNutritionForSingleMeal(mealId).then(arrOfNTypes => {
+            setNutritionGroups(arrOfNTypes)
+        });
     }, []);
+
+    //This ensures that nutrtionGroups has populated before running setUpNutritionGroupsForEditing
+    useEffect(()=>{
+        setUpNutritionGroupsForEditing()
+    }, [lengthLooker]);
 
 
     
     const handleControlledInputChange = (event) => {
-        const newSingleMeal = { ...singleMeal }
-        newSingleMeal.userId = userNum;
+        const mealWithEdits = { ...editedMeal }
+        mealWithEdits.userId = userNum;
 		//A sepearte useState is needed here, because meals, creates an
         //array of meal objects, but this needs something that only deals with
         //and updates one object total
@@ -57,16 +104,16 @@ export const MyMealCards = () => {
 			selectedVal = parseInt(selectedVal)
 		}
 	
-		newSingleMeal[event.target.id] = selectedVal
+		mealWithEdits[event.target.id] = selectedVal
 		// update state
-		setSingleMeal(newSingleMeal)
+		setEditedMeal(mealWithEdits)
 	}
 
     const handleRadioButtonChange = (event) => {
-        const newSingleMeal = { ...singleMeal }
+        const mealWithEdits = { ...editedMeal }
         let userChoice = parseInt(event.target.value)
-        newSingleMeal.mealTypeId=userChoice
-        setSingleMeal(newSingleMeal)
+        mealWithEdits.mealTypeId=userChoice
+        setEditedMeal(mealWithEdits)
 
     }
 
@@ -132,22 +179,22 @@ export const MyMealCards = () => {
         
     }
 
-    const clearCreateNewMealCard = () => {
-        setCheckedOne(false)
-        setCheckedTwo(false)
-        setCheckedThree(false)
-        setCheckedFour(false)
-        setCheckedFive(false)
-        setCheckedSix(false)
-        setSingleMeal({
-            userId:0,
-            calories:0,
-            mealTypeId:0,
-            servings:0,
-            shelfLifeInDays:0,
-            name:""
-        })
-    }
+    // const clearCreateNewMealCard = () => {
+    //     setCheckedOne(false)
+    //     setCheckedTwo(false)
+    //     setCheckedThree(false)
+    //     setCheckedFour(false)
+    //     setCheckedFive(false)
+    //     setCheckedSix(false)
+    //     setSingleMeal({
+    //         userId:0,
+    //         calories:0,
+    //         mealTypeId:0,
+    //         servings:0,
+    //         shelfLifeInDays:0,
+    //         name:""
+    //     })
+    // }
     //This is to make my code shorter, I have to rerender the meal cards a lot
     const renderMealCards = () =>{
         getUsersMealPackets(userNum).then(arrOfMeals => {
@@ -156,26 +203,22 @@ export const MyMealCards = () => {
     }
 
     //This area handles posting all of the information to mealPacket, and to mealNutrition
-    const handleCreateButtonPush = () => {
+    // const handleCreateButtonPush = () => {
         //add meal packet posts to meal packet
-        addMealPacket(singleMeal).then(postedMeal => {
-            const arrayOfNutrientPromises =nutrientsToPost(postedMeal.id)
-            Promise.all(arrayOfNutrientPromises).then(aThingIdontTouch =>{
-                clearCreateNewMealCard();
-                renderMealCards();
-            })
-        })
-    }
-
-
-    
-
+    //     addMealPacket(singleMeal).then(postedMeal => {
+    //         const arrayOfNutrientPromises =nutrientsToPost(postedMeal.id)
+    //         Promise.all(arrayOfNutrientPromises).then(aThingIdontTouch =>{
+    //             clearCreateNewMealCard();
+    //             renderMealCards();
+    //         })
+    //     })
+    // }
 
     return(
         <>
             <section className="topBar">
                 {/* eventually this will also be able to display the creation information */}
-                <h4>My Meal Cards</h4>
+                <h4>Edit My Meal Card</h4>
             </section>
             <section className="mealCardCarousel">
                 {meals.map(meal =>
@@ -194,25 +237,25 @@ export const MyMealCards = () => {
                         <fieldset>
                             <div className="form-group">
                                 <label htmlFor="name">Name:</label>
-                                <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="name" value={singleMeal.name} />
+                                <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="name" value={editedMeal.name} />
                             </div>
                         </fieldset>
                         <fieldset>
                             <div className="form-group">
                                 <label htmlFor="calories">Total calories:</label>
-                                <input type="number" id="calories" onChange={handleControlledInputChange} name="calories" min="1" max="1000000" value={singleMeal.calories}/>
+                                <input type="number" id="calories" onChange={handleControlledInputChange} name="calories" min="1" max="1000000" value={editedMeal.calories}/>
                             </div>
                         </fieldset>
                         <fieldset>
                             <div className="form-group">
                                 <label htmlFor="servings">Servings:</label>
-                                <input type="number" id="servings" onChange={handleControlledInputChange} name="servings" min="1" max="8000" value={singleMeal.servings}/>
+                                <input type="number" id="servings" onChange={handleControlledInputChange} name="servings" min="1" max="8000" value={editedMeal.servings}/>
                             </div>
                         </fieldset>
                         <fieldset>
                             <div className="form-group">
                                 <label htmlFor="shelfLifeInDays">Shelf Life in Days:</label>
-                                <input type="number" id="shelfLifeInDays" onChange={handleControlledInputChange} name="shelfLifeInDays"min="1" max="4000" value={singleMeal.shelfLifeInDays}/>
+                                <input type="number" id="shelfLifeInDays" onChange={handleControlledInputChange} name="shelfLifeInDays"min="1" max="4000" value={editedMeal.shelfLifeInDays}/>
                             </div>
                         </fieldset>
                     </div>
@@ -220,13 +263,13 @@ export const MyMealCards = () => {
                     <div className="mealCreateEntryBox" id="box2">
                         <fieldset>
                             <div className="form-group">
-                                <input type="radio" id="breakfast" checked={singleMeal.mealTypeId === 1} onChange={handleRadioButtonChange} name="mealType" value="1"/>
+                                <input type="radio" id="breakfast" checked={editedMeal.mealTypeId === 1} onChange={handleRadioButtonChange} name="mealType" value="1"/>
                                 <label htmlFor="breakfast">BREAKFAST</label><br/>
-                                <input type="radio" id="lunch"  checked={singleMeal.mealTypeId === 2} onChange={handleRadioButtonChange} name="mealType" value="2"/>
+                                <input type="radio" id="lunch"  checked={editedMeal.mealTypeId === 2} onChange={handleRadioButtonChange} name="mealType" value="2"/>
                                 <label htmlFor="lunch">LUNCH</label><br/>
-                                <input type="radio" id="dinner"  checked={singleMeal.mealTypeId === 3} onChange={handleRadioButtonChange} name="mealType" value="3"/>
+                                <input type="radio" id="dinner"  checked={editedMeal.mealTypeId === 3} onChange={handleRadioButtonChange} name="mealType" value="3"/>
                                 <label htmlFor="dinner">Dinner</label>
-                                <input type="radio" id="snack" checked={singleMeal.mealTypeId === 4} onChange={handleRadioButtonChange} name="mealType" value="4"/>
+                                <input type="radio" id="snack" checked={editedMeal.mealTypeId === 4} onChange={handleRadioButtonChange} name="mealType" value="4"/>
                                 <label htmlFor="snack">Snack or Other</label>
                             </div>
                         </fieldset>
@@ -252,7 +295,7 @@ export const MyMealCards = () => {
                     </div>
                 </div>
                 <div id="createButtonArea">
-                    <button onClick={handleCreateButtonPush}>Create My Meal Card</button>
+                    <button>Create My Meal Card</button>
                 </div>
             </section>
         </>

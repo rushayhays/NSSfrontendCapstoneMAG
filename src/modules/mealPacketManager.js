@@ -8,6 +8,13 @@ export const getUsersMealPackets = (num) => {
   ).then((res) => res.json());
 };
 
+//this will get a single mealPacket (for editing purposes)
+export const getSingleUserMealPacket = (num) => {
+  return fetch(
+    `${remoteURL}/mealPackets/${num}`
+  ).then((res) => res.json());
+};
+
 //This will get the nutrition information needed to help fill out the mealPacket Cards
 //http://localhost:8088/mealNutrition?mealPacketId=1&_expand=nutritionType
 
