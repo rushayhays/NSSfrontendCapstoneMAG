@@ -70,5 +70,14 @@ export const deleteMealNutrientType = (mealNutriNum) => {
 }
 
 
-
+//This will handle any edits to a meal card
+export const updateMeal  = (editedMeal) => {
+	return fetch(`${remoteURL}/mealPackets/${editedMeal.id}`, {
+		method: "PATCH",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(editedMeal)
+	}).then(data => data.json());
+}
 

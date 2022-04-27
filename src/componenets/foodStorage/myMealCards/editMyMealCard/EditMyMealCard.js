@@ -2,7 +2,7 @@
 import "./editMyMealCard.css"
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { getUsersMealPackets, addNutrient, getSingleUserMealPacket, getNutritionForSingleMeal, deleteNutrient } from "../../../../modules/mealPacketManager" 
+import { getUsersMealPackets, addNutrient, getSingleUserMealPacket, getNutritionForSingleMeal, deleteNutrient, updateMeal } from "../../../../modules/mealPacketManager" 
 import { SingleMealCard } from "../SingleMealCard"
 
 export const EditMyMealCard = () => {
@@ -150,15 +150,10 @@ export const EditMyMealCard = () => {
     //If something needs to be deleted this will find the mealTypeNutritionTypeId so that
     //it can be fed to deleteNutrient
 
-    const nutrientIndexFinder = (num) => {
-        const arrayWithOneObject = nutritionGroups.map(object =>(
-            {
-                "id": object.id,
-                "nutritionTypeId": num,
-                "mealPacketId": object.mealPacketId
-            }
-        ))
-        return arrayWithOneObject[0].id
+    //This thinh has a bug the wrong things are being deleted
+    const nutrientObjectFinder = (num) => {
+        const singleObject = nutritionGroups.find(object => object.nutritionTypeId === num);
+        return singleObject;
     }
 
     //This will identify what is checked and post appropriately
@@ -178,9 +173,8 @@ export const EditMyMealCard = () => {
             console.log("add grain")
         }
         if(checkedone === false && nutritionGroups.some(hasNutrientId1)){
-            console.log("this should prepare to trigger a delete")
-            const idOfDataToDelete = nutrientIndexFinder(1)
-            const dPromise1 = deleteNutrient(idOfDataToDelete);
+            const objectToDelete = nutrientObjectFinder(1)
+            const dPromise1 = deleteNutrient(objectToDelete.id);
             deletePromiseArray.push(dPromise1)
         }
         //for2
@@ -191,9 +185,8 @@ export const EditMyMealCard = () => {
             console.log("add vegetables")
         }
         if(checkedtwo === false && nutritionGroups.some(hasNutrientId2)){
-            console.log("this should prepare to trigger a delete")
-            const idOfDataToDelete = nutrientIndexFinder(2)
-            const dPromise2 = deleteNutrient(idOfDataToDelete);
+            const objectToDelete = nutrientObjectFinder(2)
+            const dPromise2 = deleteNutrient(objectToDelete.id);
             deletePromiseArray.push(dPromise2)
         }
         //for3
@@ -204,9 +197,8 @@ export const EditMyMealCard = () => {
             console.log("add fruits")
         }
         if(checkedthree === false && nutritionGroups.some(hasNutrientId3)){
-            console.log("this should prepare to trigger a delete")
-            const idOfDataToDelete = nutrientIndexFinder(3)
-            const dPromise3 = deleteNutrient(idOfDataToDelete);
+            const objectToDelete = nutrientObjectFinder(3)
+            const dPromise3 = deleteNutrient(objectToDelete.id);
             deletePromiseArray.push(dPromise3)
         }
         //for4
@@ -217,9 +209,8 @@ export const EditMyMealCard = () => {
             console.log("add proteins")
         }
         if(checkedfour === false && nutritionGroups.some(hasNutrientId4)){
-            console.log("this should prepare to trigger a delete")
-            const idOfDataToDelete = nutrientIndexFinder(4)
-            const dPromise4 = deleteNutrient(idOfDataToDelete);
+            const objectToDelete = nutrientObjectFinder(4)
+            const dPromise4 = deleteNutrient(objectToDelete.id);
             deletePromiseArray.push(dPromise4)
         }
         //for5
@@ -230,9 +221,8 @@ export const EditMyMealCard = () => {
             console.log("add dairy")
         }
         if(checkedfive === false && nutritionGroups.some(hasNutrientId5)){
-            console.log("this should prepare to trigger a delete")
-            const idOfDataToDelete = nutrientIndexFinder(5)
-            const dPromise5 = deleteNutrient(idOfDataToDelete);
+            const objectToDelete = nutrientObjectFinder(5)
+            const dPromise5 = deleteNutrient(objectToDelete.id);
             deletePromiseArray.push(dPromise5)
         }
         //for6
@@ -243,9 +233,8 @@ export const EditMyMealCard = () => {
             console.log("add other")
         }
         if(checkedsix === false && nutritionGroups.some(hasNutrientId6)){
-            console.log("this should prepare to trigger a delete")
-            const idOfDataToDelete = nutrientIndexFinder(6)
-            const dPromise6 = deleteNutrient(idOfDataToDelete);
+            const objectToDelete = nutrientObjectFinder(6)
+            const dPromise6 = deleteNutrient(objectToDelete.id);
             deletePromiseArray.push(dPromise6)
         }
         return addPromiseArray
@@ -266,13 +255,14 @@ export const EditMyMealCard = () => {
 
     //This area handles posting all of the information to mealPacket, and to mealNutrition
     const handleEditButtonPush = () => {
-        // add meal packet posts to meal packet
-        addMealPacket(singleMeal).then(postedMeal => {
-            const arrayOfNutrientPromises =nutrientsToPost(postedMeal.id)
-            Promise.all(arrayOfNutrientPromises).then(aThingIdontTouch =>{
-                clearCreateNewMealCard();
-                renderMealCards();
-            })
+        // patch mealPacket edits to mealPacket
+        updateMeal(editedMeal).then(postedMeal => {
+            getNutritionForSingleMeal(mealId).then(arrOfNTypes => {
+                setNutritionGroups(arrOfNTypes)
+            });
+            const array = nutrientsToPost(mealId)
+            lengthLooker = nutritionGroups.length
+            renderMealCards();
         })
     }
 
@@ -357,7 +347,7 @@ export const EditMyMealCard = () => {
                     </div>
                 </div>
                 <div id="createButtonArea">
-                    <button onClick={runTest}>Edit My Meal Card</button>
+                    <button onClick={handleEditButtonPush}>Edit My Meal Card</button>
                 </div>
             </section>
         </>
