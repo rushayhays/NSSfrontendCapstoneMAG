@@ -3,7 +3,7 @@
 
 import React from "react"
 import "./singleMealCard.css"
-import { getNutritionForSingleMeal, deleteMealNutrientType } from "../../../modules/mealPacketManager"
+import { getNutritionForSingleMeal, deleteMealNutrientType, deleteMealPacket } from "../../../modules/mealPacketManager"
 import { useState, useEffect } from "react"
 import { NutritionButton } from "./nutritionButton/NutritionButton"
 
@@ -11,6 +11,7 @@ export const SingleMealCard =({object, render}) =>{
 
     // const userNum =1;
     // need to get the nutrition types for this Meal packet
+
     const [nutritionGroups, setNutritionGroups] = useState([{
         "id": 0,
         "nutritionTypeId": 0,
@@ -23,12 +24,18 @@ export const SingleMealCard =({object, render}) =>{
         });
     }, []);
 
-    // const handleClickDeleteInsideSingleMealCard = () => {
-    //     nutritionGroups.forEach(nutriObject => {
-    //         deleteMealNutrientType(nutriObject.id)
-    //     })
+    //Try putting a promise.all in here to control nutrient deletions
+    const handleClickDelete = () => {
+        nutritionGroups.forEach(nutriObject => {
+            deleteMealNutrientType(nutriObject.id)
+            .then(returnedObjectIdoNothingWith=>{
+                deleteMealPacket(object.id)
+            }).then(anotherUntochedReturn => {
+                render()
+            })
+        })
     
-    // }
+    }
 
 
     return(
@@ -52,7 +59,7 @@ export const SingleMealCard =({object, render}) =>{
                 <div className="mealCardButtonArea">
                     <button>Edit</button>
                     {/* Take a look at having two things happen when something is clicked */}
-                    <button>Delete</button>
+                    <button onClick={handleClickDelete} >Delete</button>
 
                 </div>
             </div>

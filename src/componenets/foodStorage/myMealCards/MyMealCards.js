@@ -2,7 +2,7 @@
 
 import "./myMealCards.css"
 import { useState, useEffect } from "react"
-import { getUsersMealPackets, addNutrient, addMealPacket, deleteMealPacket } from "../../../modules/mealPacketManager"
+import { getUsersMealPackets, addNutrient, addMealPacket} from "../../../modules/mealPacketManager"
 import { SingleMealCard } from "./SingleMealCard"
 
 export const MyMealCards = () => {
@@ -39,7 +39,6 @@ export const MyMealCards = () => {
     useEffect(()=> {
         getUsersMealPackets(userNum).then(arrOfMeals => {
             setMeals(arrOfMeals)
-            console.log("potatoes")
         });
     }, []);
 
@@ -144,8 +143,8 @@ export const MyMealCards = () => {
         addMealPacket(singleMeal).then((postedMeal)=>{
             nutrientsToPost(postedMeal.id)
             getUsersMealPackets(meals.userId).then(arrOfMeals => {
-                clearCreateNewMealCard()
-                setMeals(arrOfMeals)
+                // clearCreateNewMealCard();
+                setMeals(arrOfMeals);
             })
         })
     }
