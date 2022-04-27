@@ -2,7 +2,7 @@
 import "./editMyMealCard.css"
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { getUsersMealPackets, addNutrient, addMealPacket, getSingleUserMealPacket, getNutritionForSingleMeal } from "../../../../modules/mealPacketManager" 
+import { getUsersMealPackets, addNutrient, getSingleUserMealPacket, getNutritionForSingleMeal, deleteNutrient } from "../../../../modules/mealPacketManager" 
 import { SingleMealCard } from "../SingleMealCard"
 
 export const EditMyMealCard = () => {
@@ -27,10 +27,11 @@ export const EditMyMealCard = () => {
         name:""
     })
 
+
     const [nutritionGroups, setNutritionGroups] = useState([{
         "id": 0,
         "nutritionTypeId": 0,
-        "mealPacketId": 0,
+        "mealPacketId": 0
     }])
 
     //This is being watched by a use effect. The useEffect will trigger when 
@@ -138,63 +139,124 @@ export const EditMyMealCard = () => {
         setCheckedSix(!checkedsix)
     }
     
+    //This area sets up functions that check if certain nutrition types already exist
+    const hasNutrientId1 = (object) => object.nutritionTypeId === 1;
+    const hasNutrientId2 = (object) => object.nutritionTypeId === 2;
+    const hasNutrientId3 = (object) => object.nutritionTypeId === 3;
+    const hasNutrientId4 = (object) => object.nutritionTypeId === 4;
+    const hasNutrientId5 = (object) => object.nutritionTypeId === 5;
+    const hasNutrientId6 = (object) => object.nutritionTypeId === 6;
+
+    //If something needs to be deleted this will find the mealTypeNutritionTypeId so that
+    //it can be fed to deleteNutrient
+
+    const nutrientIndexFinder = (num) => {
+        const arrayWithOneObject = nutritionGroups.map(object =>(
+            {
+                "id": object.id,
+                "nutritionTypeId": num,
+                "mealPacketId": object.mealPacketId
+            }
+        ))
+        return arrayWithOneObject[0].id
+    }
+
     //This will identify what is checked and post appropriately
     const nutrientsToPost = (numberArgument) => {
         let nutriObject={
             mealPacketId: numberArgument,
             nutritionTypeId:0
         }
-        const promiseArray=[]
-        if(checkedone === true){
+        
+        const addPromiseArray=[]
+        const deletePromiseArray= []
+        //Logic for1
+        if(checkedone === true && !nutritionGroups.some(hasNutrientId1)){
             nutriObject.nutritionTypeId=1
             const promise1 = addNutrient(nutriObject)
-            promiseArray.push(promise1)
+            addPromiseArray.push(promise1)
+            console.log("add grain")
         }
-        if(checkedtwo === true){
+        if(checkedone === false && nutritionGroups.some(hasNutrientId1)){
+            console.log("this should prepare to trigger a delete")
+            const idOfDataToDelete = nutrientIndexFinder(1)
+            const dPromise1 = deleteNutrient(idOfDataToDelete);
+            deletePromiseArray.push(dPromise1)
+        }
+        //for2
+        if(checkedtwo === true && !nutritionGroups.some(hasNutrientId2)){
             nutriObject.nutritionTypeId=2
             const promise2 = addNutrient(nutriObject)
-            promiseArray.push(promise2)
+            addPromiseArray.push(promise2)
+            console.log("add vegetables")
         }
-        if(checkedthree === true){
+        if(checkedtwo === false && nutritionGroups.some(hasNutrientId2)){
+            console.log("this should prepare to trigger a delete")
+            const idOfDataToDelete = nutrientIndexFinder(2)
+            const dPromise2 = deleteNutrient(idOfDataToDelete);
+            deletePromiseArray.push(dPromise2)
+        }
+        //for3
+        if(checkedthree === true && !nutritionGroups.some(hasNutrientId3)){
             nutriObject.nutritionTypeId=3
             const promise3 = addNutrient(nutriObject)
-            promiseArray.push(promise3)
+            addPromiseArray.push(promise3)
+            console.log("add fruits")
         }
-        if(checkedfour === true){
+        if(checkedthree === false && nutritionGroups.some(hasNutrientId3)){
+            console.log("this should prepare to trigger a delete")
+            const idOfDataToDelete = nutrientIndexFinder(3)
+            const dPromise3 = deleteNutrient(idOfDataToDelete);
+            deletePromiseArray.push(dPromise3)
+        }
+        //for4
+        if(checkedfour === true && !nutritionGroups.some(hasNutrientId4)){
             nutriObject.nutritionTypeId=4
             const promise4 = addNutrient(nutriObject)
-            promiseArray.push(promise4)
+            addPromiseArray.push(promise4)
+            console.log("add proteins")
         }
-        if(checkedfive === true){
+        if(checkedfour === false && nutritionGroups.some(hasNutrientId4)){
+            console.log("this should prepare to trigger a delete")
+            const idOfDataToDelete = nutrientIndexFinder(4)
+            const dPromise4 = deleteNutrient(idOfDataToDelete);
+            deletePromiseArray.push(dPromise4)
+        }
+        //for5
+        if(checkedfive === true && !nutritionGroups.some(hasNutrientId5)){
             nutriObject.nutritionTypeId=5
             const promise5 = addNutrient(nutriObject)
-            promiseArray.push(promise5)
+            addPromiseArray.push(promise5)
+            console.log("add dairy")
         }
-        if(checkedsix === true){
+        if(checkedfive === false && nutritionGroups.some(hasNutrientId5)){
+            console.log("this should prepare to trigger a delete")
+            const idOfDataToDelete = nutrientIndexFinder(5)
+            const dPromise5 = deleteNutrient(idOfDataToDelete);
+            deletePromiseArray.push(dPromise5)
+        }
+        //for6
+        if(checkedsix === true && !nutritionGroups.some(hasNutrientId6)){
             nutriObject.nutritionTypeId=6
             const promise6 = addNutrient(nutriObject)
-            promiseArray.push(promise6)
+            addPromiseArray.push(promise6)
+            console.log("add other")
         }
-        return promiseArray
+        if(checkedsix === false && nutritionGroups.some(hasNutrientId6)){
+            console.log("this should prepare to trigger a delete")
+            const idOfDataToDelete = nutrientIndexFinder(6)
+            const dPromise6 = deleteNutrient(idOfDataToDelete);
+            deletePromiseArray.push(dPromise6)
+        }
+        return addPromiseArray
         
     }
 
-    // const clearCreateNewMealCard = () => {
-    //     setCheckedOne(false)
-    //     setCheckedTwo(false)
-    //     setCheckedThree(false)
-    //     setCheckedFour(false)
-    //     setCheckedFive(false)
-    //     setCheckedSix(false)
-    //     setSingleMeal({
-    //         userId:0,
-    //         calories:0,
-    //         mealTypeId:0,
-    //         servings:0,
-    //         shelfLifeInDays:0,
-    //         name:""
-    //     })
-    // }
+    const runTest = () => {
+        const array = nutrientsToPost(mealId)
+    }
+
+   
     //This is to make my code shorter, I have to rerender the meal cards a lot
     const renderMealCards = () =>{
         getUsersMealPackets(userNum).then(arrOfMeals => {
@@ -203,16 +265,16 @@ export const EditMyMealCard = () => {
     }
 
     //This area handles posting all of the information to mealPacket, and to mealNutrition
-    // const handleCreateButtonPush = () => {
-        //add meal packet posts to meal packet
-    //     addMealPacket(singleMeal).then(postedMeal => {
-    //         const arrayOfNutrientPromises =nutrientsToPost(postedMeal.id)
-    //         Promise.all(arrayOfNutrientPromises).then(aThingIdontTouch =>{
-    //             clearCreateNewMealCard();
-    //             renderMealCards();
-    //         })
-    //     })
-    // }
+    const handleEditButtonPush = () => {
+        // add meal packet posts to meal packet
+        addMealPacket(singleMeal).then(postedMeal => {
+            const arrayOfNutrientPromises =nutrientsToPost(postedMeal.id)
+            Promise.all(arrayOfNutrientPromises).then(aThingIdontTouch =>{
+                clearCreateNewMealCard();
+                renderMealCards();
+            })
+        })
+    }
 
     return(
         <>
@@ -295,7 +357,7 @@ export const EditMyMealCard = () => {
                     </div>
                 </div>
                 <div id="createButtonArea">
-                    <button>Create My Meal Card</button>
+                    <button onClick={runTest}>Edit My Meal Card</button>
                 </div>
             </section>
         </>

@@ -47,6 +47,13 @@ export const addNutrient = (newNutrientObject) => {
   }).then(response => response.json())
 }
 
+export const deleteNutrient = id => {
+  return fetch(`${remoteURL}/mealTypeNutritionTypes/${id}`, {
+    method: "DELETE"
+  }).then(result => result.json())
+}
+
+
 //You need two delete functions, when deleting a mealPacket card
 //One to delete from mealPacket, and one to delete from mealTypeNutritionTypes
 
