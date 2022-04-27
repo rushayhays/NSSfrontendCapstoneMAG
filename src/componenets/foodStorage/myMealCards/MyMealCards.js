@@ -4,12 +4,11 @@ import "./myMealCards.css"
 import { useState, useEffect } from "react"
 import { getUsersMealPackets, addNutrient, addMealPacket, deleteMealPacket } from "../../../modules/mealPacketManager"
 import { SingleMealCard } from "./SingleMealCard"
-import { useNavigate } from "react-router-dom"
 
 export const MyMealCards = () => {
     const [meals, setMeals] = useState([{
         id:0,
-        userId:1,
+        userId:0,
         calories:0,
         mealTypeId:0,
         servings:0,
@@ -27,8 +26,6 @@ export const MyMealCards = () => {
 
     
 
-    const navigate = useNavigate()
-
     //This will keeptrack of whether a box is checked or unchecked
     const [checkedone, setCheckedOne] = useState(false)
     const [checkedtwo, setCheckedTwo] = useState(false)
@@ -38,9 +35,11 @@ export const MyMealCards = () => {
     const [checkedsix, setCheckedSix] = useState(false)
 
 
+    const userNum = 1;
     useEffect(()=> {
-        getUsersMealPackets(meals.userId).then(arrOfMeals => {
+        getUsersMealPackets(userNum).then(arrOfMeals => {
             setMeals(arrOfMeals)
+            console.log("potatoes")
         });
     }, []);
 
@@ -147,18 +146,14 @@ export const MyMealCards = () => {
             getUsersMealPackets(meals.userId).then(arrOfMeals => {
                 clearCreateNewMealCard()
                 setMeals(arrOfMeals)
-            }).then(()=>{
             })
         })
     }
 
-    const handleClickDelete = (object) => {
-        deleteMealPacket(object.id)
-        .then(()=>{getUsersMealPackets(meals.userId).then(arrOfMeals => {
+    const renderMealCards = () =>{
+        getUsersMealPackets(userNum).then(arrOfMeals => {
             setMeals(arrOfMeals)
-            })
-        })
-
+        });
     }
     
 
@@ -171,7 +166,7 @@ export const MyMealCards = () => {
             </section>
             <section className="mealCardCarousel">
                 {meals.map(meal =>
-                    <SingleMealCard key={meal.id} object={meal} handleClickDelete={handleClickDelete}/>
+                    <SingleMealCard key={meal.id} object={meal} render={renderMealCards}/>
                 )}
             </section>
 

@@ -7,9 +7,9 @@ import { getNutritionForSingleMeal, deleteMealNutrientType } from "../../../modu
 import { useState, useEffect } from "react"
 import { NutritionButton } from "./nutritionButton/NutritionButton"
 
-export const SingleMealCard =({object, handleClickDelete}) =>{
+export const SingleMealCard =({object, render}) =>{
 
-    const userNum =1;
+    // const userNum =1;
     // need to get the nutrition types for this Meal packet
     const [nutritionGroups, setNutritionGroups] = useState([{
         "id": 0,
@@ -23,12 +23,12 @@ export const SingleMealCard =({object, handleClickDelete}) =>{
         });
     }, []);
 
-    const handleClickDeleteInsideSingleMealCard = () => {
-        nutritionGroups.forEach(nutriObject => {
-            deleteMealNutrientType(nutriObject.id)
-        })
+    // const handleClickDeleteInsideSingleMealCard = () => {
+    //     nutritionGroups.forEach(nutriObject => {
+    //         deleteMealNutrientType(nutriObject.id)
+    //     })
     
-    }
+    // }
 
 
     return(
@@ -37,24 +37,30 @@ export const SingleMealCard =({object, handleClickDelete}) =>{
                 <div className="mealCardNameArea">
                     <h5>{object.name}</h5>
                 </div>
-                <p>{object.mealtype?.name}</p>
-                <p>{object.calories}</p>
-                <p>{object.servings}</p>
-                <p>{object.shelfLifeInDays}</p>
-                <div>
-                    <h5>Nutrition Types</h5>
-                    {nutritionGroups.map(nutritionGroup=>{
-                        
-                        <NutritionButton key={nutritionGroup.id} nutriName={nutritionGroup}/>
-                    })}
+                <div className="mealNumberRunDown">
+                    <p className="mealNumbers">{object.mealtype?.name}</p>
+                    <p className="mealNumbers">{object.calories}</p>
+                    <p className="mealNumbers">{object.servings}</p>
+                    <p className="mealNumbers">{object.shelfLifeInDays}</p>
+                </div>
+                <div className="nutriButtonArea">
+                    <h4 id="nutritionTitle">Nutrition</h4>
+                    {nutritionGroups.map(nutritionGroup=>
+                        <NutritionButton key={nutritionGroup.id} nutriObject={nutritionGroup}/>
+                    )}
                 </div>
                 <div className="mealCardButtonArea">
                     <button>Edit</button>
                     {/* Take a look at having two things happen when something is clicked */}
-                    <button onClick={handleClickDelete}>Delete</button>
+                    <button>Delete</button>
 
                 </div>
             </div>
         </>
     )
 }
+{/* <section className="mealCardCarousel">
+{meals.map(meal =>
+    <SingleMealCard key={meal.id} object={meal} render={renderMealCards}/>
+)}
+</section> */}

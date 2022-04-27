@@ -1,15 +1,13 @@
 //This will create the nutrition information on each mealPacket card
 
 import React from "react";
+import "./nutritionButton.css";
 
-export const NutritionButton=({nutriGroup})=>{
-    console.log(nutriGroup)
-    const nutriName = nutriGroup?.nutritionType?.name;
-    console.log("hear Me");
+export const NutritionButton=({nutriObject})=>{
+   
     return(
         <>
-            <p>some text</p>
-            <button>{nutriName}</button>
+            <button className="nutriButton">{nutriObject.nutritionType.name}</button>
         </>
     )
 }

@@ -5,12 +5,27 @@
 }
 
 .mealCardNameArea{
-    height:45px;
+    height:40px;
+    margin-bottom:10px;
+}
+.mealNumberRunDown{
+    margin:0;
+}
+.mealNumbers{
+    margin:5px;
 }
 
 .mealCardButtonArea{
     height:50px;
     display:flex;
     justify-content: space-around;
-    align-items: flex-end;
+    align-items: center;
+}
+
+#nutritionTitle{
+    margin:0;
+}
+.nutriButtonArea{
+    height:100px;
+    margin:0;
 }
