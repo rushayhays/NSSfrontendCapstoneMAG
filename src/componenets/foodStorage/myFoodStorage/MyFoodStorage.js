@@ -4,6 +4,7 @@ import "./myFoodStorage.css"
 import { getUsersFoodStorage } from "../../../modules/myFoodStorageManager"
 import { useState, useEffect } from "react"
 import { MySingleFoodCard } from "./MySingleFoodCard"
+import { MyFoodExpireCard } from "./MyFoodExpireCard"
 
 export const MyFoodStorage = () =>{
 
@@ -29,6 +30,7 @@ export const MyFoodStorage = () =>{
     const [luncharr, setLunchArr] = useState([])
     const [breakfastarr, setBreakfastArr] = useState([])
     const [snackarr, setSnackArr] = useState([])
+    const [expirearr, setExpireArr] = useState([])
 
     let lengthLooker = foodstorage.length
     
@@ -44,10 +46,12 @@ export const MyFoodStorage = () =>{
         setBreakfastArr(anBreakfastArr);
         const anSnackArr = foodstorage.filter(object => object.mealPacket.mealTypeId === 4);
         setSnackArr(anSnackArr);
+
+        checkDateExpire(foodstorage)
     }
     
     
-
+    //This will need to be changes to render dynamically once the login feature is added
     const callUpUsersFoodStorage = () => {
         getUsersFoodStorage(1).then(arrOfFoods => {
             setFoodStorage(arrOfFoods)
@@ -65,6 +69,28 @@ export const MyFoodStorage = () =>{
 
 
 
+    const checkDateExpire = (array) =>{
+        //These are some constant numbers
+        const aDayInMilli = 1000*60*60*24;
+        const twoWeeksInMilli = (aDayInMilli * 14)
+        const todaysDate = Date.now()
+
+        const expirinegSoonArr = []
+
+        array.forEach(obj => {
+            const shelfLifeToMilli = (obj.mealPacket?.shelfLifeInDays * aDayInMilli)
+            const expirationDayInMilli = obj.dateAddedTimestamp + shelfLifeToMilli
+            const daysTillExpInMilli = expirationDayInMilli - todaysDate
+
+            if(daysTillExpInMilli <= twoWeeksInMilli){
+                expirinegSoonArr.push(obj)
+            }
+        })
+        setExpireArr(expirinegSoonArr)
+    }
+
+
+
 
     return(
         <>
@@ -74,22 +100,22 @@ export const MyFoodStorage = () =>{
             <section className="cardDisplayArea">
                 <div className="myFoodStorageCarousel" id="row1">
                     {dinnerarr.map(dinner =>
-                        <MySingleFoodCard key={dinner.id} object={dinner}/>
+                        <MySingleFoodCard key={dinner.id} object={dinner} render={callUpUsersFoodStorage} alsoRender={theGreatSorting}/>
                     )}
                 </div>
                 <div className="myFoodStorageCarousel" id="row2">
                     {luncharr.map(lunch =>
-                        <MySingleFoodCard key={lunch.id} object={lunch}/>
+                        <MySingleFoodCard key={lunch.id} object={lunch} render={callUpUsersFoodStorage} alsoRender={theGreatSorting}/>
                     )}
                 </div>
                 <div className="myFoodStorageCarousel" id="row3">
                     {breakfastarr.map(breakfast =>
-                        <MySingleFoodCard key={breakfast.id} object={breakfast}/>
+                        <MySingleFoodCard key={breakfast.id} object={breakfast} render={callUpUsersFoodStorage} alsoRender={theGreatSorting}/>
                     )}
                 </div>
                 <div className="myFoodStorageCarousel" id="row4">
                     {snackarr.map(snack =>
-                        <MySingleFoodCard key={snack.id} object={snack}/>
+                        <MySingleFoodCard key={snack.id} object={snack} render={callUpUsersFoodStorage} alsoRender={theGreatSorting}/>
                     )}
                 </div>
             </section>
@@ -98,7 +124,9 @@ export const MyFoodStorage = () =>{
                     <h4>Expiring Soon!</h4>
                 </div>
                 <div className="expireCardArea">
-
+                {expirearr.map(expirer =>
+                        <MyFoodExpireCard key={expirer.id} object={expirer} render={callUpUsersFoodStorage} alsoRender={theGreatSorting}/>
+                    )}
                 </div>
 
             </section>
