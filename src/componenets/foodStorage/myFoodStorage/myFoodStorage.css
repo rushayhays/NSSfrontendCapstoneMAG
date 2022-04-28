@@ -7,10 +7,15 @@
 }
 .myFoodStorageCarousel{
     background-color: gray;
-    height:75px;
+    height:150px;
     margin-bottom: 10px;
 }
 .expireCardArea{
     background-color: gray;
     height:75px;
+}
+
+.myFoodStorageCarousel{
+    display:flex;
+    gap:10px;
 }
