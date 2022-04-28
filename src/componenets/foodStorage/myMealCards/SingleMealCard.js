@@ -7,6 +7,7 @@ import { getNutritionForSingleMeal, deleteMealNutrientType, deleteMealPacket } f
 import { useState, useEffect } from "react"
 import { NutritionButton } from "./nutritionButton/NutritionButton"
 import { Link } from "react-router-dom"
+import { addFood } from "../../../modules/myFoodStorageManager"
 
 export const SingleMealCard =({object, render}) =>{
 
@@ -44,22 +45,39 @@ export const SingleMealCard =({object, render}) =>{
             })
         })
     }
+    //This should post an object to reserveMeals and cause a popup window to appear with info the user
+    //needs to write on the packet
+    const handleAddMeal = () =>{
+
+        console.log("you added a meal")
+        //create a timestamp
+        const dateAdded = Date.now()
+        console.log(dateAdded)
+
+        const reserveMealObject={
+            mealPacketId: object.id,
+            reserveId: 1,
+            dateAddedTimestamp: 1650897496794
+        }
+
+        addFood(reserveMealObject)
+    }
 
 
     return(
         <>
             <div className="mealPacket" id={object.id}>
                 <div className="mealCardNameArea">
-                    <h5>{object.name}</h5>
+                    <h5 className="mealTitle">{object.name}</h5>
                 </div>
                 <div className="mealNumberRunDown">
-                    <p className="mealNumbers">{object.mealtype?.name}</p>
-                    <p className="mealNumbers">{object.calories}</p>
-                    <p className="mealNumbers">{object.servings}</p>
-                    <p className="mealNumbers">{object.shelfLifeInDays}</p>
+                    <h4 id="nutritionTitle">Nutrition</h4>
+                    <p className="mealNumbers">Calories| {object.calories}</p>
+                    <p className="mealNumbers">Servings| {object.servings}</p>
+                    <p className="mealNumbers">Shelf-Life| {object.shelfLifeInDays} days</p>
                 </div>
                 <div className="nutriButtonArea">
-                    <h4 id="nutritionTitle">Nutrition</h4>
+                    <h4 id="groupsTitle">Food Groups</h4>
                     {nutritionGroups.map(nutritionGroup=>
                         <NutritionButton key={nutritionGroup.id} nutriObject={nutritionGroup}/>
                     )}
@@ -68,7 +86,7 @@ export const SingleMealCard =({object, render}) =>{
                     <Link to={`/foodstorage/editmymealcard/${object.id}`}>
                     <button>Edit</button>
                     </Link>
-                    {/* Take a look at having two things happen when something is clicked */}
+                    <button onClick={handleAddMeal}>Add Meal</button>
                     <button onClick={handleClickDelete} >Delete</button>
 
                 </div>
