@@ -9,6 +9,7 @@ import { FoodStorage } from "./foodStorage/FoodStorage"
 import { MyFoodStorage } from "./foodStorage/myFoodStorage/MyFoodStorage"
 import { MyMealCards } from "./foodStorage/myMealCards/MyMealCards"
 import { About } from "./foodStorage/about/About"
+import { EditMyMealCard } from "./foodStorage/myMealCards/editMyMealCard/EditMyMealCard"
 
 export const ApplicationViews = () => {
     return(
@@ -21,6 +22,7 @@ export const ApplicationViews = () => {
                     <Route path="/foodstorage/myfoodstorage" element={<MyFoodStorage/>}/>
                     <Route path="/foodstorage/mymealcards" element={<MyMealCards/>}/>
                     <Route path="/foodstorage/about" element={<About/>}/>
+                    <Route path="/foodstorage/editmymealcard/:mealId" element={<EditMyMealCard/>}/>
                 </Route>
             </Routes>  
         </>
