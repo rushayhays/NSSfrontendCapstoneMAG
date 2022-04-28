@@ -4,6 +4,7 @@ import "./myFoodStorage.css"
 import { getUsersFoodStorage } from "../../../modules/myFoodStorageManager"
 import { useState, useEffect } from "react"
 import { MySingleFoodCard } from "./MySingleFoodCard"
+import { MyFoodExpireCard } from "./MyFoodExpireCard"
 
 export const MyFoodStorage = () =>{
 
@@ -29,6 +30,7 @@ export const MyFoodStorage = () =>{
     const [luncharr, setLunchArr] = useState([])
     const [breakfastarr, setBreakfastArr] = useState([])
     const [snackarr, setSnackArr] = useState([])
+    const [expirearr, setExpireArr] = useState([])
 
     let lengthLooker = foodstorage.length
     
@@ -44,10 +46,12 @@ export const MyFoodStorage = () =>{
         setBreakfastArr(anBreakfastArr);
         const anSnackArr = foodstorage.filter(object => object.mealPacket.mealTypeId === 4);
         setSnackArr(anSnackArr);
+
+        checkDateExpire(foodstorage)
     }
     
     
-
+    //This will need to be changes to render dynamically once the login feature is added
     const callUpUsersFoodStorage = () => {
         getUsersFoodStorage(1).then(arrOfFoods => {
             setFoodStorage(arrOfFoods)
@@ -62,6 +66,36 @@ export const MyFoodStorage = () =>{
     useEffect(()=> {
         theGreatSorting();
     }, [lengthLooker]);
+
+    //credit to Javontae
+    const formatMDY = (num) => {
+        const date = new Date(num);
+        let day = date.getUTCDate();
+        let month = date.getUTCMonth() + 1;
+        let year = date.getUTCFullYear();
+        const formattedDate = month + "/" + day + "/" + year;
+        return formattedDate; // returns the date with desired format
+    };
+
+    const checkDateExpire = (array) =>{
+        //These are some constant numbers
+        const aDayInMilli = 1000*60*60*24;
+        const twoWeeksInMilli = (aDayInMilli * 14)
+        const todaysDate = Date.now()
+
+        const expirinegSoonArr = []
+
+        array.forEach(obj => {
+            const shelfLifeToMilli = (obj.mealPacket?.shelfLifeInDays * aDayInMilli)
+            const expirationDayInMilli = obj.dateAddedTimestamp + shelfLifeToMilli
+            const daysTillExpInMilli = expirationDayInMilli - todaysDate
+
+            if(daysTillExpInMilli <= twoWeeksInMilli){
+                expirinegSoonArr.push(obj)
+            }
+        })
+        setExpireArr(expirinegSoonArr)
+    }
 
 
 
@@ -98,7 +132,9 @@ export const MyFoodStorage = () =>{
                     <h4>Expiring Soon!</h4>
                 </div>
                 <div className="expireCardArea">
-
+                {expirearr.map(expirer =>
+                        <MySingleFoodCard key={expirer.id} object={expirer}/>
+                    )}
                 </div>
 
             </section>

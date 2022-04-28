@@ -1,10 +1,33 @@
 //This will create the cards on the MyFoodStoragePage, which represent food that actually exists in the users food storage
 
 import React from "react"
-import "./mySingleFoodCard.css"
+import "./myFoodExpireCard.css"
 
 
-export const MySingleFoodCard = ({object}) => {
+export const MyFoodExpireCard = ({object}) => {
+
+    // const dateExpire = (obj) =>{
+
+    //     const aDayInMilli = 1000*60*60*24;
+    //     const twoWeeksInMilli = (aDayInMilli * 14)
+    //     const shelfLifeToMilli = (obj.mealPacket?.shelfLifeInDays * aDayInMilli)
+    //     const expirationDayInMilli = obj.dateAddedTimestamp + shelfLifeToMilli
+    //     const todaysDate = Date.now()
+    //     const daysTillExpInMilli = expirationDayInMilli - todaysDate
+    //     const readableExpirationDate = formatMDY(expirationDayInMilli)
+
+    //     if(daysTillExpInMilli < twoWeeksInMilli){
+    //         const daysRemaining = Math.ceil(daysTillExpInMilli / aDayInMilli)
+    //         const expMessage = "expiring soon " + "days Remaining: " + daysRemaining
+    //         return expMessage;
+    //     }else if(daysTillExpInMilli < 0){
+    //         const expMessage = "expired on:" + readableExpirationDate
+    //     }
+    //     else{
+    //         const expMessage = "expired"
+    //         return expMessage
+    //     }
+    // }
 
    //credit to Javontae
     const formatMDY = (num) => {

@@ -57,7 +57,7 @@ export const SingleMealCard =({object, render}) =>{
         const reserveMealObject={
             mealPacketId: object.id,
             reserveId: 1,
-            dateAddedTimestamp: 1650897496794
+            dateAddedTimestamp: dateAdded
         }
 
         addFood(reserveMealObject)

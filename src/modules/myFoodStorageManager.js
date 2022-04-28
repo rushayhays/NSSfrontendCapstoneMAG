@@ -4,7 +4,7 @@ const remoteURL= "http://localhost:8088"
 
 export const getUsersFoodStorage = (num) => {
   return fetch(
-    `${remoteURL}/reserveMeals?userId=${num}&_expand=mealPacket`
+    `${remoteURL}/reserveMeals?reserveId=${num}&_expand=mealPacket`
   ).then((res) => res.json());
 };
 
