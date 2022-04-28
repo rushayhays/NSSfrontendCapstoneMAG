@@ -2,9 +2,10 @@
 
 import React from "react"
 import "./mySingleFoodCard.css"
+import { deleteMeal } from "../../../modules/myFoodStorageManager";
 
 
-export const MySingleFoodCard = ({object}) => {
+export const MySingleFoodCard = ({object, render, alsoRender}) => {
 
    //credit to Javontae
     const formatMDY = (num) => {
@@ -19,13 +20,24 @@ export const MySingleFoodCard = ({object}) => {
     const dateExpire = () =>{
         const aDayInMilli = 1000*60*60*24;
         const shelfLifeToMilli = (object.mealPacket?.shelfLifeInDays * aDayInMilli)
+        //To calculate the day something will expire, add the shelf life
+        //to the day it was added
         const expirationDayInMilli = object.dateAddedTimestamp + shelfLifeToMilli
         const readableExpirationDate = formatMDY(expirationDayInMilli)
         return readableExpirationDate
     }
 
+    //this creates variables to hold the day added and expiration dates
     const theDateToInsert = formatMDY(object.dateAddedTimestamp)
     const whenExpired = dateExpire()
+
+    const handleDeleteReserveMeal = () => {
+        console.log("deleted")
+        deleteMeal(object.id).then(()=>{
+            render()
+            alsoRender()
+        })
+    }
 
     return(
         <>
@@ -34,6 +46,7 @@ export const MySingleFoodCard = ({object}) => {
                 <h4>Added: {theDateToInsert}</h4>
                 <h4>Meal Id: {object.id}</h4>
                 <h4>Expires: {whenExpired}</h4>
+                <button onClick={handleDeleteReserveMeal}>Delete</button>
             </div>
         </>
     )

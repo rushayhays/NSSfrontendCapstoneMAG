@@ -67,15 +67,7 @@ export const MyFoodStorage = () =>{
         theGreatSorting();
     }, [lengthLooker]);
 
-    //credit to Javontae
-    const formatMDY = (num) => {
-        const date = new Date(num);
-        let day = date.getUTCDate();
-        let month = date.getUTCMonth() + 1;
-        let year = date.getUTCFullYear();
-        const formattedDate = month + "/" + day + "/" + year;
-        return formattedDate; // returns the date with desired format
-    };
+
 
     const checkDateExpire = (array) =>{
         //These are some constant numbers
@@ -108,22 +100,22 @@ export const MyFoodStorage = () =>{
             <section className="cardDisplayArea">
                 <div className="myFoodStorageCarousel" id="row1">
                     {dinnerarr.map(dinner =>
-                        <MySingleFoodCard key={dinner.id} object={dinner}/>
+                        <MySingleFoodCard key={dinner.id} object={dinner} render={callUpUsersFoodStorage} alsoRender={theGreatSorting}/>
                     )}
                 </div>
                 <div className="myFoodStorageCarousel" id="row2">
                     {luncharr.map(lunch =>
-                        <MySingleFoodCard key={lunch.id} object={lunch}/>
+                        <MySingleFoodCard key={lunch.id} object={lunch} render={callUpUsersFoodStorage} alsoRender={theGreatSorting}/>
                     )}
                 </div>
                 <div className="myFoodStorageCarousel" id="row3">
                     {breakfastarr.map(breakfast =>
-                        <MySingleFoodCard key={breakfast.id} object={breakfast}/>
+                        <MySingleFoodCard key={breakfast.id} object={breakfast} render={callUpUsersFoodStorage} alsoRender={theGreatSorting}/>
                     )}
                 </div>
                 <div className="myFoodStorageCarousel" id="row4">
                     {snackarr.map(snack =>
-                        <MySingleFoodCard key={snack.id} object={snack}/>
+                        <MySingleFoodCard key={snack.id} object={snack} render={callUpUsersFoodStorage} alsoRender={theGreatSorting}/>
                     )}
                 </div>
             </section>
@@ -133,7 +125,7 @@ export const MyFoodStorage = () =>{
                 </div>
                 <div className="expireCardArea">
                 {expirearr.map(expirer =>
-                        <MyFoodExpireCard key={expirer.id} object={expirer}/>
+                        <MyFoodExpireCard key={expirer.id} object={expirer} render={callUpUsersFoodStorage} alsoRender={theGreatSorting}/>
                     )}
                 </div>
 

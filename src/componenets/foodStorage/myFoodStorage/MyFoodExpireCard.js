@@ -2,9 +2,10 @@
 
 import React from "react"
 import "./myFoodExpireCard.css"
+import { deleteMeal } from "../../../modules/myFoodStorageManager";
 
 
-export const MyFoodExpireCard = ({object}) => {
+export const MyFoodExpireCard = ({object, render, alsoRender}) => {
 
     
     //credit to Javontae
@@ -41,13 +42,22 @@ export const MyFoodExpireCard = ({object}) => {
     const theDateToInsert = formatMDY(object.dateAddedTimestamp)
     const whenExpired = dateExpire(object)
 
+    const handleDeleteReserveMeal = () => {
+        console.log("deleted")
+        deleteMeal(object.id).then(()=>{
+            render()
+            alsoRender()
+        })
+    }
+
     return(
         <>
-            <div className="foodCard">
+            <div className="expireFoodCard">
                 <h4>{object.mealPacket?.name}</h4>
                 <h4>Added: {theDateToInsert}</h4>
                 <h4>Meal Id: {object.id}</h4>
                 <h4>{whenExpired}</h4>
+                <button onClick={handleDeleteReserveMeal}>Delete</button>
             </div>
         </>
     )
