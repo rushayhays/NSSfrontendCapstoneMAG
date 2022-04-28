@@ -133,7 +133,7 @@ export const MyFoodStorage = () =>{
                 </div>
                 <div className="expireCardArea">
                 {expirearr.map(expirer =>
-                        <MySingleFoodCard key={expirer.id} object={expirer}/>
+                        <MyFoodExpireCard key={expirer.id} object={expirer}/>
                     )}
                 </div>
 
