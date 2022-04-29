@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import { getUsersMealPackets, addNutrient, getSingleUserMealPacket, getNutritionForSingleMeal, deleteNutrient, updateMeal } from "../../../../modules/mealPacketManager" 
 import { SingleMealCard } from "../SingleMealCard"
 
-export const EditMyMealCard = () => {
+export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
 
     const{mealId} = useParams()
 

@@ -4,6 +4,7 @@ import "./myMealCards.css"
 import { useState, useEffect } from "react"
 import { getUsersMealPackets, addNutrient, addMealPacket} from "../../../modules/mealPacketManager"
 import { SingleMealCard } from "./SingleMealCard"
+import { useOutletContext } from "react-router-dom"
 
 export const MyMealCards = () => {
     const [meals, setMeals] = useState([{
@@ -24,6 +25,8 @@ export const MyMealCards = () => {
         name:""
     })
 
+    //Testing passing things
+    const importantArray = useOutletContext();
     
 
     //This will keeptrack of whether a box is checked or unchecked
@@ -168,6 +171,7 @@ export const MyMealCards = () => {
     }
 
 
+
     
 
 
@@ -179,7 +183,7 @@ export const MyMealCards = () => {
             </section>
             <section className="mealCardCarousel">
                 {meals.map(meal =>
-                    <SingleMealCard key={meal.id} object={meal} render={renderMealCards}/>
+                    <SingleMealCard key={meal.id} object={meal} render={renderMealCards} renderChartArray={importantArray}/>
                 )}
             </section>
 
