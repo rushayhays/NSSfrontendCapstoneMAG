@@ -16,10 +16,11 @@ export const HQHome = () => {
                 <div className="hqHomeFoodPie">
                 <PieChart
                     data={[
-                        { title: 'One', value: 20, color: `#FFFF46` },
-                        { title: 'Two', value: 80, color: '#000000' },
+                        { title: 'One', value: 25, color: `#FFFF46` },
+                        { title: 'Two', value: 75, color: '#000000' },
                     ]}
-                />;
+                    lineWidth={60}
+                />
                 </div>
                 </Link>
             </div>

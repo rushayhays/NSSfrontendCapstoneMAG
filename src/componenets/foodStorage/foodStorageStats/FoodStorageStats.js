@@ -24,6 +24,7 @@ export const FoodStorageStats =() =>{
                             { title: 'Two', value: 15, color: '#C13C37' },
                             { title: 'Three', value: 20, color: '#6A2135' },
                         ]}
+                        lineWidth={60}
                     />;
                     </div>
                     <div id="pieChartTwo">
@@ -33,6 +34,7 @@ export const FoodStorageStats =() =>{
                                 { title: 'Two', value: 15, color: '#C13C37' },
                                 { title: 'Three', value: 20, color: '#6A2135' },
                             ]}
+                            lineWidth={60}
                         />;
                     </div>
                     <div id="pieChartThree">
@@ -42,6 +44,7 @@ export const FoodStorageStats =() =>{
                                 { title: 'Two', value: 15, color: '#C13C37' },
                                 { title: 'Three', value: 20, color: '#6A2135' },
                             ]}
+                            lineWidth={60}
                         />;
                     </div>
 
