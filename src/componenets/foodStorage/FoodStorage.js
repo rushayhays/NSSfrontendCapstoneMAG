@@ -94,8 +94,8 @@ export const FoodStorage = () => {
         setExpireArr(expirinegSoonArr)
     }
 
-//This area was used to test the feasability of passing props from FoodStorage to MyFoodStorage
-//and MyMealCard/SingleMealCard through Outlet
+    //This area builds and passes props from FoodStorage to MyFoodStorage
+    //and MyMealCard/SingleMealCard through the Outlet
  
     const helloFunction = () => {
         console.log("hello hello")
@@ -110,7 +110,7 @@ export const FoodStorage = () => {
             </Link>
            <section className="foodStorageMainBox">
                <div className="foodStorageLeft">
-                    <FoodStorageStats/>
+                    <FoodStorageStats foodstorage={[foodstorage, setFoodStorage]}/>
                </div>
                <div className="foodStorageRight">
                     <div id="foodStorageNavBar">
