@@ -4,6 +4,7 @@
 import { UserBanner } from "../userBanner/UserBanner"
 import "./hqHome.css"
 import { Link } from "react-router-dom"
+import { PieChart } from "react-minimal-pie-chart"
 
 export const HQHome = () => {
     return(
@@ -13,7 +14,12 @@ export const HQHome = () => {
             <div className="hqHomeBody">
                 < Link to={"/foodStorage"}>
                 <div className="hqHomeFoodPie">
-                    <p>This is where the big pie chart goes</p>
+                <PieChart
+                    data={[
+                        { title: 'One', value: 20, color: `#FFFF46` },
+                        { title: 'Two', value: 80, color: '#000000' },
+                    ]}
+                />;
                 </div>
                 </Link>
             </div>

@@ -15,5 +15,18 @@
 
 .statsPieBox{
     background-color: lightgrey;
-    height:261px;
+    height:400px;
+    padding-top: 10px;
+}
+#pieChartOne{
+    height:100px;
+    margin: 25px 0;
+}
+#pieChartTwo{
+    height:100px;
+    margin: 25px 0;
+}
+#pieChartThree{
+    height:100px;
+    margin: 25px 0;
 }

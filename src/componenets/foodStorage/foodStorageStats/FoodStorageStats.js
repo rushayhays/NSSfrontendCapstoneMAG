@@ -2,6 +2,7 @@
 //It will have 1 to 3 piecharts
 
 import "./foodStorageStats.css"
+import { PieChart } from "react-minimal-pie-chart"
 
 export const FoodStorageStats =() =>{
     return(
@@ -17,13 +18,31 @@ export const FoodStorageStats =() =>{
                 </div>
                 <div className="statsPieBox">
                     <div id="pieChartOne">
-                        <p>Pie 1</p>
+                    <PieChart
+                        data={[
+                            { title: 'One', value: 10, color: '#E38627' },
+                            { title: 'Two', value: 15, color: '#C13C37' },
+                            { title: 'Three', value: 20, color: '#6A2135' },
+                        ]}
+                    />;
                     </div>
                     <div id="pieChartTwo">
-                        <p>Pie 2</p>
+                        <PieChart
+                            data={[
+                                { title: 'One', value: 10, color: '#E38627' },
+                                { title: 'Two', value: 15, color: '#C13C37' },
+                                { title: 'Three', value: 20, color: '#6A2135' },
+                            ]}
+                        />;
                     </div>
                     <div id="pieChartThree">
-                        <p>Pie 3</p>
+                        <PieChart
+                            data={[
+                                { title: 'One', value: 10, color: '#E38627' },
+                                { title: 'Two', value: 15, color: '#C13C37' },
+                                { title: 'Three', value: 20, color: '#6A2135' },
+                            ]}
+                        />;
                     </div>
 
                 </div>
