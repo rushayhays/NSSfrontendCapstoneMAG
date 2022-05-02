@@ -9,7 +9,7 @@ import { NutritionButton } from "./nutritionButton/NutritionButton"
 import { Link } from "react-router-dom"
 import { addFood } from "../../../modules/myFoodStorageManager"
 
-export const SingleMealCard =({object, render}) =>{
+export const SingleMealCard =({object, render, renderChartArray}) =>{
 
     // const userNum =1;
     // need to get the nutrition types for this Meal packet
@@ -49,10 +49,8 @@ export const SingleMealCard =({object, render}) =>{
     //needs to write on the packet
     const handleAddMeal = () =>{
 
-        console.log("you added a meal")
         //create a timestamp
         const dateAdded = Date.now()
-        console.log(dateAdded)
 
         const reserveMealObject={
             mealPacketId: object.id,
@@ -61,6 +59,7 @@ export const SingleMealCard =({object, render}) =>{
         }
 
         addFood(reserveMealObject)
+        renderChartArray[7]();
     }
 
 

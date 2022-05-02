@@ -3,8 +3,11 @@
 
 import "./foodStorageStats.css"
 import { PieChart } from "react-minimal-pie-chart"
+import { ProgressPieChart } from "./piecharts/ProgressPieChart"
+import { NutritionPieChart } from "./piecharts/NutritionPieChart"
+import { MealPieChart } from "./piecharts/MealPieChart"
 
-export const FoodStorageStats =() =>{
+export const FoodStorageStats =({foodstorage, oneBigArray}) =>{
     return(
         <>
             <div id="foodStorageStatsBox">
@@ -18,34 +21,13 @@ export const FoodStorageStats =() =>{
                 </div>
                 <div className="statsPieBox">
                     <div id="pieChartOne">
-                    <PieChart
-                        data={[
-                            { title: 'One', value: 10, color: '#E38627' },
-                            { title: 'Two', value: 15, color: '#C13C37' },
-                            { title: 'Three', value: 20, color: '#6A2135' },
-                        ]}
-                        lineWidth={60}
-                    />;
+                        <ProgressPieChart parentFoodStorage={foodstorage}/>
                     </div>
                     <div id="pieChartTwo">
-                        <PieChart
-                            data={[
-                                { title: 'One', value: 10, color: '#E38627' },
-                                { title: 'Two', value: 15, color: '#C13C37' },
-                                { title: 'Three', value: 20, color: '#6A2135' },
-                            ]}
-                            lineWidth={60}
-                        />;
+                        <NutritionPieChart parentFoodStorage={foodstorage}/>
                     </div>
                     <div id="pieChartThree">
-                        <PieChart
-                            data={[
-                                { title: 'One', value: 10, color: '#E38627' },
-                                { title: 'Two', value: 15, color: '#C13C37' },
-                                { title: 'Three', value: 20, color: '#6A2135' },
-                            ]}
-                            lineWidth={60}
-                        />;
+                        <MealPieChart oneBigArray={oneBigArray}/>
                     </div>
 
                 </div>
