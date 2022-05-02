@@ -7,7 +7,13 @@ import { useState, useEffect } from "react"
 export const ProgressPieChart = ({parentFoodStorage}) => {
 
     const[foodstorage, setFoodStorage] = parentFoodStorage
-    const[reserveArr, setReserveArr] = useState([])
+    const[reserveArr, setReserveArr] = useState([{
+        id: 1,
+        userId: 1,
+        goal: 92,
+        numOfPeople: 4
+    }
+    ])
 
 
     // value is not in percentages if value1=50 and value2=50
@@ -81,6 +87,8 @@ export const ProgressPieChart = ({parentFoodStorage}) => {
         <PieChart
             data={dataValues}
             lineWidth={60}
+            label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
+            labelPosition={62}
         />
     )
 }
