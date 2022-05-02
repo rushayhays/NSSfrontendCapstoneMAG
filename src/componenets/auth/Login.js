@@ -9,7 +9,7 @@ export const Login = ({setAuthUser}) => {
     const navigate = useNavigate()
 
     const existingUserCheck = () => {
-        return fetch(`http://localhost:8088/customers?email=${email.current.value}`)
+        return fetch(`http://localhost:8088/users?email=${email.current.value}`)
             .then(res => res.json())
             .then(user => user.length ? user[0] : false)
     }
@@ -21,7 +21,7 @@ export const Login = ({setAuthUser}) => {
             .then(exists => {
                 if (exists) {
                     setAuthUser(exists)
-                    navigate("/")
+                    navigate("/hqhome")
                 } else {
                     existDialog.current.showModal()
                 }

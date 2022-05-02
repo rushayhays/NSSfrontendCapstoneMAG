@@ -54,10 +54,8 @@ export const ProgressPieChart = ({parentFoodStorage}) => {
     
     const valuesForPieChart = (myCurrentCalories) =>{
         const calorieGoal = calcCaloriesNeededToMeetGoal();
-        console.log(myCurrentCalories)
         
         const remainingCaloriesNeeded = parseInt(calorieGoal) - parseInt(myCurrentCalories)
-        console.log(remainingCaloriesNeeded)
         const percentageCompletion = Math.floor((myCurrentCalories/calorieGoal)*100)
    
         let valueArr = [

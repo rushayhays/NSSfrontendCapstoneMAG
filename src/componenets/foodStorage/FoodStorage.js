@@ -12,14 +12,17 @@ import { useState, useEffect } from "react"
 
 export const FoodStorage = () => {
 
+    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const currentUserId = userObject.id
+
     const [foodstorage, setFoodStorage] = useState([{
 
         id: 0,
         mealPacketId: 0,
-        reserveId: 1,
+        reserveId: 0,
         dateAddedTimestamp: 0,
         mealPacket: {
-            userId: 0,
+            userId: currentUserId,
             calories: 0,
             mealTypeId: 3,
             servings: 0,
@@ -57,15 +60,15 @@ export const FoodStorage = () => {
     
     
     //This will need to be changes to render dynamically once the login feature is added
-    const callUpUsersFoodStorage = () => {
-        getUsersFoodStorage(1).then(arrOfFoods => {
+    const callUpUsersFoodStorage = (num) => {
+        getUsersFoodStorage(num).then(arrOfFoods => {
             setFoodStorage(arrOfFoods)
         })
     }
 
     
     useEffect(()=> {
-        callUpUsersFoodStorage();
+        callUpUsersFoodStorage(currentUserId);
     }, []);
 
     useEffect(()=> {

@@ -4,6 +4,7 @@ import React from "react"
 import { Header } from "./header/Header"
 import { ApplicationViews } from "./ApplicationViews"
 import "./HQ.css"
+import { useState } from "react"
 
 export const HQ = () => {
 

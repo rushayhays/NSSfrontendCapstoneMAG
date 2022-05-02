@@ -6,7 +6,12 @@ import { getUsersMealPackets, addNutrient, addMealPacket} from "../../../modules
 import { SingleMealCard } from "./SingleMealCard"
 import { useOutletContext } from "react-router-dom"
 
+
 export const MyMealCards = () => {
+    
+    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const currentUserId = userObject.id
+
     const [meals, setMeals] = useState([{
         id:0,
         userId:0,
@@ -17,7 +22,7 @@ export const MyMealCards = () => {
         name:""
     }])
     const [singleMeal, setSingleMeal] = useState({
-        userId:1,
+        userId:currentUserId,
         calories:0,
         mealTypeId:0,
         servings:0,
@@ -39,9 +44,9 @@ export const MyMealCards = () => {
 
 
 
-    const userNum = 1;
+    
     useEffect(()=> {
-        getUsersMealPackets(userNum).then(arrOfMeals => {
+        getUsersMealPackets(currentUserId).then(arrOfMeals => {
             setMeals(arrOfMeals)
         });
     }, []);
@@ -50,7 +55,7 @@ export const MyMealCards = () => {
     
     const handleControlledInputChange = (event) => {
         const newSingleMeal = { ...singleMeal }
-        newSingleMeal.userId = userNum;
+        newSingleMeal.userId = currentUserId;
 		//A sepearte useState is needed here, because meals, creates an
         //array of meal objects, but this needs something that only deals with
         //and updates one object total
@@ -100,7 +105,7 @@ export const MyMealCards = () => {
         let nutriObject={
             mealPacketId: numberArgument,
             nutritionTypeId:0,
-            userId: 1
+            userId: currentUserId
         }
         const promiseArray=[]
         if(checkedone === true){
@@ -155,7 +160,7 @@ export const MyMealCards = () => {
     }
     //This is to make my code shorter, I have to rerender the meal cards a lot
     const renderMealCards = () =>{
-        getUsersMealPackets(userNum).then(arrOfMeals => {
+        getUsersMealPackets(currentUserId).then(arrOfMeals => {
             setMeals(arrOfMeals)
         });
     }
