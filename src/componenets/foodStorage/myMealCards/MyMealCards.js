@@ -95,10 +95,12 @@ export const MyMealCards = () => {
     }
     
     //This will identify what is checked and post appropriately
+    //Make sure to change userId to render dynamically later
     const nutrientsToPost = (numberArgument) => {
         let nutriObject={
             mealPacketId: numberArgument,
-            nutritionTypeId:0
+            nutritionTypeId:0,
+            userId: 1
         }
         const promiseArray=[]
         if(checkedone === true){

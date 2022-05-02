@@ -44,23 +44,18 @@ export const ProgressPieChart = ({parentFoodStorage}) => {
         //numbers from it
         const reserveObj = reserveArr[0]
         const peopleInPlan = reserveObj?.numOfPeople
-        console.log("da people" + peopleInPlan)
         const numOfDays = reserveObj?.goal
-        console.log("da days" + numOfDays)
         
         //This calculates the calories needed
         const caloriesNeededToMeetGoal = parseInt(peopleInPlan) * parseInt(caloriesPerPersonPerDay) * parseInt(numOfDays)
-        console.log("how many c do you need" + caloriesNeededToMeetGoal)
         return caloriesNeededToMeetGoal
     }
     
     const valuesForPieChart = (myCurrentCalories) =>{
         const calorieGoal = calcCaloriesNeededToMeetGoal();
-        console.log("this is the Goal "+calorieGoal)
 
         
         const remainingCaloriesNeeded = parseInt(calorieGoal) - parseInt(myCurrentCalories)
-        console.log(remainingCaloriesNeeded)
         const percentageCompletion = Math.floor((myCurrentCalories/calorieGoal)*100)
    
         let valueArr = [

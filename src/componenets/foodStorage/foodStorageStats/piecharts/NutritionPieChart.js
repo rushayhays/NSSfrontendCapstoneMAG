@@ -2,8 +2,10 @@
 
 import { PieChart } from "react-minimal-pie-chart"
 
-export const NutritionPieChart = () => {
-    
+export const NutritionPieChart = ({parentFoodStorage}) => {
+
+    const[foodstorage, setFoodStorage] = parentFoodStorage
+
     const dataEntry = [
         { title: 'One', value: 100, color: '#E38627' },
         { title: 'Two', value: 200, color: '#C13C37' },

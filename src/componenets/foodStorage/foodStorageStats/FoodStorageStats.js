@@ -23,7 +23,7 @@ export const FoodStorageStats =({foodstorage}) =>{
                         <ProgressPieChart parentFoodStorage={foodstorage}/>
                     </div>
                     <div id="pieChartTwo">
-                        <NutritionPieChart/>
+                        <NutritionPieChart parentFoodStorage={foodstorage}/>
                     </div>
                     <div id="pieChartThree">
                         <PieChart
