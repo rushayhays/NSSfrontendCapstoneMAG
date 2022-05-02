@@ -110,7 +110,7 @@ export const FoodStorage = () => {
             </Link>
            <section className="foodStorageMainBox">
                <div className="foodStorageLeft">
-                    <FoodStorageStats foodstorage={[foodstorage, setFoodStorage]}/>
+                    <FoodStorageStats foodstorage={[foodstorage, setFoodStorage]} oneBigArray={oneBigArray}/>
                </div>
                <div className="foodStorageRight">
                     <div id="foodStorageNavBar">

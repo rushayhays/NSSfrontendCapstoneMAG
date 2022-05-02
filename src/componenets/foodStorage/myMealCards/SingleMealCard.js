@@ -49,10 +49,8 @@ export const SingleMealCard =({object, render, renderChartArray}) =>{
     //needs to write on the packet
     const handleAddMeal = () =>{
 
-        console.log("you added a meal")
         //create a timestamp
         const dateAdded = Date.now()
-        console.log(dateAdded)
 
         const reserveMealObject={
             mealPacketId: object.id,

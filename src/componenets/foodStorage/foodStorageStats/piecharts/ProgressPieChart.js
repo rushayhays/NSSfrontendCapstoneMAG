@@ -16,7 +16,7 @@ export const ProgressPieChart = ({parentFoodStorage}) => {
     ])
 
 
-    // value is not in percentages if value1=50 and value2=50
+    // value is not in percentages. If value1=50 and value2=50
     // then pieChart adds them together to get 100 as the denominator and each 
     //pie portion then covers 50% of that pie
     const[dataValues, setDataValues] = useState([
@@ -25,15 +25,16 @@ export const ProgressPieChart = ({parentFoodStorage}) => {
     ])
     //Need to figure out how to get a label on here
     
+    const[mycalories, setMyCalories]=useState(0)
     
     const calcCaloriesInMyFoodStorage = () => {
         
-        let CaloriesInMyFoodStorage = 0;
+        let caloriesInMyFoodStorage = 0;
         foodstorage.forEach(meal =>{
             const caloriesAsANum  = parseInt(meal.mealPacket.calories)
-            CaloriesInMyFoodStorage += caloriesAsANum
+            caloriesInMyFoodStorage += caloriesAsANum
         })
-        return CaloriesInMyFoodStorage
+        return caloriesInMyFoodStorage
     }
     
     const calcCaloriesNeededToMeetGoal = () =>{
@@ -53,9 +54,10 @@ export const ProgressPieChart = ({parentFoodStorage}) => {
     
     const valuesForPieChart = (myCurrentCalories) =>{
         const calorieGoal = calcCaloriesNeededToMeetGoal();
-
+        console.log(myCurrentCalories)
         
         const remainingCaloriesNeeded = parseInt(calorieGoal) - parseInt(myCurrentCalories)
+        console.log(remainingCaloriesNeeded)
         const percentageCompletion = Math.floor((myCurrentCalories/calorieGoal)*100)
    
         let valueArr = [
@@ -63,19 +65,32 @@ export const ProgressPieChart = ({parentFoodStorage}) => {
             {title: 'Two', value: remainingCaloriesNeeded, color: '#C13C37'}
         ]
         
-        setDataValues(valueArr)
+        return valueArr
     }
     
     
     useEffect(()=> {
         getReserveInfo(1).then(infoArray => {
             setReserveArr(infoArray)
-            const myCalories = calcCaloriesInMyFoodStorage()
-            //set my calories as a useState?
-            valuesForPieChart(myCalories)
         })
                 
     }, []);
+
+    useEffect(()=> {
+        const myFoodCalories = calcCaloriesInMyFoodStorage()
+        setMyCalories(myFoodCalories)
+                
+    }, [foodstorage]);
+
+    useEffect(()=> {
+    
+        const newPieValues = valuesForPieChart(mycalories);
+        setDataValues(newPieValues);
+    
+                
+    }, [mycalories]);
+
+
 
 
     return(
