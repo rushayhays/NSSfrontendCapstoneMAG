@@ -9,10 +9,16 @@ import { NutritionButton } from "./nutritionButton/NutritionButton"
 import { Link } from "react-router-dom"
 import { addFood } from "../../../modules/myFoodStorageManager"
 
-export const SingleMealCard =({object, render, renderChartArray}) =>{
+export const SingleMealCard =({object, render, renderFoodArray}) =>{
 
     // const userNum =1;
     // need to get the nutrition types for this Meal packet
+    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const currentUserId = parseInt(userObject.id)
+
+    
+
+    
 
     const [nutritionGroups, setNutritionGroups] = useState([{
         "id": 0,
@@ -54,12 +60,13 @@ export const SingleMealCard =({object, render, renderChartArray}) =>{
 
         const reserveMealObject={
             mealPacketId: object.id,
-            reserveId: 1,
+            reserveId: currentUserId,
             dateAddedTimestamp: dateAdded
         }
 
         addFood(reserveMealObject)
-        renderChartArray[7]();
+        renderFoodArray[5](currentUserId);
+
     }
 
 

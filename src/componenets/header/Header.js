@@ -4,7 +4,12 @@ import "./header.css"
 import { Link } from "react-router-dom"
 
 
-export const Header = () => {
+export const Header = ({clearUser}) => {
+
+    const handleLogout = () =>{
+        clearUser()
+    }
+
     return (
         <>
             <div className="headerArea">
@@ -12,8 +17,16 @@ export const Header = () => {
                 <h2 id="tempLogo">MAG</h2>
                 </Link>
                 <div className="headerButtonArea">
-                    <button id="regButton">Register</button>
-                    <button id="logButton">Login</button>
+                    <Link to={"/register"}>
+                        <button id="regButton">Register</button>
+                    </Link>
+                    <Link to={"/login"}>
+                        <button id="logButton">Login</button>
+                    </Link>
+                    <Link to={"/"}>
+                        <button id="outButton" onClick={clearUser}>Logout</button>
+                    </Link>
+                    
                 </div>
             </div>
         </>

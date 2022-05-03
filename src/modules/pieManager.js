@@ -15,6 +15,6 @@ export const getReserveInfo = (num) => {
 
 export const getNutritionInfo = (num) => {
   return fetch(
-    `${remoteURL}/mealTypeNutritionTypes?userId=${1}&_expand=mealPacket`
+    `${remoteURL}/mealTypeNutritionTypes?userId=${num}&_expand=mealPacket`
   ).then((res) => res.json());
 };

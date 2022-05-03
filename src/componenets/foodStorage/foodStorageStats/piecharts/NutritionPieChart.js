@@ -6,13 +6,16 @@ import { useState, useEffect } from "react"
 
 export const NutritionPieChart = ({parentFoodStorage}) => {
 
+    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const currentUserId = parseInt(userObject.id)
+
     const[foodstorage, setFoodStorage] = parentFoodStorage
     const[nutritionarray, setNutritionArray] = useState([
         {
             id: 0,
             nutritionTypeId: 0,
             mealPacketId: 0,
-            userId: 1,
+            userId: 0,
             nutritionType: {
                 id: 0,
                 name: ""
@@ -32,11 +35,11 @@ export const NutritionPieChart = ({parentFoodStorage}) => {
 
     //Make sure to change this to dynamically get the user Id
     useEffect(()=> {
-        getNutritionInfo(1).then(arrOfInfo => {
+        getNutritionInfo(currentUserId).then(arrOfInfo => {
             setNutritionArray(arrOfInfo)
         
         })
-    }, []);
+    }, [foodstorage]);
 
     useEffect(()=> {
         const mealNutritionArray=mealRatios()
