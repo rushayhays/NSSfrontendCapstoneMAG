@@ -12,6 +12,7 @@ export const MyFoodStorage = () =>{
 
     const anArray= useOutletContext();
     const callUpUserFoodStorage = anArray[5];
+    //This will cause the pie charts to update by signalling the FoodStorage page that a change has occurred
     const [value, setValue] = anArray[9]
 
     
@@ -82,20 +83,12 @@ export const MyFoodStorage = () =>{
 
     }, [foodstorage]);
     
-    // useEffect(()=> {
-    //     callUpUserFoodStorage(currentUserId);
-    // }, []);
-
-    // useEffect(()=> {
-    //     theGreatSorting();
-    // }, [foodstorage]);
+    
   
     const handleDeleteReserveMeal = (num) => {
-        console.log("deleted")
         deleteMeal(num).then(()=>{
             myCallUpUsersFoodStorage(currentUserId);
             setValue(value=>value+1)
-            console.log("added to value")
         })
     }
     

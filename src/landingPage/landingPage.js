@@ -15,7 +15,7 @@ export const LandingPage = () => {
                     <h4>The End of the World as we Know it?</h4>
                     <p>Ragnarok, Armageddon, Doomsday, nobody knows when society might collapse, but there are plenty of people who can tell you how it might collapse.</p>
                     <p id="bottomPara">We're here to tell you if you're ready for it. So that for you, doomsday, is just another day.</p>
-                    <Link to={"/setuphq"}>
+                    <Link to={"/register"}>
                     <button id="landingButton">Set Up My HQ</button>
                     </Link>
                 </div>

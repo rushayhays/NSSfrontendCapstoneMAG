@@ -11,7 +11,7 @@ export const Register = ({setAuthUser}) => {
 
 
     const existingUserCheck = () => {
-        return fetch(`http://localhost:8088/customers?email=${email.current.value}`)
+        return fetch(`http://localhost:8088/users?email=${email.current.value}`)
             .then(res => res.json())
             .then(user => !!user.length)
     }
@@ -23,7 +23,7 @@ export const Register = ({setAuthUser}) => {
         existingUserCheck()
             .then((userExists) => {
                 if (!userExists) {
-                    fetch("http://localhost:8088/customers", {
+                    fetch("http://localhost:8088/users", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
@@ -36,8 +36,8 @@ export const Register = ({setAuthUser}) => {
                         .then(res => res.json())
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
-                                //setAuthUser(createdUser)
-                                navigate("/")
+                                setAuthUser(createdUser)
+                                navigate("/setuphq")
                             }
                         })
                 }

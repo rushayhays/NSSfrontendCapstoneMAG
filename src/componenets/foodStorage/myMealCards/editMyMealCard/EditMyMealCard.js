@@ -4,11 +4,16 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { getUsersMealPackets, addNutrient, getSingleUserMealPacket, getNutritionForSingleMeal, deleteNutrient, updateMeal } from "../../../../modules/mealPacketManager" 
 import { SingleMealCard } from "../SingleMealCard"
+import { useNavigate } from "react-router-dom"
 
 export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
 
+    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const currentUserId = parseInt(userObject.id)
+
     const{mealId} = useParams()
 
+    const[lengthValue, setLengthValue]=useState(0)
     const [meals, setMeals] = useState([{
         id:0,
         userId:0,
@@ -19,7 +24,7 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
         name:""
     }])
     const [editedMeal, setEditedMeal] = useState({
-        userId:1,
+        userId:0,
         calories:0,
         mealTypeId:0,
         servings:0,
@@ -34,9 +39,7 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
         "mealPacketId": 0
     }])
 
-    //This is being watched by a use effect. The useEffect will trigger when 
-    //nutritionareas populates
-    let lengthLooker = nutritionAreas.length
+    
 
     
 
@@ -47,6 +50,9 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
     const [checkedfour, setCheckedFour] = useState(false)
     const [checkedfive, setCheckedFive] = useState(false)
     const [checkedsix, setCheckedSix] = useState(false)
+
+    //Once a card is edited Navigate back to MyMealCards
+    const navigate = useNavigate();
 
     //This will set the default state of the chckboxes to match
     //what nutrients are listed
@@ -75,7 +81,7 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
 
     const userNum = 1;
     useEffect(()=> {
-        getUsersMealPackets(userNum).then(arrOfMeals => {
+        getUsersMealPackets(currentUserId).then(arrOfMeals => {
             setMeals(arrOfMeals)
         });
         getSingleUserMealPacket(mealId).then(object => {
@@ -89,7 +95,7 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
     //This ensures that nutrtionAreas has populated before running setUpNutritionAreasForEditing
     useEffect(()=>{
         setUpNutritionAreasForEditing()
-    }, [lengthLooker]);
+    }, [lengthValue]);
 
 
     
@@ -241,9 +247,6 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
         
     }
 
-    const runTest = () => {
-        const array = nutrientsToPost(mealId)
-    }
 
    
     //This is to make my code shorter, I have to rerender the meal cards a lot
@@ -261,8 +264,9 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
                 setNutritionAreas(arrOfNTypes)
             });
             const array = nutrientsToPost(mealId)
-            lengthLooker = nutritionAreas.length
+            setLengthValue(nutritionAreas.length) 
             renderMealCards();
+            navigate("/foodstorage/mymealcards")
         })
     }
 
@@ -280,36 +284,36 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
 
             {/* This area will handle gathering information for a new card and posting it */}
             <section className="mealCardCreation">
-                <div className="mealCreateTitleArea">
-                    <h4>Create a New Meal Card</h4>
+            <div className="mealCreateTitleArea">
+                    <h4>Edit a Meal Card</h4>
                 </div>
                 <div className="mealCreateEntryArea">
                     {/* Box1 will grab info to post to mealPacket */}
                     <div className="mealCreateEntryBox" id="box1">
-                        <fieldset className="mealField">
-                            <div className="form-area">
-                                <label htmlFor="name">Name:</label>
-                                <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="name" value={editedMeal.name} />
-                            </div>
-                        </fieldset>
-                        <fieldset className="mealField">
-                            <div className="form-area">
-                                <label htmlFor="calories">Total calories:</label>
-                                <input type="number" id="calories" onChange={handleControlledInputChange} name="calories" min="1" max="1000000" value={editedMeal.calories}/>
-                            </div>
-                        </fieldset>
-                        <fieldset className="mealField">
-                            <div className="form-area">
-                                <label htmlFor="servings">Servings:</label>
-                                <input type="number" id="servings" onChange={handleControlledInputChange} name="servings" min="1" max="8000" value={editedMeal.servings}/>
-                            </div>
-                        </fieldset>
-                        <fieldset className="mealField">
-                            <div className="form-area">
-                                <label htmlFor="shelfLifeInDays">Shelf Life in Days:</label>
-                                <input type="number" id="shelfLifeInDays" onChange={handleControlledInputChange} name="shelfLifeInDays"min="1" max="4000" value={editedMeal.shelfLifeInDays}/>
-                            </div>
-                        </fieldset>
+                        
+                        <div className="form-area">
+                            <label id="label1" htmlFor="name">Name:</label>
+                            <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="name" value={editedMeal.name} />
+                        </div>
+                    
+                    
+                        <div className="form-area">
+                            <label htmlFor="calories">Total calories:</label><br/>
+                            <input type="number" id="calories" onChange={handleControlledInputChange} name="calories" min="1" max="1000000" value={editedMeal.calories}/>
+                        </div>
+                
+                
+                        <div className="form-area">
+                            <label htmlFor="servings">Servings:</label><br/>
+                            <input type="number" id="servings" onChange={handleControlledInputChange} name="servings" min="1" max="8000" value={editedMeal.servings}/>
+                        </div>
+                    
+                    
+                        <div className="form-area">
+                            <label htmlFor="shelfLifeInDays">Shelf Life in Days:</label><br/>
+                            <input type="number" id="shelfLifeInDays" onChange={handleControlledInputChange} name="shelfLifeInDays"min="1" max="4000" value={editedMeal.shelfLifeInDays}/>
+                        </div>
+                        
                     </div>
                     {/* Box2 will also post to MealPacket  */}
                     <div className="mealCreateEntryBox" id="box2">

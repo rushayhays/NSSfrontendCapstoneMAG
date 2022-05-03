@@ -29,7 +29,7 @@ export const ApplicationViews = ({isAuthenticated, setIsAuthenticated}) => {
             <Routes>
                 <Route exact path="/" element={<LandingPage/>}/>
                 <Route exact path="/login" element={<Login setAuthUser={setAuthUser} />} />
-                <Route exact path="/register" element={<Register />} />
+                <Route exact path="/register" element={<Register setAuthUser={setAuthUser}/>} />
                 <Route path="/setuphq" element={<SetUpHQ/>}/>
                 <Route path="/hqhome" element={<PrivateRoute><HQHome/></PrivateRoute>}/>
                 <Route path="/foodstorage" element={<PrivateRoute><FoodStorage/></PrivateRoute>}>

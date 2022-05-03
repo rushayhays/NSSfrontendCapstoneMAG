@@ -19,7 +19,7 @@
 }
 
 .mealCreateEntryArea{
-    height:150px;
+    height:300px;
     display:flex;
     justify-content: space-between;
     gap:10px;
@@ -27,25 +27,16 @@
 }
 
 
-#box1{
-    background-color: gray;
-    height:150px;
-    width:300px;
-}
-#box2{
-    background-color: gray;
-    height:150px;
-    width:300px;
-}
-#box3{
-    background-color: gray;
-    height:150px;
-    width:300px;
+.mealCreateEntryBox{
+    padding-left: 20px;
+    background-color: aqua;
 }
 
-.fieldArea{
-    
+.formArea{
+    padding-left:10px;
 }
 #name{
-    
+    height:10px;
+    width:200px;
 }
+

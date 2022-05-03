@@ -6,23 +6,39 @@ import { PieChart } from "react-minimal-pie-chart"
 import { ProgressPieChart } from "./piecharts/ProgressPieChart"
 import { NutritionPieChart } from "./piecharts/NutritionPieChart"
 import { MealPieChart } from "./piecharts/MealPieChart"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { getReserveInfo } from "../../../modules/pieManager"
 
 export const FoodStorageStats =({foodstorage, oneBigArray}) =>{
 
+    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const currentUserId = parseInt(userObject.id)
+
+    const[reserveobject, setReserveObject]=useState(
+        {
+            id: 0,
+            userId: 0,
+            goal: 0,
+            numOfPeople: 0
+        }
+    )
+
     useEffect(()=> {
-        
+        getReserveInfo(currentUserId).then(infoArray => {
+            const infoObject = infoArray[0]
+            setReserveObject(infoObject)
+        })
     }, [foodstorage]);
 
     return(
         <>
             <div id="foodStorageStatsBox">
                 <div className="statsHeaderBox">
-                    <h4>Red October's Food Plan</h4>
+                    <h4>{userObject.name}'s Food Plan</h4>
                     <div id="statTagArea">
                         <button className="statTag">Short Term</button>
-                        <button className="statTag">4 People</button>
-                        <button className="statTag">3 Months</button>
+                        <button className="statTag">{reserveobject.numOfPeople} People</button>
+                        <button className="statTag">{reserveobject.goal} Days</button>
                     </div>
                 </div>
                 <div className="statsPieBox">

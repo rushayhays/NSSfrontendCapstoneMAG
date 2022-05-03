@@ -1,6 +1,4 @@
-.hqEntryForm{
-    display:flex;
-}
+
 
 /* This is the big box for the left side of the page */
 .hqEntryForm{
@@ -9,37 +7,21 @@
 
 .hqEntryBanner{
     background-color: lightgrey;
+    padding-left: 50px;
 }
 
-.nameArea{
-    display:flex;
-}
 
-.nameAreaLeft{
-    height:200px;
-    width:400px;
-}
 
-.nameAreaRight{
-    background-color: lightgray;
-    height:200px;
-    width:400px;
-}
 
-.regionArea{
-    display:flex;
-}
 
-.regionAreaLeft{
-    height:200px;
-    width:400px;
-}
 
-.regionAreaRight{
-    background-color: lightgray;
-    height:200px;
-    width:400px;
-}
+
+
+
+
+
+
+
 
 /* This is the big box for the right side of the page */
 .hqPreview{
@@ -50,7 +32,7 @@
     background-color: lightgray;
     width:500px;
     height: 500px;
-    margin-left: 80px;
+    margin-left: 5px;
     padding-top:10px;
     
 }
@@ -59,11 +41,10 @@
  background-color: gray;
  text-align: center;
 }
-.regionBanner{
+
+#foodBanner{
     background-color: gray;
-}
-.foodStorageBanner{
-    background-color: gray;
+    padding-left: 20px;
 }
 
 #createHQButton{
