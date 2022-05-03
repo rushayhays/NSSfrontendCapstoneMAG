@@ -5,7 +5,7 @@ import "./mySingleFoodCard.css"
 import { deleteMeal } from "../../../modules/myFoodStorageManager";
 
 
-export const MySingleFoodCard = ({object, render, alsoRender}) => {
+export const MySingleFoodCard = ({object, handleDelete}) => {
 
    //credit to Javontae
     const formatMDY = (num) => {
@@ -31,13 +31,7 @@ export const MySingleFoodCard = ({object, render, alsoRender}) => {
     const theDateToInsert = formatMDY(object.dateAddedTimestamp)
     const whenExpired = dateExpire()
 
-    const handleDeleteReserveMeal = () => {
-        console.log("deleted")
-        deleteMeal(object.id).then(()=>{
-            render()
-            alsoRender()
-        })
-    }
+    
 
     return(
         <>
@@ -46,7 +40,7 @@ export const MySingleFoodCard = ({object, render, alsoRender}) => {
                 <h4>Added: {theDateToInsert}</h4>
                 <h4>Meal Id: {object.id}</h4>
                 <h4>Expires: {whenExpired}</h4>
-                <button onClick={handleDeleteReserveMeal}>Delete</button>
+                <button onClick={() => handleDelete(object.id)}>Delete</button>
             </div>
         </>
     )
