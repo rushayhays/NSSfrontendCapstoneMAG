@@ -5,7 +5,7 @@ import "./mySingleFoodCard.css"
 import { deleteMeal } from "../../../modules/myFoodStorageManager";
 
 
-export const MySingleFoodCard = ({object, handleDelete}) => {
+export const MySingleFoodCard = ({object, handleDelete, value}) => {
 
    //credit to Javontae
     const formatMDY = (num) => {

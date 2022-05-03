@@ -9,6 +9,11 @@ import { getUsersFoodStorage } from "../../../modules/myFoodStorageManager"
 import { deleteMeal } from "../../../modules/myFoodStorageManager"
 
 export const MyFoodStorage = () =>{
+
+    const anArray= useOutletContext();
+    const callUpUserFoodStorage = anArray[5];
+    const [value, setValue] = anArray[9]
+
     
     const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
     const currentUserId = parseInt(userObject.id)
@@ -54,7 +59,7 @@ export const MyFoodStorage = () =>{
         setSnackArr(anSnackArr);
 
         checkDateExpire(foodstorage)
-        console.log("Does Great Sort Run")
+
     }
     
     
@@ -62,24 +67,35 @@ export const MyFoodStorage = () =>{
     const myCallUpUsersFoodStorage = (num) => {
         getUsersFoodStorage(num).then(arrOfFoods => {
             setFoodStorage(arrOfFoods)
-            console.log("did I run")
+        
         })
     }
 
     
     useEffect(()=> {
         myCallUpUsersFoodStorage(currentUserId);
+        callUpUserFoodStorage(currentUserId);
     }, []);
 
     useEffect(()=> {
         myGreatSorting();
+
     }, [foodstorage]);
     
+    // useEffect(()=> {
+    //     callUpUserFoodStorage(currentUserId);
+    // }, []);
+
+    // useEffect(()=> {
+    //     theGreatSorting();
+    // }, [foodstorage]);
   
     const handleDeleteReserveMeal = (num) => {
         console.log("deleted")
         deleteMeal(num).then(()=>{
             myCallUpUsersFoodStorage(currentUserId);
+            setValue(value=>value+1)
+            console.log("added to value")
         })
     }
     

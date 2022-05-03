@@ -6,6 +6,9 @@ import { useState, useEffect } from "react"
 
 export const ProgressPieChart = ({parentFoodStorage}) => {
 
+    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const currentUserId = parseInt(userObject.id)
+
     const[foodstorage, setFoodStorage] = parentFoodStorage
     const[reserveArr, setReserveArr] = useState([{
         id: 1,
@@ -68,7 +71,7 @@ export const ProgressPieChart = ({parentFoodStorage}) => {
     
     
     useEffect(()=> {
-        getReserveInfo(1).then(infoArray => {
+        getReserveInfo(currentUserId).then(infoArray => {
             setReserveArr(infoArray)
         })
                 

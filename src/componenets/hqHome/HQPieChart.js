@@ -8,11 +8,14 @@ import { useState, useEffect } from "react"
 
 export const HQPieChart = () => {
 
+    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const currentUserId = parseInt(userObject.id)
+
     const[foodstorage, setFoodStorage] = useState([{
 
         id: 0,
         mealPacketId: 0,
-        reserveId: 1,
+        reserveId: 0,
         dateAddedTimestamp: 0,
         mealPacket: {
             userId: 0,
@@ -27,10 +30,10 @@ export const HQPieChart = () => {
     }])
 
     const[reserveArr, setReserveArr] = useState([{
-        id: 1,
-        userId: 1,
-        goal: 92,
-        numOfPeople: 4
+        id: 0,
+        userId: 0,
+        goal: 0,
+        numOfPeople: 0
     }
     ])
 
@@ -88,10 +91,10 @@ export const HQPieChart = () => {
 
     
     useEffect(()=> {
-        getReserveInfo(1).then(infoArray => {
+        getReserveInfo(currentUserId).then(infoArray => {
             setReserveArr(infoArray)
         })
-        getUsersFoodStorage(1).then(arrOfFoods => {
+        getUsersFoodStorage(currentUserId).then(arrOfFoods => {
             setFoodStorage(arrOfFoods)
         })
 
