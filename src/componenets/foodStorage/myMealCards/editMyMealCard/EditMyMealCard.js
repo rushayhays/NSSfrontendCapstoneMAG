@@ -28,15 +28,15 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
     })
 
 
-    const [nutritionGroups, setNutritionGroups] = useState([{
+    const [nutritionAreas, setNutritionAreas] = useState([{
         "id": 0,
         "nutritionTypeId": 0,
         "mealPacketId": 0
     }])
 
     //This is being watched by a use effect. The useEffect will trigger when 
-    //nutritiongroups populates
-    let lengthLooker = nutritionGroups.length
+    //nutritionareas populates
+    let lengthLooker = nutritionAreas.length
 
     
 
@@ -50,8 +50,8 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
 
     //This will set the default state of the chckboxes to match
     //what nutrients are listed
-    const setUpNutritionGroupsForEditing = () => {
-        nutritionGroups.forEach(object => {
+    const setUpNutritionAreasForEditing = () => {
+        nutritionAreas.forEach(object => {
             if(object.nutritionTypeId === 1){
                 setCheckedOne(true)
             }
@@ -82,13 +82,13 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
             setEditedMeal(object)
         })
         getNutritionForSingleMeal(mealId).then(arrOfNTypes => {
-            setNutritionGroups(arrOfNTypes)
+            setNutritionAreas(arrOfNTypes)
         });
     }, []);
 
-    //This ensures that nutrtionGroups has populated before running setUpNutritionGroupsForEditing
+    //This ensures that nutrtionAreas has populated before running setUpNutritionAreasForEditing
     useEffect(()=>{
-        setUpNutritionGroupsForEditing()
+        setUpNutritionAreasForEditing()
     }, [lengthLooker]);
 
 
@@ -152,7 +152,7 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
 
     //This thinh has a bug the wrong things are being deleted
     const nutrientObjectFinder = (num) => {
-        const singleObject = nutritionGroups.find(object => object.nutritionTypeId === num);
+        const singleObject = nutritionAreas.find(object => object.nutritionTypeId === num);
         return singleObject;
     }
 
@@ -166,73 +166,73 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
         const addPromiseArray=[]
         const deletePromiseArray= []
         //Logic for1
-        if(checkedone === true && !nutritionGroups.some(hasNutrientId1)){
+        if(checkedone === true && !nutritionAreas.some(hasNutrientId1)){
             nutriObject.nutritionTypeId=1
             const promise1 = addNutrient(nutriObject)
             addPromiseArray.push(promise1)
             console.log("add grain")
         }
-        if(checkedone === false && nutritionGroups.some(hasNutrientId1)){
+        if(checkedone === false && nutritionAreas.some(hasNutrientId1)){
             const objectToDelete = nutrientObjectFinder(1)
             const dPromise1 = deleteNutrient(objectToDelete.id);
             deletePromiseArray.push(dPromise1)
         }
         //for2
-        if(checkedtwo === true && !nutritionGroups.some(hasNutrientId2)){
+        if(checkedtwo === true && !nutritionAreas.some(hasNutrientId2)){
             nutriObject.nutritionTypeId=2
             const promise2 = addNutrient(nutriObject)
             addPromiseArray.push(promise2)
             console.log("add vegetables")
         }
-        if(checkedtwo === false && nutritionGroups.some(hasNutrientId2)){
+        if(checkedtwo === false && nutritionAreas.some(hasNutrientId2)){
             const objectToDelete = nutrientObjectFinder(2)
             const dPromise2 = deleteNutrient(objectToDelete.id);
             deletePromiseArray.push(dPromise2)
         }
         //for3
-        if(checkedthree === true && !nutritionGroups.some(hasNutrientId3)){
+        if(checkedthree === true && !nutritionAreas.some(hasNutrientId3)){
             nutriObject.nutritionTypeId=3
             const promise3 = addNutrient(nutriObject)
             addPromiseArray.push(promise3)
             console.log("add fruits")
         }
-        if(checkedthree === false && nutritionGroups.some(hasNutrientId3)){
+        if(checkedthree === false && nutritionAreas.some(hasNutrientId3)){
             const objectToDelete = nutrientObjectFinder(3)
             const dPromise3 = deleteNutrient(objectToDelete.id);
             deletePromiseArray.push(dPromise3)
         }
         //for4
-        if(checkedfour === true && !nutritionGroups.some(hasNutrientId4)){
+        if(checkedfour === true && !nutritionAreas.some(hasNutrientId4)){
             nutriObject.nutritionTypeId=4
             const promise4 = addNutrient(nutriObject)
             addPromiseArray.push(promise4)
             console.log("add proteins")
         }
-        if(checkedfour === false && nutritionGroups.some(hasNutrientId4)){
+        if(checkedfour === false && nutritionAreas.some(hasNutrientId4)){
             const objectToDelete = nutrientObjectFinder(4)
             const dPromise4 = deleteNutrient(objectToDelete.id);
             deletePromiseArray.push(dPromise4)
         }
         //for5
-        if(checkedfive === true && !nutritionGroups.some(hasNutrientId5)){
+        if(checkedfive === true && !nutritionAreas.some(hasNutrientId5)){
             nutriObject.nutritionTypeId=5
             const promise5 = addNutrient(nutriObject)
             addPromiseArray.push(promise5)
             console.log("add dairy")
         }
-        if(checkedfive === false && nutritionGroups.some(hasNutrientId5)){
+        if(checkedfive === false && nutritionAreas.some(hasNutrientId5)){
             const objectToDelete = nutrientObjectFinder(5)
             const dPromise5 = deleteNutrient(objectToDelete.id);
             deletePromiseArray.push(dPromise5)
         }
         //for6
-        if(checkedsix === true && !nutritionGroups.some(hasNutrientId6)){
+        if(checkedsix === true && !nutritionAreas.some(hasNutrientId6)){
             nutriObject.nutritionTypeId=6
             const promise6 = addNutrient(nutriObject)
             addPromiseArray.push(promise6)
             console.log("add other")
         }
-        if(checkedsix === false && nutritionGroups.some(hasNutrientId6)){
+        if(checkedsix === false && nutritionAreas.some(hasNutrientId6)){
             const objectToDelete = nutrientObjectFinder(6)
             const dPromise6 = deleteNutrient(objectToDelete.id);
             deletePromiseArray.push(dPromise6)
@@ -258,10 +258,10 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
         // patch mealPacket edits to mealPacket
         updateMeal(editedMeal).then(postedMeal => {
             getNutritionForSingleMeal(mealId).then(arrOfNTypes => {
-                setNutritionGroups(arrOfNTypes)
+                setNutritionAreas(arrOfNTypes)
             });
             const array = nutrientsToPost(mealId)
-            lengthLooker = nutritionGroups.length
+            lengthLooker = nutritionAreas.length
             renderMealCards();
         })
     }
@@ -286,26 +286,26 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
                 <div className="mealCreateEntryArea">
                     {/* Box1 will grab info to post to mealPacket */}
                     <div className="mealCreateEntryBox" id="box1">
-                        <fieldset>
-                            <div className="form-group">
+                        <fieldset className="mealField">
+                            <div className="form-area">
                                 <label htmlFor="name">Name:</label>
                                 <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="name" value={editedMeal.name} />
                             </div>
                         </fieldset>
-                        <fieldset>
-                            <div className="form-group">
+                        <fieldset className="mealField">
+                            <div className="form-area">
                                 <label htmlFor="calories">Total calories:</label>
                                 <input type="number" id="calories" onChange={handleControlledInputChange} name="calories" min="1" max="1000000" value={editedMeal.calories}/>
                             </div>
                         </fieldset>
-                        <fieldset>
-                            <div className="form-group">
+                        <fieldset className="mealField">
+                            <div className="form-area">
                                 <label htmlFor="servings">Servings:</label>
                                 <input type="number" id="servings" onChange={handleControlledInputChange} name="servings" min="1" max="8000" value={editedMeal.servings}/>
                             </div>
                         </fieldset>
-                        <fieldset>
-                            <div className="form-group">
+                        <fieldset className="mealField">
+                            <div className="form-area">
                                 <label htmlFor="shelfLifeInDays">Shelf Life in Days:</label>
                                 <input type="number" id="shelfLifeInDays" onChange={handleControlledInputChange} name="shelfLifeInDays"min="1" max="4000" value={editedMeal.shelfLifeInDays}/>
                             </div>
@@ -313,8 +313,8 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
                     </div>
                     {/* Box2 will also post to MealPacket  */}
                     <div className="mealCreateEntryBox" id="box2">
-                        <fieldset>
-                            <div className="form-group">
+                        <fieldset className="mealField">
+                            <div className="form-area">
                                 <input type="radio" id="breakfast" checked={editedMeal.mealTypeId === 1} onChange={handleRadioButtonChange} name="mealType" value="1"/>
                                 <label htmlFor="breakfast">BREAKFAST</label><br/>
                                 <input type="radio" id="lunch"  checked={editedMeal.mealTypeId === 2} onChange={handleRadioButtonChange} name="mealType" value="2"/>
@@ -328,8 +328,8 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
                     </div>
                     {/* This will need to post to mealNutrition once per every checked box */}
                     <div className="mealCreateEntryBox" id="box3">
-                        <fieldset>
-                            <div className="form-group">
+                        <fieldset className="mealField">
+                            <div className="form-area">
                                 <input type="checkbox" id="nutrition1" checked={checkedone} onChange={checkBoxChangeHandleOne} name="nutrition1" value="1"/>
                                 <label htmlFor="nutrition1"> Grains</label><br/>
                                 <input type="checkbox" id="nutrition2" checked={checkedtwo} onChange={ checkBoxChangeHandleTwo} name="nutrition2" value="2"/>

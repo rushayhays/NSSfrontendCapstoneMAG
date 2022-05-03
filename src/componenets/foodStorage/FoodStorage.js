@@ -11,12 +11,12 @@ import { useState, useEffect } from "react"
 
 
 export const FoodStorage = () => {
-
+    
     const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
-    const currentUserId = userObject.id
-
+    const currentUserId = parseInt(userObject.id)
+    
     const [foodstorage, setFoodStorage] = useState([{
-
+        
         id: 0,
         mealPacketId: 0,
         reserveId: 0,
@@ -30,7 +30,7 @@ export const FoodStorage = () => {
             name: "",
             id: 0
         }
-   
+        
     }])
 
     const [dinnerarr, setDinnerArr] = useState([])
@@ -38,8 +38,8 @@ export const FoodStorage = () => {
     const [breakfastarr, setBreakfastArr] = useState([])
     const [snackarr, setSnackArr] = useState([])
     const [expirearr, setExpireArr] = useState([])
-
-
+    
+    
     let lengthLooker = foodstorage.length
     
     
@@ -73,10 +73,12 @@ export const FoodStorage = () => {
 
     useEffect(()=> {
         theGreatSorting();
-    }, [lengthLooker]);
+    }, [foodstorage]);
+    
+  
 
-
-
+    
+    
     const checkDateExpire = (array) =>{
         //These are some constant numbers
         const aDayInMilli = 1000*60*60*24;
@@ -84,7 +86,7 @@ export const FoodStorage = () => {
         const todaysDate = Date.now()
 
         const expirinegSoonArr = []
-
+        
         array.forEach(obj => {
             const shelfLifeToMilli = (obj.mealPacket?.shelfLifeInDays * aDayInMilli)
             const expirationDayInMilli = obj.dateAddedTimestamp + shelfLifeToMilli
@@ -96,15 +98,15 @@ export const FoodStorage = () => {
         })
         setExpireArr(expirinegSoonArr)
     }
-
+    
     //This area builds and passes props from FoodStorage to MyFoodStorage
     //and MyMealCard/SingleMealCard through the Outlet
- 
+    
     const helloFunction = () => {
         console.log("hello hello")
     }
-    const oneBigArray = [[dinnerarr, setDinnerArr],[luncharr, setLunchArr],  [breakfastarr, setBreakfastArr], [snackarr, setSnackArr], [expirearr, setExpireArr], callUpUsersFoodStorage, theGreatSorting, helloFunction]
     
+    const oneBigArray = [[dinnerarr, setDinnerArr],[luncharr, setLunchArr],  [breakfastarr, setBreakfastArr], [snackarr, setSnackArr], [expirearr, setExpireArr], callUpUsersFoodStorage, theGreatSorting, helloFunction, [foodstorage, setFoodStorage]]
     
     return(
         <>

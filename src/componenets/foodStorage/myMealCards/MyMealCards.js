@@ -30,8 +30,11 @@ export const MyMealCards = () => {
         name:""
     })
 
-    //Testing passing things
+    //This passes the bid array from foodStorage to My MEalCards and will be passed to
+    //Single MEal card so that when a meal is added everything updates
     const importantArray = useOutletContext();
+    
+    
     
 
     //This will keeptrack of whether a box is checked or unchecked
@@ -190,7 +193,7 @@ export const MyMealCards = () => {
             </section>
             <section className="mealCardCarousel">
                 {meals.map(meal =>
-                    <SingleMealCard key={meal.id} object={meal} render={renderMealCards} renderChartArray={importantArray}/>
+                    <SingleMealCard key={meal.id} object={meal} render={renderMealCards} renderFoodArray={importantArray}/>
                 )}
             </section>
 
@@ -202,26 +205,26 @@ export const MyMealCards = () => {
                 <div className="mealCreateEntryArea">
                     {/* Box1 will grab info to post to mealPacket */}
                     <div className="mealCreateEntryBox" id="box1">
-                        <fieldset>
-                            <div className="form-group">
+                        <fieldset className="fieldArea">
+                            <div className="form-area">
                                 <label htmlFor="name">Name:</label>
                                 <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="name" value={singleMeal.name} />
                             </div>
                         </fieldset>
-                        <fieldset>
-                            <div className="form-group">
+                        <fieldset className="fieldArea">
+                            <div className="form-area">
                                 <label htmlFor="calories">Total calories:</label>
                                 <input type="number" id="calories" onChange={handleControlledInputChange} name="calories" min="1" max="1000000" value={singleMeal.calories}/>
                             </div>
                         </fieldset>
-                        <fieldset>
-                            <div className="form-group">
+                        <fieldset className="fieldArea">
+                            <div className="form-area">
                                 <label htmlFor="servings">Servings:</label>
                                 <input type="number" id="servings" onChange={handleControlledInputChange} name="servings" min="1" max="8000" value={singleMeal.servings}/>
                             </div>
                         </fieldset>
-                        <fieldset>
-                            <div className="form-group">
+                        <fieldset className="fieldArea">
+                            <div className="form-area">
                                 <label htmlFor="shelfLifeInDays">Shelf Life in Days:</label>
                                 <input type="number" id="shelfLifeInDays" onChange={handleControlledInputChange} name="shelfLifeInDays"min="1" max="4000" value={singleMeal.shelfLifeInDays}/>
                             </div>
@@ -230,7 +233,7 @@ export const MyMealCards = () => {
                     {/* Box2 will also post to MealPacket  */}
                     <div className="mealCreateEntryBox" id="box2">
                         <fieldset>
-                            <div className="form-group">
+                            <div className="form-area">
                                 <input type="radio" id="breakfast" checked={singleMeal.mealTypeId === 1} onChange={handleRadioButtonChange} name="mealType" value="1"/>
                                 <label htmlFor="breakfast">BREAKFAST</label><br/>
                                 <input type="radio" id="lunch"  checked={singleMeal.mealTypeId === 2} onChange={handleRadioButtonChange} name="mealType" value="2"/>
@@ -245,7 +248,7 @@ export const MyMealCards = () => {
                     {/* This will need to post to mealNutrition once per every checked box */}
                     <div className="mealCreateEntryBox" id="box3">
                         <fieldset>
-                            <div className="form-group">
+                            <div className="form-area">
                                 <input type="checkbox" id="nutrition1" checked={checkedone} onChange={checkBoxChangeHandleOne} name="nutrition1" value="1"/>
                                 <label htmlFor="nutrition1"> Grains</label><br/>
                                 <input type="checkbox" id="nutrition2" checked={checkedtwo} onChange={ checkBoxChangeHandleTwo} name="nutrition2" value="2"/>

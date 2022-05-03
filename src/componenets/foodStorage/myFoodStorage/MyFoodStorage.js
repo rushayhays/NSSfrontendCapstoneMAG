@@ -9,6 +9,7 @@ import { useEffect } from "react"
 export const MyFoodStorage = () =>{
     
     const anArray = useOutletContext();
+    const[foodstorage, setFoodStorage] =anArray[8]
     const [dinnerarr, setDinnerArr] = anArray[0]
     const [luncharr, setLunchArr] = anArray[1]
     const [breakfastarr, setBreakfastArr] = anArray[2]
@@ -18,13 +19,18 @@ export const MyFoodStorage = () =>{
     const theGreatSorting = anArray[6]
 
 
-    useEffect(()=> {
-        callUpUsersFoodStorage();
-    }, []);
+    // useEffect(()=> {
+    //     setDinnerArr(anArray[0]);
+    //     setLunchArr(anArray[1])
+    //     setBreakfastArr(anArray[2])
+    
+    // }, []);
 
-    useEffect(()=> {
-        theGreatSorting();
-    }, []);
+    // useEffect(()=> {
+    //     theGreatSorting();
+    //     console.log("don't crash")
+
+    // }, [foodstorage]);
 
 
 

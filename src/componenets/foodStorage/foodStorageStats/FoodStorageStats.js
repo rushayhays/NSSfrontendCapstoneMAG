@@ -6,8 +6,14 @@ import { PieChart } from "react-minimal-pie-chart"
 import { ProgressPieChart } from "./piecharts/ProgressPieChart"
 import { NutritionPieChart } from "./piecharts/NutritionPieChart"
 import { MealPieChart } from "./piecharts/MealPieChart"
+import { useEffect } from "react"
 
 export const FoodStorageStats =({foodstorage, oneBigArray}) =>{
+
+    useEffect(()=> {
+        
+    }, [foodstorage]);
+
     return(
         <>
             <div id="foodStorageStatsBox">
@@ -20,12 +26,15 @@ export const FoodStorageStats =({foodstorage, oneBigArray}) =>{
                     </div>
                 </div>
                 <div className="statsPieBox">
+                    <h5>Progress to Goal</h5>
                     <div id="pieChartOne">
                         <ProgressPieChart parentFoodStorage={foodstorage}/>
                     </div>
+                    <h5>Nutrition</h5>
                     <div id="pieChartTwo">
                         <NutritionPieChart parentFoodStorage={foodstorage}/>
                     </div>
+                    <h5>Meals</h5>
                     <div id="pieChartThree">
                         <MealPieChart oneBigArray={oneBigArray}/>
                     </div>
