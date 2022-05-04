@@ -44,10 +44,14 @@ export const SetUpHQ = () => {
 
 
     const handleCreateHQClick = () => {
-        const reserveObjectToAdd = makeValuesIntegers()
-        addReserve(reserveObjectToAdd).then(returnedObject => {
-            navigate("/hqhome")
-        })
+        if ((reserveobject.goal === "" || reserveobject.goal === 0) || (reserveobject.numOfPeople === "" || reserveobject.numOfPeople === 0)) {
+			window.alert("Please fill in Number of People and Days to Plan For")
+        }else{
+            const reserveObjectToAdd = makeValuesIntegers()
+            addReserve(reserveObjectToAdd).then(returnedObject => {
+                navigate("/hqhome")
+            })
+        }
       
     }
 
@@ -59,8 +63,6 @@ export const SetUpHQ = () => {
                 <div>
                     <h2 className="hqEntryBanner">Let's get your HQ set up</h2>
                 </div>
-
-                
                 <div className="hqPreview">
                     <div className="hqPreviewBox">
                         <div className="nameBanner">
@@ -68,20 +70,26 @@ export const SetUpHQ = () => {
                         </div>
                         <div className="foodStorageArea">
                             <h4 id="foodBanner">My Food Storage Plan</h4>
+                            
                             <fieldset className="fieldArea">
                                 <div className="form-area">
                                     <label htmlFor="numOfPeople">Number of people:</label><br/>
-                                    <input type="number" id="numOfPeople" onChange={handleControlledInputChange} name="numOfPeople" min="1" max="1000000" value={reserveobject.numOfPeople}/>
+                                    <input type="number" id="numOfPeople" onChange={handleControlledInputChange} name="numOfPeople" min="1" max="1000000" value={reserveobject.numOfPeople} required/>
                                 </div>
                             </fieldset>
                             <fieldset className="fieldArea">
                                 <div className="form-area">
                                     <label htmlFor="goal">Days to plan for:</label><br/>
-                                    <input type="number" id="goal" onChange={handleControlledInputChange} name="goal" min="1" max="1000000" value={reserveobject.goal}/>
+                                    <input type="number" id="goal" onChange={handleControlledInputChange} name="goal" min="1" max="1000000" value={reserveobject.goal} required/>
                                 </div>
                             </fieldset>
+                            
+                            <button onClick={handleCreateHQClick} id="createHQButton">Create My HQ</button>
+                                
+                    
+
                         </div>
-                        <button id="createHQButton" onClick={handleCreateHQClick}>Create My HQ</button>
+                        
                     </div>
                 </div>
             </section>

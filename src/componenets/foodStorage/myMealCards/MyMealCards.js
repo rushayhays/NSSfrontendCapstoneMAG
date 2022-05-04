@@ -178,16 +178,20 @@ export const MyMealCards = () => {
 
     //This area handles posting all of the information to mealPacket, and to mealNutrition
     const handleCreateButtonPush = () => {
-        //set all number values to numbers
-        const mealToAdd = makeValuesIntegers()
-        //add meal packet posts to meal packet
-        addMealPacket(mealToAdd).then(postedMeal => {
-            const arrayOfNutrientPromises =nutrientsToPost(postedMeal.id)
-            Promise.all(arrayOfNutrientPromises).then(aThingIdontTouch =>{
-                clearCreateNewMealCard();
-                renderMealCards();
+        if ((singleMeal.calories === "" || singleMeal.calories === 0) || (singleMeal.shelfLifeInDays === "" || singleMeal.shelfLifeInDays === 0) || (singleMeal.servings === "" || singleMeal.servings === 0)) {
+			window.alert("Please fill in the form")
+        }else{
+            //set all number values to numbers
+            const mealToAdd = makeValuesIntegers()
+            //add meal packet posts to meal packet
+            addMealPacket(mealToAdd).then(postedMeal => {
+                const arrayOfNutrientPromises =nutrientsToPost(postedMeal.id)
+                Promise.all(arrayOfNutrientPromises).then(aThingIdontTouch =>{
+                    clearCreateNewMealCard();
+                    renderMealCards();
+                })
             })
-        })
+        }
     }
 
     
