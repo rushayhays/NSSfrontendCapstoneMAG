@@ -11,7 +11,7 @@ import { getReserveInfo } from "../../../modules/pieManager"
 
 export const FoodStorageStats =({foodstorage, oneBigArray}) =>{
 
-    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const userObject = JSON.parse(sessionStorage.getItem("mag_user"))
     const currentUserId = parseInt(userObject.id)
 
     const[reserveobject, setReserveObject]=useState(

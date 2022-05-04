@@ -6,9 +6,9 @@ import { getUsersMealPackets, addNutrient, getSingleUserMealPacket, getNutrition
 import { SingleMealCard } from "../SingleMealCard"
 import { useNavigate } from "react-router-dom"
 
-export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
+export const EditMyMealCard = () => {
 
-    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const userObject = JSON.parse(sessionStorage.getItem("mag_user"))
     const currentUserId = parseInt(userObject.id)
 
     const{mealId} = useParams()
@@ -79,7 +79,7 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
         })
     }
 
-    const userNum = 1;
+    
     useEffect(()=> {
         getUsersMealPackets(currentUserId).then(arrOfMeals => {
             setMeals(arrOfMeals)
@@ -89,6 +89,7 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
         })
         getNutritionForSingleMeal(mealId).then(arrOfNTypes => {
             setNutritionAreas(arrOfNTypes)
+            setLengthValue(lengthValue=> lengthValue+1)
         });
     }, []);
 
@@ -101,7 +102,7 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
     
     const handleControlledInputChange = (event) => {
         const mealWithEdits = { ...editedMeal }
-        mealWithEdits.userId = userNum;
+        mealWithEdits.userId = currentUserId;
 		//A sepearte useState is needed here, because meals, creates an
         //array of meal objects, but this needs something that only deals with
         //and updates one object total
@@ -251,7 +252,7 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
    
     //This is to make my code shorter, I have to rerender the meal cards a lot
     const renderMealCards = () =>{
-        getUsersMealPackets(userNum).then(arrOfMeals => {
+        getUsersMealPackets(currentUserId).then(arrOfMeals => {
             setMeals(arrOfMeals)
         });
     }
@@ -260,12 +261,7 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
     const handleEditButtonPush = () => {
         // patch mealPacket edits to mealPacket
         updateMeal(editedMeal).then(postedMeal => {
-            getNutritionForSingleMeal(mealId).then(arrOfNTypes => {
-                setNutritionAreas(arrOfNTypes)
-            });
-            const array = nutrientsToPost(mealId)
-            setLengthValue(nutritionAreas.length) 
-            renderMealCards();
+            const array = nutrientsToPost(postedMeal.id)
             navigate("/foodstorage/mymealcards")
         })
     }

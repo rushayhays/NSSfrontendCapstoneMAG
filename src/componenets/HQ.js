@@ -8,16 +8,16 @@ import { useState } from "react"
 
 export const HQ = () => {
 
-    const [isAuthenticated, setIsAuthenticated] = useState(sessionStorage.getItem("kennel_customer") !== null)
+    const [isAuthenticated, setIsAuthenticated] = useState(sessionStorage.getItem("mag_user") !== null)
 
     const setAuthUser = (user) => {
-        sessionStorage.setItem("kennel_customer", JSON.stringify(user))
-        setIsAuthenticated(sessionStorage.getItem("kennel_customer") !== null)
+        sessionStorage.setItem("mag_user", JSON.stringify(user))
+        setIsAuthenticated(sessionStorage.getItem("mag_user") !== null)
     }
 
     const clearUser = () => {
         sessionStorage.clear();
-        setIsAuthenticated(sessionStorage.getItem("kennel_customer") !== null)
+        setIsAuthenticated(sessionStorage.getItem("mag_user") !== null)
       }
 
     return(

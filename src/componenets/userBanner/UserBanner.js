@@ -5,7 +5,7 @@ import "./userBanner.css"
 
 export const UserBanner = () => {
 
-    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const userObject = JSON.parse(sessionStorage.getItem("mag_user"))
 
 
     return(

@@ -20,8 +20,8 @@ export const ApplicationViews = ({isAuthenticated, setIsAuthenticated}) => {
     }
     
     const setAuthUser = (user) => {
-        sessionStorage.setItem("kennel_customer", JSON.stringify(user))
-        setIsAuthenticated(sessionStorage.getItem("kennel_customer") !== null)
+        sessionStorage.setItem("mag_user", JSON.stringify(user))
+        setIsAuthenticated(sessionStorage.getItem("mag_user") !== null)
     }
 
     return(

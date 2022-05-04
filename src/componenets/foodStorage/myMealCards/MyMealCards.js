@@ -9,7 +9,7 @@ import { useOutletContext } from "react-router-dom"
 
 export const MyMealCards = () => {
     
-    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const userObject = JSON.parse(sessionStorage.getItem("mag_user"))
     const currentUserId = userObject.id
 
     const [meals, setMeals] = useState([{

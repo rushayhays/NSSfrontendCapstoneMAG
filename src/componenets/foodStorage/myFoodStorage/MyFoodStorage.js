@@ -16,7 +16,7 @@ export const MyFoodStorage = () =>{
     const [value, setValue] = anArray[9]
 
     
-    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const userObject = JSON.parse(sessionStorage.getItem("mag_user"))
     const currentUserId = parseInt(userObject.id)
     
     const [foodstorage, setFoodStorage] = useState([{

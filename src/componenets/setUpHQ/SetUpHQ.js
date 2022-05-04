@@ -6,7 +6,7 @@ import { addReserve } from "../../modules/pieManager";
 
 export const SetUpHQ = () => {
 
-    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const userObject = JSON.parse(sessionStorage.getItem("mag_user"))
     const currentUserId = parseInt(userObject.id)
 
     const [reserveobject, setReserveObject] = useState(
@@ -26,7 +26,7 @@ export const SetUpHQ = () => {
 		//A sepearte useState is needed here, because meals, creates an
         //array of meal objects, but this needs something that only deals with
         //and updates one object total
-		let selectedVal = event.target.value
+		let selectedVal = parseInt(event.target.value)
 		// forms always provide values as strings. But we want to save the ids as numbers.
 		if (event.target.id.includes("Id")) {
             selectedVal = parseInt(selectedVal)
