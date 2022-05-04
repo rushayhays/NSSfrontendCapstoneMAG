@@ -1,0 +1,11 @@
+.cardStatsArea{
+    display:flex;
+}
+
+.cardReadArea{
+    margin-right: 25px;
+}
+
+.forumCardPieArea{
+    height:200px;
+}
