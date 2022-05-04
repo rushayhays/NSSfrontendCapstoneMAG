@@ -59,14 +59,10 @@ export const MyMealCards = () => {
     const handleControlledInputChange = (event) => {
         const newSingleMeal = { ...singleMeal }
         newSingleMeal.userId = currentUserId;
-		//A sepearte useState is needed here, because meals, creates an
-        //array of meal objects, but this needs something that only deals with
-        //and updates one object total
+		//A sepearte useState (singlemeal) is needed here, because meals, creates an
+        //array of meal objects, but this needs something that only deals with,
+        //and updates, one object total.
 		let selectedVal = event.target.value
-		// forms always provide values as strings. But we want to save the ids as numbers.
-		if (event.target.id.includes("Id")) {
-			selectedVal = parseInt(selectedVal)
-		}
 	
 		newSingleMeal[event.target.id] = selectedVal
 		// update state
@@ -168,10 +164,24 @@ export const MyMealCards = () => {
         });
     }
 
+    const makeValuesIntegers = () => {
+        const newNumberedMeal = { 
+            userId:currentUserId,
+            calories:parseInt(singleMeal.calories),
+            mealTypeId:singleMeal.mealTypeId,
+            servings: parseInt(singleMeal.servings),
+            shelfLifeInDays:parseInt(singleMeal.shelfLifeInDays),
+            name: singleMeal.name
+        }
+        return newNumberedMeal
+    }
+
     //This area handles posting all of the information to mealPacket, and to mealNutrition
     const handleCreateButtonPush = () => {
+        //set all number values to numbers
+        const mealToAdd = makeValuesIntegers()
         //add meal packet posts to meal packet
-        addMealPacket(singleMeal).then(postedMeal => {
+        addMealPacket(mealToAdd).then(postedMeal => {
             const arrayOfNutrientPromises =nutrientsToPost(postedMeal.id)
             Promise.all(arrayOfNutrientPromises).then(aThingIdontTouch =>{
                 clearCreateNewMealCard();
@@ -179,8 +189,6 @@ export const MyMealCards = () => {
             })
         })
     }
-
-
 
     
 

@@ -42,7 +42,15 @@ export const SingleMealCard =({object, render, renderFoodArray}) =>{
     }
 
 
-    
+    //Try putting a promise.all in here to control nutrient deletions
+    const handleClickDelete = () => {
+        const arrayOfNutrientPromises = nutrientPromiseArrayMaker()
+        Promise.all(arrayOfNutrientPromises).then(returnedObjectIdoNothingWith => {
+            deleteMealPacket(object.id).then(donttouch => {
+                render();
+            })
+        })
+    }
     //This should post an object to reserveMeals and cause a popup window to appear with info the user
     //needs to write on the packet
     const handleAddMeal = () =>{
@@ -85,7 +93,7 @@ export const SingleMealCard =({object, render, renderFoodArray}) =>{
                     <button>Edit</button>
                     </Link>
                     <button onClick={handleAddMeal}>Add Meal</button>
-                   
+                    <button onClick={handleClickDelete} >Delete</button>
 
                 </div>
             </div>
