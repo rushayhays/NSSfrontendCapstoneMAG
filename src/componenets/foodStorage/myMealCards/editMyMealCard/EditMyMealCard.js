@@ -34,9 +34,9 @@ export const EditMyMealCard = () => {
 
 
     const [nutritionAreas, setNutritionAreas] = useState([{
-        "id": 0,
-        "nutritionTypeId": 0,
-        "mealPacketId": 0
+        userId: currentUserId,
+        nutritionTypeId: 0,
+        mealPacketId: 0
     }])
 
     
@@ -167,7 +167,8 @@ export const EditMyMealCard = () => {
     const nutrientsToPost = (numberArgument) => {
         let nutriObject={
             mealPacketId: numberArgument,
-            nutritionTypeId:0
+            nutritionTypeId:0,
+            userId: currentUserId
         }
         
         const addPromiseArray=[]
@@ -177,7 +178,6 @@ export const EditMyMealCard = () => {
             nutriObject.nutritionTypeId=1
             const promise1 = addNutrient(nutriObject)
             addPromiseArray.push(promise1)
-            console.log("add grain")
         }
         if(checkedone === false && nutritionAreas.some(hasNutrientId1)){
             const objectToDelete = nutrientObjectFinder(1)
@@ -189,7 +189,6 @@ export const EditMyMealCard = () => {
             nutriObject.nutritionTypeId=2
             const promise2 = addNutrient(nutriObject)
             addPromiseArray.push(promise2)
-            console.log("add vegetables")
         }
         if(checkedtwo === false && nutritionAreas.some(hasNutrientId2)){
             const objectToDelete = nutrientObjectFinder(2)
@@ -201,7 +200,6 @@ export const EditMyMealCard = () => {
             nutriObject.nutritionTypeId=3
             const promise3 = addNutrient(nutriObject)
             addPromiseArray.push(promise3)
-            console.log("add fruits")
         }
         if(checkedthree === false && nutritionAreas.some(hasNutrientId3)){
             const objectToDelete = nutrientObjectFinder(3)
@@ -213,7 +211,6 @@ export const EditMyMealCard = () => {
             nutriObject.nutritionTypeId=4
             const promise4 = addNutrient(nutriObject)
             addPromiseArray.push(promise4)
-            console.log("add proteins")
         }
         if(checkedfour === false && nutritionAreas.some(hasNutrientId4)){
             const objectToDelete = nutrientObjectFinder(4)
@@ -225,7 +222,6 @@ export const EditMyMealCard = () => {
             nutriObject.nutritionTypeId=5
             const promise5 = addNutrient(nutriObject)
             addPromiseArray.push(promise5)
-            console.log("add dairy")
         }
         if(checkedfive === false && nutritionAreas.some(hasNutrientId5)){
             const objectToDelete = nutrientObjectFinder(5)
@@ -237,7 +233,6 @@ export const EditMyMealCard = () => {
             nutriObject.nutritionTypeId=6
             const promise6 = addNutrient(nutriObject)
             addPromiseArray.push(promise6)
-            console.log("add other")
         }
         if(checkedsix === false && nutritionAreas.some(hasNutrientId6)){
             const objectToDelete = nutrientObjectFinder(6)

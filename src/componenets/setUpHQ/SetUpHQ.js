@@ -14,7 +14,7 @@ export const SetUpHQ = () => {
             userId: currentUserId,
             goal: 0,
             numOfPeople: 0
-          },
+        }
     )
 
     const navigate = useNavigate();
@@ -26,19 +26,26 @@ export const SetUpHQ = () => {
 		//A sepearte useState is needed here, because meals, creates an
         //array of meal objects, but this needs something that only deals with
         //and updates one object total
-		let selectedVal = parseInt(event.target.value)
-		// forms always provide values as strings. But we want to save the ids as numbers.
-		if (event.target.id.includes("Id")) {
-            selectedVal = parseInt(selectedVal)
-		}
+		let selectedVal = event.target.value
         
 		newReserveObject[event.target.id] = selectedVal
 		// update state
 		setReserveObject(newReserveObject)
 	}
 
+    const makeValuesIntegers = () => {
+        const numberedReserveObject = { 
+            userId: currentUserId,
+            goal: parseInt(reserveobject.goal),
+            numOfPeople: parseInt(reserveobject.numOfPeople)
+        }
+        return numberedReserveObject
+    }
+
+
     const handleCreateHQClick = () => {
-        addReserve(reserveobject).then(returnedObject => {
+        const reserveObjectToAdd = makeValuesIntegers()
+        addReserve(reserveObjectToAdd).then(returnedObject => {
             navigate("/hqhome")
         })
       
@@ -74,7 +81,6 @@ export const SetUpHQ = () => {
                                 </div>
                             </fieldset>
                         </div>
-                       
                         <button id="createHQButton" onClick={handleCreateHQClick}>Create My HQ</button>
                     </div>
                 </div>
