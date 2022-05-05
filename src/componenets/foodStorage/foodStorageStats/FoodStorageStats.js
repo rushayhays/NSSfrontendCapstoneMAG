@@ -34,7 +34,7 @@ export const FoodStorageStats =({foodstorage, oneBigArray}) =>{
         <>
             <div id="foodStorageStatsBox">
                 <div className="statsHeaderBox">
-                    <h4>{userObject.name}'s Food Plan</h4>
+                    <h4 id="statNameBanner">{userObject.name}'s Food Plan</h4>
                     <div id="statTagArea">
                         <button className="statTag">Short Term</button>
                         <button className="statTag">{reserveobject.numOfPeople} People</button>
@@ -42,15 +42,15 @@ export const FoodStorageStats =({foodstorage, oneBigArray}) =>{
                     </div>
                 </div>
                 <div className="statsPieBox">
-                    <h5>Progress to Goal</h5>
+                    <h5 className="statTitle">Progress to Goal</h5>
                     <div id="pieChartOne">
                         <ProgressPieChart parentFoodStorage={foodstorage}/>
                     </div>
-                    <h5>Nutrition</h5>
+                    <h5 className="statTitle">Nutrition</h5>
                     <div id="pieChartTwo">
                         <NutritionPieChart parentFoodStorage={foodstorage}/>
                     </div>
-                    <h5>Meals</h5>
+                    <h5 className="statTitle">Meals</h5>
                     <div id="pieChartThree">
                         <MealPieChart oneBigArray={oneBigArray}/>
                     </div>

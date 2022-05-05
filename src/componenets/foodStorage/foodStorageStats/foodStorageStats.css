@@ -2,6 +2,10 @@
 
 }
 
+#statNameBanner{
+    margin-top:0;
+}
+
 .statTags{
     background-color: black;
     color:white;
@@ -10,25 +14,29 @@
 
 .statsHeaderBox{
     background-color: lightgrey;
-    margin-bottom:25px;
-    width:200px;
+    height:70px;
+    margin-bottom:20px;
+    padding-left: 20px;
 }
 
 .statsPieBox{
     background-color: lightgrey;
     height:600px;
-    width:200px;
     padding-top: 10px;
 }
 #pieChartOne{
-    height:100px;
+    height:125px;
     margin: 25px 0;
 }
 #pieChartTwo{
-    height:100px;
+    height:125px;
     margin: 25px 0;
 }
 #pieChartThree{
-    height:100px;
+    height:125px;
     margin: 25px 0;
+}
+
+.statTitle{
+    text-align: center;
 }

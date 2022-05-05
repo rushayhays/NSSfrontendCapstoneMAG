@@ -29,3 +29,20 @@ export const addReserve = (object) => {
       body: JSON.stringify(object)
   }).then(response => response.json())
 }
+
+//This will update the reserve Object when a new goal is set
+export const updateGoal  = (reserveObject) => {
+	return fetch(`${remoteURL}/reserves/${reserveObject.id}`, {
+		method: "PATCH",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(reserveObject)
+	}).then(data => data.json());
+}
+
+export const getUsersReserve = (num) => {
+  return fetch(
+    `${remoteURL}/reserves/${num}`
+  ).then((res) => res.json());
+};

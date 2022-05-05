@@ -46,8 +46,8 @@ export const ForumProgressPie = ({user}) => {
     // then pieChart adds them together to get 100 as the denominator and each 
     //pie portion then covers 50% of that pie
     const[dataValues, setDataValues] = useState([
-        {title: 'One', value:  10, color: '#E38627'},
-        {title: 'Two', value:  10, color: '#C13C37'}
+        {title: 'Progress', value:  10, color: '#FFFFFF'},
+        {title: 'Not Met', value:  10, color: '#C13C37'}
     ])
     //Need to figure out how to get a label on here
     
@@ -85,8 +85,8 @@ export const ForumProgressPie = ({user}) => {
         const percentageCompletion = Math.floor((myCurrentCalories/calorieGoal)*100)
    
         let valueArr = [
-            {title: 'One', value: myCurrentCalories, color: '#E38627'},
-            {title: 'Two', value: remainingCaloriesNeeded, color: '#C13C37'}
+            {title: 'Progress', value: myCurrentCalories, color: '#83C5BE'},
+            {title: 'Not Met', value: remainingCaloriesNeeded, color: '#EDF6F9'}
         ]
         
         return valueArr
@@ -137,8 +137,8 @@ export const ForumProgressPie = ({user}) => {
         <>
             <section className="cardStatsArea">
                 <div className="cardReadArea">
-                    <p>Goal:{reserveArr[0].goal} days</p>
-                    <p>Provides for: {reserveArr[0].numOfPeople}</p>
+                    <p>Goal:{reserveArr[0]?.goal} days</p>
+                    <p>Provides for: {reserveArr[0]?.numOfPeople}</p>
                     <p>Days worth of Food: {daysoffood}</p>
                 </div>
                 <div className="forumCardPieArea">
@@ -147,6 +147,7 @@ export const ForumProgressPie = ({user}) => {
                         lineWidth={60}
                         label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
                         labelPosition={62}
+                        
                     />
                 </div>
             </section>

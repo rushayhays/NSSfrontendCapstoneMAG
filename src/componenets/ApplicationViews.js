@@ -13,6 +13,7 @@ import { EditMyMealCard } from "./foodStorage/myMealCards/editMyMealCard/EditMyM
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { Forum } from "./forum/Forum"
+import { GoalMet } from "./foodStorage/goals/GoalMet"
 
 export const ApplicationViews = ({isAuthenticated, setIsAuthenticated}) => {
 
@@ -38,6 +39,7 @@ export const ApplicationViews = ({isAuthenticated, setIsAuthenticated}) => {
                     <Route path="/foodstorage/myfoodstorage" element={<MyFoodStorage/>}/>
                     <Route path="/foodstorage/mymealcards" element={<MyMealCards/>}/>
                     <Route path="/foodstorage/about" element={<About/>}/>
+                    <Route path="/foodstorage/goalmet" element={<GoalMet/>}/>
                     <Route path="/foodstorage/editmymealcard/:mealId" element={<EditMyMealCard/>}/>
                 </Route>
             </Routes>  

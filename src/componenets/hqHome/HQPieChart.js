@@ -81,8 +81,8 @@ export const HQPieChart = () => {
         const percentageCompletion = Math.floor((myCurrentCalories/calorieGoal)*100)
    
         let valueArr = [
-            {title: 'One', value: myCurrentCalories, color: '#E38627'},
-            {title: 'Two', value: remainingCaloriesNeeded, color: '#C13C37'}
+            {title: 'Progress', value: myCurrentCalories, color: '#83C5BE'},
+            {title: 'Not Met', value: remainingCaloriesNeeded, color: '#EDF6F9'}
         ]
         
         return valueArr
