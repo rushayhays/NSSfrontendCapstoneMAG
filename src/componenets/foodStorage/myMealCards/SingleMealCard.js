@@ -13,7 +13,7 @@ export const SingleMealCard =({object, render, renderFoodArray}) =>{
 
     // const userNum =1;
     // need to get the nutrition types for this Meal packet
-    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const userObject = JSON.parse(sessionStorage.getItem("mag_user"))
     const currentUserId = parseInt(userObject.id)
 
     

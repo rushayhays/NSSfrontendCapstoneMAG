@@ -10,25 +10,45 @@ export const Header = ({clearUser}) => {
         clearUser()
     }
 
-    return (
-        <>
-            <div className="headerArea">
-                <Link to={"/"}>
-                <h2 id="tempLogo">MAG</h2>
-                </Link>
-                <div className="headerButtonArea">
-                    <Link to={"/register"}>
-                        <button id="regButton">Register</button>
-                    </Link>
-                    <Link to={"/login"}>
-                        <button id="logButton">Login</button>
-                    </Link>
+    if(sessionStorage.getItem("mag_user") !== null){
+        return (
+            <>
+                <div className="headerArea">
                     <Link to={"/"}>
-                        <button id="outButton" onClick={clearUser}>Logout</button>
+                    <h2 id="tempLogo">MAG</h2>
                     </Link>
-                    
+                    <div className="headerButtonArea">
+                        <Link to={"/"}>
+                            <button id="outButton" onClick={handleLogout}>Logout</button>
+                        </Link>
+                        <Link to={"/hqhome"}>
+                            <button id="hqButton">Go to HQ</button>
+                        </Link>
+                        <Link to={"/forum"}>
+                            <button id="forumButton">Forum</button>
+                        </Link>
+                    </div>
                 </div>
-            </div>
-        </>
-    )
+            </>
+        )
+    } else{
+        return (
+            <>
+                <div className="headerArea">
+                    <Link to={"/"}>
+                    <h2 id="tempLogo">MAG</h2>
+                    </Link>
+                    <div className="headerButtonArea">
+                        <Link to={"/register"}>
+                            <button id="regButton">Register</button>
+                        </Link>
+                        <Link to={"/login"}>
+                            <button id="logButton">Login</button>
+                        </Link>
+                    </div>
+                </div>
+            </>
+        )
+    }
+
 }

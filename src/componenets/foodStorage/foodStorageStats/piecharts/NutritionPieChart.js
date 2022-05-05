@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 
 export const NutritionPieChart = ({parentFoodStorage}) => {
 
-    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const userObject = JSON.parse(sessionStorage.getItem("mag_user"))
     const currentUserId = parseInt(userObject.id)
 
     const[foodstorage, setFoodStorage] = parentFoodStorage
@@ -90,12 +90,12 @@ export const NutritionPieChart = ({parentFoodStorage}) => {
 
         //Now set piechart
         const newPieData = [
-            { title: 'Grain', value: pieValueGrain, color: '#E38627' },
-            { title: 'Veggie', value: pieValueVeggie, color: '#C13C37' },
-            { title: 'Fruit', value: pieValueFruit, color: '#C7B8EA' },
-            { title: 'Protein', value: pieValueProtein, color: '#73A6AD' },
-            { title: 'Dairy', value: pieValueDairy, color: '#4EFFEF' },
-            { title: 'Other', value: pieValueOther, color: '#44CF6C' },
+            { title: 'Grain', value: pieValueGrain, color: '#D2FF28' },
+            { title: 'Protein', value: pieValueProtein, color: '#DD1155' },
+            { title: 'Veggie', value: pieValueVeggie, color: '#06D6A0' },
+            { title: 'Fruit', value: pieValueFruit, color: '#FF6700' },
+            { title: 'Dairy', value: pieValueDairy, color: '#EBEBEB' },
+            { title: 'Other', value: pieValueOther, color: '#E56399' },
         ]
         return newPieData
     }

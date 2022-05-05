@@ -19,10 +19,10 @@ export const MealPieChart = ({oneBigArray}) =>{
 
     const valuesetter = () =>{
         const newData=[
-            { title: 'One', value: dinnerarr.length, color: '#E38627' },
-            { title: 'Two', value: luncharr.length, color: '#C13C37' },
-            { title: 'Three', value: breakfastarr.length, color: '#6A2135' },
-            { title: 'Three', value: otherarr.length, color: '#44CF6C' },
+            { title: 'Dinners', value: dinnerarr.length, color: '#C04CF0' },
+            { title: 'Lunches', value: luncharr.length, color: '#9DFFF9' },
+            { title: 'Breakfasts', value: breakfastarr.length, color: '#FF521B' },
+            { title: 'Snacks', value: otherarr.length, color: '#FFDF64' },
         ]
 
         return newData

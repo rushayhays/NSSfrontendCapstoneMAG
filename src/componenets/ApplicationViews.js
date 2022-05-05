@@ -12,6 +12,8 @@ import { About } from "./foodStorage/about/About"
 import { EditMyMealCard } from "./foodStorage/myMealCards/editMyMealCard/EditMyMealCard"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
+import { Forum } from "./forum/Forum"
+import { GoalMet } from "./foodStorage/goals/GoalMet"
 
 export const ApplicationViews = ({isAuthenticated, setIsAuthenticated}) => {
 
@@ -20,8 +22,8 @@ export const ApplicationViews = ({isAuthenticated, setIsAuthenticated}) => {
     }
     
     const setAuthUser = (user) => {
-        sessionStorage.setItem("kennel_customer", JSON.stringify(user))
-        setIsAuthenticated(sessionStorage.getItem("kennel_customer") !== null)
+        sessionStorage.setItem("mag_user", JSON.stringify(user))
+        setIsAuthenticated(sessionStorage.getItem("mag_user") !== null)
     }
 
     return(
@@ -29,13 +31,15 @@ export const ApplicationViews = ({isAuthenticated, setIsAuthenticated}) => {
             <Routes>
                 <Route exact path="/" element={<LandingPage/>}/>
                 <Route exact path="/login" element={<Login setAuthUser={setAuthUser} />} />
-                <Route exact path="/register" element={<Register />} />
+                <Route exact path="/register" element={<Register setAuthUser={setAuthUser}/>} />
                 <Route path="/setuphq" element={<SetUpHQ/>}/>
                 <Route path="/hqhome" element={<PrivateRoute><HQHome/></PrivateRoute>}/>
+                <Route path="/forum" element={<PrivateRoute><Forum/></PrivateRoute>}/>
                 <Route path="/foodstorage" element={<PrivateRoute><FoodStorage/></PrivateRoute>}>
                     <Route path="/foodstorage/myfoodstorage" element={<MyFoodStorage/>}/>
                     <Route path="/foodstorage/mymealcards" element={<MyMealCards/>}/>
                     <Route path="/foodstorage/about" element={<About/>}/>
+                    <Route path="/foodstorage/goalmet" element={<GoalMet/>}/>
                     <Route path="/foodstorage/editmymealcard/:mealId" element={<EditMyMealCard/>}/>
                 </Route>
             </Routes>  

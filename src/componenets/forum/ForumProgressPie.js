@@ -1,15 +1,17 @@
-//This will control the pie chart that shows up on the HQ home page
+//This is an exact copy of HQPieChrt, it just takes in a user ID instead of looking at session storage
+//This will control the pie chart that shows up on the Forum Card
 //This will compare calories in food storage against calories needed to acheive goal.
 
 import { PieChart } from "react-minimal-pie-chart"
 import { getReserveInfo } from "../../modules/pieManager"
 import { getUsersFoodStorage } from "../../modules/myFoodStorageManager"
 import { useState, useEffect } from "react"
+import "./forumProgressPie.css"
 
-export const HQPieChart = () => {
+export const ForumProgressPie = ({user}) => {
 
-    const userObject = JSON.parse(sessionStorage.getItem("mag_user"))
-    const currentUserId = parseInt(userObject.id)
+    
+    const currentUserId = user.id
 
     const[foodstorage, setFoodStorage] = useState([{
 
@@ -37,13 +39,15 @@ export const HQPieChart = () => {
     }
     ])
 
+    const[daysoffood, setDaysOfFood] =useState(0)
+
 
     // value is not in percentages. If value1=50 and value2=50
     // then pieChart adds them together to get 100 as the denominator and each 
     //pie portion then covers 50% of that pie
     const[dataValues, setDataValues] = useState([
-        {title: 'One', value:  10, color: '#E38627'},
-        {title: 'Two', value:  10, color: '#C13C37'}
+        {title: 'Progress', value:  10, color: '#FFFFFF'},
+        {title: 'Not Met', value:  10, color: '#C13C37'}
     ])
     //Need to figure out how to get a label on here
     
@@ -87,6 +91,15 @@ export const HQPieChart = () => {
         
         return valueArr
     }
+
+    const calcDaysWorthOfFood = (number) =>{
+        const caloriesPerPersonPerDay = 2000;
+        
+        const reserveObj = reserveArr[0]
+        const peopleInPlan = reserveObj?.numOfPeople
+        const caloriesInADay = peopleInPlan * caloriesPerPersonPerDay
+        return (number/caloriesInADay)
+    }
     
 
     
@@ -111,6 +124,8 @@ export const HQPieChart = () => {
     
         const newPieValues = valuesForPieChart(mycalories);
         setDataValues(newPieValues);
+        const howManyDaysWorthOfFood = calcDaysWorthOfFood(mycalories) 
+        setDaysOfFood(howManyDaysWorthOfFood)
     
                 
     }, [mycalories]);
@@ -119,11 +134,23 @@ export const HQPieChart = () => {
 
 
     return(
-        <PieChart
-            data={dataValues}
-            lineWidth={60}
-            label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
-            labelPosition={62}
-        />
+        <>
+            <section className="cardStatsArea">
+                <div className="cardReadArea">
+                    <p>Goal:{reserveArr[0]?.goal} days</p>
+                    <p>Provides for: {reserveArr[0]?.numOfPeople}</p>
+                    <p>Days worth of Food: {daysoffood}</p>
+                </div>
+                <div className="forumCardPieArea">
+                    <PieChart
+                        data={dataValues}
+                        lineWidth={60}
+                        label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
+                        labelPosition={62}
+                        
+                    />
+                </div>
+            </section>
+        </>
     )
 }

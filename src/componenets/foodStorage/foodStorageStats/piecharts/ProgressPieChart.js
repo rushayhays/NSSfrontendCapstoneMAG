@@ -3,8 +3,13 @@
 import { PieChart } from "react-minimal-pie-chart"
 import { getReserveInfo } from "../../../../modules/pieManager"
 import { useState, useEffect } from "react"
+import { Navigate, useNavigate } from "react-router-dom"
+
 
 export const ProgressPieChart = ({parentFoodStorage}) => {
+
+    const userObject = JSON.parse(sessionStorage.getItem("mag_user"))
+    const currentUserId = parseInt(userObject.id)
 
     const[foodstorage, setFoodStorage] = parentFoodStorage
     const[reserveArr, setReserveArr] = useState([{
@@ -23,9 +28,10 @@ export const ProgressPieChart = ({parentFoodStorage}) => {
         {title: 'One', value:  10, color: '#E38627'},
         {title: 'Two', value:  10, color: '#C13C37'}
     ])
-    //Need to figure out how to get a label on here
     
     const[mycalories, setMyCalories]=useState(0)
+
+    const navigate = useNavigate();
     
     const calcCaloriesInMyFoodStorage = () => {
         
@@ -56,19 +62,23 @@ export const ProgressPieChart = ({parentFoodStorage}) => {
         const calorieGoal = calcCaloriesNeededToMeetGoal();
         
         const remainingCaloriesNeeded = parseInt(calorieGoal) - parseInt(myCurrentCalories)
-        const percentageCompletion = Math.floor((myCurrentCalories/calorieGoal)*100)
    
         let valueArr = [
-            {title: 'One', value: myCurrentCalories, color: '#E38627'},
-            {title: 'Two', value: remainingCaloriesNeeded, color: '#C13C37'}
+            {title: 'Progress', value: myCurrentCalories, color: '#83C5BE'},
+            {title: 'Not Met', value: remainingCaloriesNeeded, color: '#EDF6F9'}
         ]
-        
-        return valueArr
+
+        if( remainingCaloriesNeeded <= 0){
+            navigate("/foodstorage/goalmet")
+            return valueArr
+        }else{
+            return valueArr
+        }
     }
     
     
     useEffect(()=> {
-        getReserveInfo(1).then(infoArray => {
+        getReserveInfo(currentUserId).then(infoArray => {
             setReserveArr(infoArray)
         })
                 

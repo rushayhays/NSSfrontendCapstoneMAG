@@ -12,7 +12,7 @@ import { useState, useEffect } from "react"
 
 export const FoodStorage = () => {
     
-    const userObject = JSON.parse(sessionStorage.getItem("kennel_customer"))
+    const userObject = JSON.parse(sessionStorage.getItem("mag_user"))
     const currentUserId = parseInt(userObject.id)
     
     const [foodstorage, setFoodStorage] = useState([{
@@ -38,9 +38,10 @@ export const FoodStorage = () => {
     const [breakfastarr, setBreakfastArr] = useState([])
     const [snackarr, setSnackArr] = useState([])
     const [expirearr, setExpireArr] = useState([])
+    const [value, setValue] = useState(0)
     
     
-    let lengthLooker = foodstorage.length
+    
     
     
     //I want to sort the entire array of the users Food Storage into smaller arrays filtered by
@@ -69,7 +70,7 @@ export const FoodStorage = () => {
     
     useEffect(()=> {
         callUpUsersFoodStorage(currentUserId);
-    }, []);
+    }, [value]);
 
     useEffect(()=> {
         theGreatSorting();
@@ -106,7 +107,7 @@ export const FoodStorage = () => {
         console.log("hello hello")
     }
     
-    const oneBigArray = [[dinnerarr, setDinnerArr],[luncharr, setLunchArr],  [breakfastarr, setBreakfastArr], [snackarr, setSnackArr], [expirearr, setExpireArr], callUpUsersFoodStorage, theGreatSorting, helloFunction, [foodstorage, setFoodStorage]]
+    const oneBigArray = [[dinnerarr, setDinnerArr],[luncharr, setLunchArr],  [breakfastarr, setBreakfastArr], [snackarr, setSnackArr], [expirearr, setExpireArr], callUpUsersFoodStorage, theGreatSorting, helloFunction, [foodstorage, setFoodStorage],[value, setValue]]
     
     return(
         <>

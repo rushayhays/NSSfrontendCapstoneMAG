@@ -4,11 +4,16 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { getUsersMealPackets, addNutrient, getSingleUserMealPacket, getNutritionForSingleMeal, deleteNutrient, updateMeal } from "../../../../modules/mealPacketManager" 
 import { SingleMealCard } from "../SingleMealCard"
+import { useNavigate } from "react-router-dom"
 
-export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
+export const EditMyMealCard = () => {
+
+    const userObject = JSON.parse(sessionStorage.getItem("mag_user"))
+    const currentUserId = parseInt(userObject.id)
 
     const{mealId} = useParams()
 
+    const[lengthValue, setLengthValue]=useState(0)
     const [meals, setMeals] = useState([{
         id:0,
         userId:0,
@@ -19,7 +24,7 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
         name:""
     }])
     const [editedMeal, setEditedMeal] = useState({
-        userId:1,
+        userId:0,
         calories:0,
         mealTypeId:0,
         servings:0,
@@ -29,14 +34,12 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
 
 
     const [nutritionAreas, setNutritionAreas] = useState([{
-        "id": 0,
-        "nutritionTypeId": 0,
-        "mealPacketId": 0
+        userId: currentUserId,
+        nutritionTypeId: 0,
+        mealPacketId: 0
     }])
 
-    //This is being watched by a use effect. The useEffect will trigger when 
-    //nutritionareas populates
-    let lengthLooker = nutritionAreas.length
+    
 
     
 
@@ -47,6 +50,9 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
     const [checkedfour, setCheckedFour] = useState(false)
     const [checkedfive, setCheckedFive] = useState(false)
     const [checkedsix, setCheckedSix] = useState(false)
+
+    //Once a card is edited Navigate back to MyMealCards
+    const navigate = useNavigate();
 
     //This will set the default state of the chckboxes to match
     //what nutrients are listed
@@ -73,9 +79,9 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
         })
     }
 
-    const userNum = 1;
+    
     useEffect(()=> {
-        getUsersMealPackets(userNum).then(arrOfMeals => {
+        getUsersMealPackets(currentUserId).then(arrOfMeals => {
             setMeals(arrOfMeals)
         });
         getSingleUserMealPacket(mealId).then(object => {
@@ -83,19 +89,20 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
         })
         getNutritionForSingleMeal(mealId).then(arrOfNTypes => {
             setNutritionAreas(arrOfNTypes)
+            setLengthValue(lengthValue=> lengthValue+1)
         });
     }, []);
 
     //This ensures that nutrtionAreas has populated before running setUpNutritionAreasForEditing
     useEffect(()=>{
         setUpNutritionAreasForEditing()
-    }, [lengthLooker]);
+    }, [lengthValue]);
 
 
     
     const handleControlledInputChange = (event) => {
         const mealWithEdits = { ...editedMeal }
-        mealWithEdits.userId = userNum;
+        mealWithEdits.userId = currentUserId;
 		//A sepearte useState is needed here, because meals, creates an
         //array of meal objects, but this needs something that only deals with
         //and updates one object total
@@ -160,7 +167,8 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
     const nutrientsToPost = (numberArgument) => {
         let nutriObject={
             mealPacketId: numberArgument,
-            nutritionTypeId:0
+            nutritionTypeId:0,
+            userId: currentUserId
         }
         
         const addPromiseArray=[]
@@ -170,7 +178,6 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
             nutriObject.nutritionTypeId=1
             const promise1 = addNutrient(nutriObject)
             addPromiseArray.push(promise1)
-            console.log("add grain")
         }
         if(checkedone === false && nutritionAreas.some(hasNutrientId1)){
             const objectToDelete = nutrientObjectFinder(1)
@@ -182,7 +189,6 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
             nutriObject.nutritionTypeId=2
             const promise2 = addNutrient(nutriObject)
             addPromiseArray.push(promise2)
-            console.log("add vegetables")
         }
         if(checkedtwo === false && nutritionAreas.some(hasNutrientId2)){
             const objectToDelete = nutrientObjectFinder(2)
@@ -194,7 +200,6 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
             nutriObject.nutritionTypeId=3
             const promise3 = addNutrient(nutriObject)
             addPromiseArray.push(promise3)
-            console.log("add fruits")
         }
         if(checkedthree === false && nutritionAreas.some(hasNutrientId3)){
             const objectToDelete = nutrientObjectFinder(3)
@@ -206,7 +211,6 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
             nutriObject.nutritionTypeId=4
             const promise4 = addNutrient(nutriObject)
             addPromiseArray.push(promise4)
-            console.log("add proteins")
         }
         if(checkedfour === false && nutritionAreas.some(hasNutrientId4)){
             const objectToDelete = nutrientObjectFinder(4)
@@ -218,7 +222,6 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
             nutriObject.nutritionTypeId=5
             const promise5 = addNutrient(nutriObject)
             addPromiseArray.push(promise5)
-            console.log("add dairy")
         }
         if(checkedfive === false && nutritionAreas.some(hasNutrientId5)){
             const objectToDelete = nutrientObjectFinder(5)
@@ -230,7 +233,6 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
             nutriObject.nutritionTypeId=6
             const promise6 = addNutrient(nutriObject)
             addPromiseArray.push(promise6)
-            console.log("add other")
         }
         if(checkedsix === false && nutritionAreas.some(hasNutrientId6)){
             const objectToDelete = nutrientObjectFinder(6)
@@ -241,14 +243,11 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
         
     }
 
-    const runTest = () => {
-        const array = nutrientsToPost(mealId)
-    }
 
    
     //This is to make my code shorter, I have to rerender the meal cards a lot
     const renderMealCards = () =>{
-        getUsersMealPackets(userNum).then(arrOfMeals => {
+        getUsersMealPackets(currentUserId).then(arrOfMeals => {
             setMeals(arrOfMeals)
         });
     }
@@ -257,12 +256,8 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
     const handleEditButtonPush = () => {
         // patch mealPacket edits to mealPacket
         updateMeal(editedMeal).then(postedMeal => {
-            getNutritionForSingleMeal(mealId).then(arrOfNTypes => {
-                setNutritionAreas(arrOfNTypes)
-            });
-            const array = nutrientsToPost(mealId)
-            lengthLooker = nutritionAreas.length
-            renderMealCards();
+            const array = nutrientsToPost(postedMeal.id)
+            navigate("/foodstorage/mymealcards")
         })
     }
 
@@ -280,36 +275,36 @@ export const EditMyMealCard = ({testPassingArray, testPassingChild}) => {
 
             {/* This area will handle gathering information for a new card and posting it */}
             <section className="mealCardCreation">
-                <div className="mealCreateTitleArea">
-                    <h4>Create a New Meal Card</h4>
+            <div className="mealCreateTitleArea">
+                    <h4>Edit a Meal Card</h4>
                 </div>
                 <div className="mealCreateEntryArea">
                     {/* Box1 will grab info to post to mealPacket */}
                     <div className="mealCreateEntryBox" id="box1">
-                        <fieldset className="mealField">
-                            <div className="form-area">
-                                <label htmlFor="name">Name:</label>
-                                <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="name" value={editedMeal.name} />
-                            </div>
-                        </fieldset>
-                        <fieldset className="mealField">
-                            <div className="form-area">
-                                <label htmlFor="calories">Total calories:</label>
-                                <input type="number" id="calories" onChange={handleControlledInputChange} name="calories" min="1" max="1000000" value={editedMeal.calories}/>
-                            </div>
-                        </fieldset>
-                        <fieldset className="mealField">
-                            <div className="form-area">
-                                <label htmlFor="servings">Servings:</label>
-                                <input type="number" id="servings" onChange={handleControlledInputChange} name="servings" min="1" max="8000" value={editedMeal.servings}/>
-                            </div>
-                        </fieldset>
-                        <fieldset className="mealField">
-                            <div className="form-area">
-                                <label htmlFor="shelfLifeInDays">Shelf Life in Days:</label>
-                                <input type="number" id="shelfLifeInDays" onChange={handleControlledInputChange} name="shelfLifeInDays"min="1" max="4000" value={editedMeal.shelfLifeInDays}/>
-                            </div>
-                        </fieldset>
+                        
+                        <div className="form-area">
+                            <label id="label1" htmlFor="name">Name:</label>
+                            <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="name" value={editedMeal.name} />
+                        </div>
+                    
+                    
+                        <div className="form-area">
+                            <label htmlFor="calories">Total calories:</label><br/>
+                            <input type="number" id="calories" onChange={handleControlledInputChange} name="calories" min="1" max="1000000" value={editedMeal.calories}/>
+                        </div>
+                
+                
+                        <div className="form-area">
+                            <label htmlFor="servings">Servings:</label><br/>
+                            <input type="number" id="servings" onChange={handleControlledInputChange} name="servings" min="1" max="8000" value={editedMeal.servings}/>
+                        </div>
+                    
+                    
+                        <div className="form-area">
+                            <label htmlFor="shelfLifeInDays">Shelf Life in Days:</label><br/>
+                            <input type="number" id="shelfLifeInDays" onChange={handleControlledInputChange} name="shelfLifeInDays"min="1" max="4000" value={editedMeal.shelfLifeInDays}/>
+                        </div>
+                        
                     </div>
                     {/* Box2 will also post to MealPacket  */}
                     <div className="mealCreateEntryBox" id="box2">
