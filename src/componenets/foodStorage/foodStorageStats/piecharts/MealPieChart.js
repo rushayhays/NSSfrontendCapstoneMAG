@@ -41,6 +41,7 @@ export const MealPieChart = ({oneBigArray}) =>{
             data={piedata}
             lineWidth={60}
             label={( {dataEntry} ) => `${Math.round(dataEntry.percentage)} %`}
+            animate
         />
     )
 }
