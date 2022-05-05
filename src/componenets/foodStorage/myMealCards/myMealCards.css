@@ -1,5 +1,6 @@
 .topBar{
     background-color: lightgray;
+    padding-left: 10px;
 }
 
 
@@ -16,6 +17,7 @@
 
 .mealCreateTitleArea{
     background-color: lightgray;
+    padding-left: 10px;
 }
 
 .mealCreateEntryArea{
@@ -35,8 +37,13 @@
 .formArea{
     padding-left:10px;
 }
-#name{
-    height:10px;
-    width:200px;
-}
 
+
+
+#createMyMealCardButton{
+    color: white;
+    text-align: left;
+    background-color: black;
+    width:800px;
+    height:30px;
+}

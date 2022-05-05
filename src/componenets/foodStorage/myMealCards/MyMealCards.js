@@ -219,8 +219,8 @@ export const MyMealCards = () => {
                     <div className="mealCreateEntryBox">
                         
                         <div className="form-area">
-                            <label id="label1" htmlFor="name">Name:</label>
-                            <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="name" value={singleMeal.name} />
+                            <label id="label1" htmlFor="name">Name:</label><br/>
+                            <input type="text" id="name" onChange={handleControlledInputChange} autoFocus placeholder="name" value={singleMeal.name} />
                         </div>
                     
                     
@@ -278,7 +278,7 @@ export const MyMealCards = () => {
                     </div>
                 </div>
                 <div id="createButtonArea">
-                    <button onClick={handleCreateButtonPush}>Create My Meal Card</button>
+                    <button id="createMyMealCardButton" onClick={handleCreateButtonPush}>Create My Meal Card</button>
                 </div>
             </section>
         </>

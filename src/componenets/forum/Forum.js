@@ -3,6 +3,7 @@
 import { getUsers } from "../../modules/forumManager"
 import { useEffect, useState } from "react"
 import { ForumCard } from "./ForumCard";
+import "./forum.css"
 
 export const Forum = () => {
 

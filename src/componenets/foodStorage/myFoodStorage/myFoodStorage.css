@@ -1,16 +1,21 @@
 .myFoodStorageBar{
     background-color: lightgrey;
+    padding-left: 10px;
 }
 
 .expirationBar{
     background-color: lightgray;
+    padding-left: 10px;
 }
 .myFoodStorageCarousel{
+    width:1070px;
     display:flex;
     gap:10px;
     background-color: gray;
     height:150px;
     margin-bottom: 10px;
+    padding-left: 7px;
+
 }
 .expireCardArea{
     display:flex;
@@ -18,5 +23,18 @@
     background-color: gray;
     height:150px;
     margin-bottom: 10px;
+}
+
+#row1{
+    border-left:5px solid #C04CF0;
+}
+#row2{
+    border-left:5px solid #9DFFF9;
+}
+#row3{
+    border-left:5px solid #FF521B;
+}
+#row4{
+    border-left:5px solid #FFDF64;
 }
 

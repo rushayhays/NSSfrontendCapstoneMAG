@@ -41,7 +41,7 @@ export const MyFoodStorage = () =>{
     const [luncharr, setLunchArr] = useState([])
     const [breakfastarr, setBreakfastArr] = useState([])
     const [snackarr, setSnackArr] = useState([])
-    const [expirearr, setExpireArr] = useState([])
+    const [expirearr, setExpireArr] = useState([]) 
     
     
     

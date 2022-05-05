@@ -1,10 +1,13 @@
 .landingPageBanner{
-    background-color: lightgray;
+    background-image: url("C:/Users/rusha/workspace/magfoodstorage/public/images/darkWoods.jpg");
+    background-position: center;
     display:flex;
 }
-
+#topCatch{
+    margin-left: 25px;
+}
 #bottomCatch{
-    margin-left:200px;
+    margin-left:250px;
 }
 
 .lilBlackBox{

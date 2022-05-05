@@ -36,7 +36,11 @@
 .formArea{
     padding-left:10px;
 }
-#name{
-    height:10px;
-    width:200px;
+
+#editMyMealButton{
+    color: white;
+    text-align: left;
+    background-color: black;
+    width:800px;
+    height:30px;
 }
