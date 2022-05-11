@@ -3,26 +3,37 @@
     padding-left: 10px;
 }
 
+.outletHeader{
+    margin-bottom:20px;
+    margin-top: 0;
+    padding-bottom: 13px;
+}
+
 .expirationBar{
     background-color: lightgray;
     padding-left: 10px;
 }
 .myFoodStorageCarousel{
-    width:1070px;
+    min-width: 800px;
+    max-width:1070px;
     display:flex;
     gap:10px;
     background-color: gray;
-    height:150px;
+    height:170px;
     margin-bottom: 10px;
     padding-left: 7px;
+    overflow-x: scroll;
 
 }
 .expireCardArea{
     display:flex;
     gap:10px;
     background-color: gray;
-    height:150px;
+    height:170px;
     margin-bottom: 10px;
+    min-width: 800px;
+    max-width:1070px;
+    overflow-x: scroll;
 }
 
 #row1{

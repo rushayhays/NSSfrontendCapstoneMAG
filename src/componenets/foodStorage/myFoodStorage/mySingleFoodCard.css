@@ -2,7 +2,7 @@
 
 .foodCard{
     height:150px;
-    width:190px;
+    min-width:190px;
     background-color: lightgrey;
     font-size: 10px;
     padding-left: 10px;

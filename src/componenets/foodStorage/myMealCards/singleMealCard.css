@@ -1,5 +1,5 @@
 .mealPacket{
-    width:240px;
+    min-width:240px;
     height:300px;
     background-color: gray;
 }

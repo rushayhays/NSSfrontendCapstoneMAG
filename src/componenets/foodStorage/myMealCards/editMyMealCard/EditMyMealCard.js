@@ -265,7 +265,7 @@ export const EditMyMealCard = () => {
         <>
             <section className="topBar">
                 {/* eventually this will also be able to display the creation information */}
-                <h4>Edit My Meal Card</h4>
+                <h4 className="outletHeader">Edit My Meal Card</h4>
             </section>
             <section className="mealCardCarousel">
                 {meals.map(meal =>
@@ -284,7 +284,7 @@ export const EditMyMealCard = () => {
                         
                         <div className="form-area">
                             <label id="label1" htmlFor="name">Name:</label><br/>
-                            <input type="text" id="name" onChange={handleControlledInputChange}  autoFocus placeholder="name" value={editedMeal.name} />
+                            <input type="text" id="name" onChange={handleControlledInputChange} placeholder="name" value={editedMeal.name} />
                         </div>
                     
                     
