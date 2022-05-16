@@ -4,6 +4,9 @@
 }
 
 .foodNavButton{
-    background-color: black;
+    background-color: gray;
+    border-color: gray;
     color:white;
+    height:35px;
+    margin-top: 0;
 }

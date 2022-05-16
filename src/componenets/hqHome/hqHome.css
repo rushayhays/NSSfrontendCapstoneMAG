@@ -5,6 +5,10 @@
     height:500px;
 }
 
+#hqHomeFoodTitle{
+    text-align: center;
+}
+
 .hqHomeFoodPie{
     height: 300px;
     width:300px;
