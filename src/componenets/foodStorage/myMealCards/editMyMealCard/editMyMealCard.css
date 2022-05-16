@@ -9,9 +9,12 @@
 }
 
 .mealCardCarousel{
-    height:300px;
+    height:320px;
     display:flex;
     gap:10px;
+    min-width: 800px;
+    max-width: 100%;
+    overflow-x: scroll;
 }
 
 .mealCreateTitleArea{
@@ -36,7 +39,11 @@
 .formArea{
     padding-left:10px;
 }
-#name{
-    height:10px;
-    width:200px;
+
+#editMyMealButton{
+    color: white;
+    text-align: left;
+    background-color: black;
+    width:800px;
+    height:30px;
 }

@@ -3,6 +3,7 @@
 import React from "react"
 import { Header } from "./header/Header"
 import { ApplicationViews } from "./ApplicationViews"
+import { Footer } from "./footer/Footer"
 import "./HQ.css"
 import { useState } from "react"
 
@@ -32,6 +33,9 @@ export const HQ = () => {
                         isAuthenticated={isAuthenticated}
                         setIsAuthenticated={setIsAuthenticated}
                     />
+                </div>
+                <div>
+                    <Footer/>
                 </div>
             </section>
         </>

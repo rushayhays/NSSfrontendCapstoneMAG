@@ -1,5 +1,5 @@
 #foodStorageStatsBox{
-
+    width:300px;
 }
 
 #statNameBanner{
@@ -21,7 +21,7 @@
 
 .statsPieBox{
     background-color: lightgrey;
-    height:600px;
+    height:630px;
     padding-top: 10px;
 }
 #pieChartOne{

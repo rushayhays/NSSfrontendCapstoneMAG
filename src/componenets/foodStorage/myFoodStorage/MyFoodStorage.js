@@ -41,7 +41,7 @@ export const MyFoodStorage = () =>{
     const [luncharr, setLunchArr] = useState([])
     const [breakfastarr, setBreakfastArr] = useState([])
     const [snackarr, setSnackArr] = useState([])
-    const [expirearr, setExpireArr] = useState([])
+    const [expirearr, setExpireArr] = useState([]) 
     
     
     
@@ -126,7 +126,7 @@ export const MyFoodStorage = () =>{
     return(
         <>
             <section className="myFoodStorageBar">
-                <h4>My Food Storage</h4>
+                <h4 className="outletHeader">My Food Storage</h4> 
             </section>
             <section className="cardDisplayArea">
                 <div className="myFoodStorageCarousel" id="row1">

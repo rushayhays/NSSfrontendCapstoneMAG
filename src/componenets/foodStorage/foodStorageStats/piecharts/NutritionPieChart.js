@@ -107,6 +107,7 @@ export const NutritionPieChart = ({parentFoodStorage}) => {
             label={( {dataEntry} ) => `${Math.round(dataEntry.percentage)} %`}
             lineWidth={60}
             labelPosition={62}
+            animate
         />
     )
 }

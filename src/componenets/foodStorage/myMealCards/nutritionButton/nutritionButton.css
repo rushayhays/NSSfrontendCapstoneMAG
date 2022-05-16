@@ -1,4 +1,35 @@
 
+.fruit{
+    height:25px;
+    width:100px;
+    background-color: #FF6700;
+}
+.other{
+    height:25px;
+    width:100px;
+    background-color: #E56399;
+}
+.dairy{
+    background-color: #EBEBEB;
+    height:25px;
+    width:100px;
+}
+.protein{
+    background-color: #DD1155;
+    height:25px;
+    width:100px;
+}
+.grain{
+    height:25px;
+    width:100px;
+    background-color: #D2FF28;
+}
+.vegetable{
+    background-color: #06D6A0;
+    height:25px;
+    width:100px;
+}
+
 .nutriButton{
     background-color: lightgray;
     height:25px;

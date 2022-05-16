@@ -265,7 +265,7 @@ export const EditMyMealCard = () => {
         <>
             <section className="topBar">
                 {/* eventually this will also be able to display the creation information */}
-                <h4>Edit My Meal Card</h4>
+                <h4 className="outletHeader">Edit My Meal Card</h4>
             </section>
             <section className="mealCardCarousel">
                 {meals.map(meal =>
@@ -283,8 +283,8 @@ export const EditMyMealCard = () => {
                     <div className="mealCreateEntryBox" id="box1">
                         
                         <div className="form-area">
-                            <label id="label1" htmlFor="name">Name:</label>
-                            <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="name" value={editedMeal.name} />
+                            <label id="label1" htmlFor="name">Name:</label><br/>
+                            <input type="text" id="name" onChange={handleControlledInputChange} placeholder="name" value={editedMeal.name} />
                         </div>
                     
                     
@@ -342,7 +342,7 @@ export const EditMyMealCard = () => {
                     </div>
                 </div>
                 <div id="createButtonArea">
-                    <button onClick={handleEditButtonPush}>Edit My Meal Card</button>
+                    <button id="editMyMealButton" onClick={handleEditButtonPush}>Edit My Meal Card</button>
                 </div>
             </section>
         </>

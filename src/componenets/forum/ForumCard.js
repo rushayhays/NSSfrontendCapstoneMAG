@@ -12,8 +12,8 @@ export const ForumCard = ({user}) =>{
         <>
             <div className="forumCard">
                 <div className="userInfo">
-                    <h3>{user.name}</h3>
-                    <h3>{user.email}</h3>
+                    <h3 className="userForumName">{user.name}</h3>
+                    <p>{user.email}</p>
                 </div>
                 <div className="forumStatsArea">
                     <ForumProgressPie user={user}/>

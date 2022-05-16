@@ -1,5 +1,5 @@
 .mealPacket{
-    width:240px;
+    min-width:240px;
     height:300px;
     background-color: gray;
 }
@@ -8,9 +8,11 @@
     height:40px;
     margin-bottom:10px;
     margin-top: 10px;
+    padding-left: 10px;
 }
 .mealNumberRunDown{
     margin:0;
+    padding-left: 10px;
 }
 .mealNumbers{
     margin:5px;
@@ -29,6 +31,7 @@
 .nutriButtonArea{
     height:75px;
     margin:0;
+    padding-left: 10px;
 }
 #groupsTitle{
     margin:0;

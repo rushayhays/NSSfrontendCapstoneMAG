@@ -13,9 +13,12 @@ export const HQHome = () => {
 
             <div className="hqHomeBody">
                 < Link to={"/foodStorage"}>
-                <div className="hqHomeFoodPie">
-                <HQPieChart/>
-                </div>
+                <div className="hqHomeFoodStorage">
+                    <h3 id="hqHomeFoodTitle">Food Storage</h3>
+                    <div className="hqHomeFoodPie">
+                        <HQPieChart/>
+                    </div>
+                </div>    
                 </Link>
             </div>
 

@@ -7,7 +7,7 @@ export const NutritionButton=({nutriObject})=>{
    
     return(
         <>
-            <button className="nutriButton">{nutriObject.nutritionType?.name}</button>
+            <button className={nutriObject.nutritionType?.name}>{nutriObject.nutritionType?.name}</button>
         </>
     )
 }

@@ -74,16 +74,16 @@ export const SingleMealCard =({object, render, renderFoodArray}) =>{
         <>
             <div className="mealPacket" id={object.id}>
                 <div className="mealCardNameArea">
-                    <h5 className="mealTitle">{object.name}</h5>
+                    <h4 className="mealTitle">{object.name}</h4>
                 </div>
                 <div className="mealNumberRunDown">
-                    <h4 id="nutritionTitle">Nutrition</h4>
+                    <h5 id="nutritionTitle">Nutrition</h5>
                     <p className="mealNumbers">Calories| {object.calories}</p>
                     <p className="mealNumbers">Servings| {object.servings}</p>
                     <p className="mealNumbers">Shelf-Life| {object.shelfLifeInDays} days</p>
                 </div>
                 <div className="nutriButtonArea">
-                    <h4 id="groupsTitle">Food Groups</h4>
+                    <h5 id="groupsTitle">Food Groups</h5>
                     {nutritionGroups.map(nutritionGroup=>
                         <NutritionButton key={nutritionGroup.id} nutriObject={nutritionGroup}/>
                     )}
@@ -92,8 +92,12 @@ export const SingleMealCard =({object, render, renderFoodArray}) =>{
                     <Link to={`/foodstorage/editmymealcard/${object.id}`}>
                     <button>Edit</button>
                     </Link>
-                    <button onClick={handleAddMeal}>Add Meal</button>
-                    <button onClick={handleClickDelete} >Delete</button>
+                    <div>
+                        <button onClick={handleAddMeal}>Add Meal</button>
+                    </div>
+                    <div>
+                        <button onClick={handleClickDelete} >Delete</button>
+                    </div>
 
                 </div>
             </div>

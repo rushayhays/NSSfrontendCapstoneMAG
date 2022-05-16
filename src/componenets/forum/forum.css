@@ -1,0 +1,4 @@
+.forumCardArea{
+    display: flex;
+    flex-wrap: wrap;
+}

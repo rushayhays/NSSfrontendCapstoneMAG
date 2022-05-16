@@ -37,9 +37,9 @@ export const MySingleFoodCard = ({object, handleDelete, value}) => {
         <>
             <div className="foodCard">
                 <h4>{object.mealPacket?.name}</h4>
-                <h4>Added: {theDateToInsert}</h4>
-                <h4>Meal Id: {object.id}</h4>
-                <h4>Expires: {whenExpired}</h4>
+                <p>Added: {theDateToInsert}</p>
+                <p>Meal Id: {object.id}</p>
+                <p>Expires: {whenExpired}</p>
                 <button onClick={() => handleDelete(object.id)}>Delete</button>
             </div>
         </>

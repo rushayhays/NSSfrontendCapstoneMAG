@@ -107,6 +107,7 @@ export const ProgressPieChart = ({parentFoodStorage}) => {
             lineWidth={60}
             label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
             labelPosition={62}
+            animate
         />
     )
 }
