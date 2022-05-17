@@ -28,10 +28,6 @@
 This is an app designed to break down the process of building up food storage into small easy steps.
 
 ![Food Storage Page](public/images/MAGscreenshot1.png)
-![Meal Card Page](public\images\MAGscreenshot2.png?raw=true "My Meal Cards")
-![HQ Home Page](public\images\MAGscreenshot3.png?raw=true "HQ")
-![Forum Page](public\images\MAGscreenshot4.png?raw=true "Forum")
-![Landing Page](public\images\MAGscreenshot5.png?raw=true "Landing Page")
 
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `rushayhays@outlook.com_client`, `rushayhays@outlook.com`, `MAG:Food Storage`, `A digital food storgae goal setter and visualizer`
 
@@ -88,8 +84,12 @@ This is an example of how to list things you need to use the software and how to
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+![Meal Card Page](public/images/MAGscreenshot2.png)
+![HQ Home Page](public/images/MAGscreenshot3.png)
+![Forum Page](public/images/MAGscreenshot4.png)
+![Landing Page](public/images/MAGscreenshot5.png)
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
