@@ -22,7 +22,7 @@ This is an app designed to break down the process of building up food storage in
 
 ![Food Storage Page](public/images/MAGscreenshot1.png)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `rushayhays@outlook.com_client`, `rushayhays@outlook.com`, `MAG:Food Storage`, `A digital food storgae goal setter and visualizer`
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -31,9 +31,9 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 ### Built With
 
 * [React.js](https://reactjs.org/)
-* [HTML5]
-* [JavaScript]
-* [CSS3]
+* [HTML5](https://html.com/html5/)
+* [JavaScript](https://www.javascript.com/)
+* [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
