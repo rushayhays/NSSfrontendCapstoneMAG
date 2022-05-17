@@ -130,9 +130,8 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [Brenda Long](https://github.com/brendalong)
+* [Dakota Lambert](https://github.com/DakotaLambert)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
