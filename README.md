@@ -34,6 +34,7 @@ This is an app designed to break down the process of building up food storage in
 * [HTML5](https://html.com/html5/)
 * [JavaScript](https://www.javascript.com/)
 * [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
+* [react-minimal-pie-chart](https://www.npmjs.com/package/react-minimal-pie-chart)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
