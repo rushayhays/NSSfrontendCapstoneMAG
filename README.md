@@ -27,7 +27,7 @@
 
 This is an app designed to break down the process of building up food storage into small easy steps.
 
-![Food Storage Page](MAGscreenshot1.png)
+![Food Storage Page](public/images/MAGscreenshot1.png)
 ![Meal Card Page](public\images\MAGscreenshot2.png?raw=true "My Meal Cards")
 ![HQ Home Page](public\images\MAGscreenshot3.png?raw=true "HQ")
 ![Forum Page](public\images\MAGscreenshot4.png?raw=true "Forum")
