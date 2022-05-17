@@ -43,32 +43,35 @@ This is an app designed to break down the process of building up food storage in
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+This project was built on a Windows machine
+The files and installs were accessed through Windows Terminal with GitBash applied to it
+It was edited using Visual Studio code
+
+My reccomendation would be to mimic that set up when working with this project
 
 ### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+ 
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/github_rushayhays/NSSfrontendCapstoneMAG.git
    ```
 3. Install NPM packages
    ```sh
-   npm install
+   npm i --save react-router-dom
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+   ```sh
+   npm install react-minimal-pie-chart
    ```
+4.I assume that cloning the repo down will automatically set it up as a react app
+  If for some reason that is not the case, install this
+  ```sh
+  npx create-react-app
+  ```
+5.You will want to copy the .example database inside the api directory. When you have created the copy go ahead and remove the .example extension off of it.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -78,9 +81,17 @@ This is an example of how to list things you need to use the software and how to
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+
+The Meal Card page allows users to create meals, meals can then be added to My Food Storage
 ![Meal Card Page](public/images/MAGscreenshot2.png)
+
+This Home Page has room to grow. Clicking on the pie chart will direct you to the Food Storage Page
 ![HQ Home Page](public/images/MAGscreenshot3.png)
+
+Here a few different numbers are displayed, users can also compare their progress against other users
 ![Forum Page](public/images/MAGscreenshot4.png)
+
+I really like the Landing Page
 ![Landing Page](public/images/MAGscreenshot5.png)
 
 
@@ -113,7 +124,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - rushayhays@outlook.com@rushayhays@outlook.com_client.com
+Rushay Hays - rushayhays@outlook.com
 
 Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
 
