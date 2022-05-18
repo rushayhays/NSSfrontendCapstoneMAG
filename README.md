@@ -7,7 +7,7 @@
   <p align="center">
     A digital food storgae goal setter and visualizer
     </br>
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://youtu.be/RqsOzaRovHU">View Demo</a>
   </p>
 </div>
 
